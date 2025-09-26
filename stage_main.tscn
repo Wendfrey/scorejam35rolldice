@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://v30r43fb1vp"]
+
+[ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
+[ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
+
+[node name="StageMain" type="Node2D"]
+script = ExtResource("1_b0byo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="Background" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
+modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
+position = Vector2(575.2222, 321)
+scale = Vector2(0.90190977, 0.89444447)
+texture = ExtResource("2_ibjt6")
+
+[node name="Red" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
+position = Vector2(541, 267)
+
+[node name="Green" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
+
+[node name="Blue" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(9.687732, 0, 9.687732, 1)
+offset_left = 1083.274
+offset_top = 40.95176
+offset_right = 1135.5642
+offset_bottom = 286.0253
+rotation = 0.13534549
+value = 25.0
+fill_mode = 3
+show_percentage = false

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://btl61y1qxyw2w"]
+
+[ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
+[ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i26rj")
+mainGame = ExtResource("2_eiy7p")
+
+[node name="ButtonPlay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 147.0
+offset_right = 1041.0
+offset_bottom = 206.0
+text = "Play"
+
+[node name="ButtonTutorial" type="Button" parent="."]
+layout_mode = 0
+offset_left = 754.0
+offset_top = 211.0
+offset_right = 1051.0
+offset_bottom = 242.0
+text = "Tutorial"
+
+[node name="ButtonSetting" type="Button" parent="."]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 246.99431
+offset_right = 1017.0
+offset_bottom = 277.99432
+text = "Settings"
+
+[connection signal="button_up" from="ButtonPlay" to="." method="_on_button_play_button_up"]
+[connection signal="button_up" from="ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
+[connection signal="button_up" from="ButtonSetting" to="." method="_on_button_setting_button_up"]
