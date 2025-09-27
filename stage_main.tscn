@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=34 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://dad2tgnghrsey" path="res://Assets/sounds/playing-cards-on-a-wooden-table-55088.wav" id="21_gentr"]
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
 [ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
+[ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="24_xgppn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
@@ -144,7 +145,7 @@ stream_0/stream = ExtResource("6_fliql")
 font_size = 25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gentr"]
-size = Vector2(224, 90)
+size = Vector2(210, 73)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iuj4m"]
 font_size = 25
@@ -348,13 +349,18 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Control2" type="PanelContainer" parent="PlayZone/HBoxContainer"]
+[node name="Control2" type="TextureRect" parent="PlayZone/HBoxContainer"]
 z_index = -1
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("24_xgppn")
+expand_mode = 2
 
 [node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control2"]
-layout_mode = 2
+layout_mode = 0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 65.0
 text = "ROLL DICE"
 label_settings = SubResource("LabelSettings_4r2iv")
 horizontal_alignment = 1
@@ -366,13 +372,18 @@ metadata/zone = "ROLL"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control2/RollZone"]
 shape = SubResource("RectangleShape2D_gentr")
 
-[node name="Control" type="PanelContainer" parent="PlayZone/HBoxContainer"]
+[node name="Control" type="TextureRect" parent="PlayZone/HBoxContainer"]
 z_index = -1
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("24_xgppn")
+expand_mode = 2
 
 [node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control"]
-layout_mode = 2
+layout_mode = 0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 65.0
 text = "REFRESH DICE"
 label_settings = SubResource("LabelSettings_iuj4m")
 horizontal_alignment = 1
@@ -382,6 +393,7 @@ position = Vector2(115, 47)
 metadata/zone = "REFRESH"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control/RerollZone"]
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_gentr")
 
 [node name="PassTurnButton" type="Button" parent="PlayZone/HBoxContainer"]
