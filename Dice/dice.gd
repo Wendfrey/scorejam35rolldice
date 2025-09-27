@@ -217,7 +217,7 @@ func calculate_spectator_score():
 			DiceFaceDataResource.Effect.POSITIVE:
 				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
 			DiceFaceDataResource.Effect.NEGATIVE:
-				accumulated_spectator_value += mult * BASE_FACE_VALUE
+				accumulated_spectator_value += max(mult, 1) * BASE_FACE_VALUE
 			DiceFaceDataResource.Effect.ADD_DICE:
 				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
 	spectactor_score = floori(accumulated_spectator_value)

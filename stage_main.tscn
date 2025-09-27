@@ -158,12 +158,11 @@ metadata/_edit_vertical_guides_ = [708.0]
 
 [node name="ChatBox" type="Sprite2D" parent="."]
 visible = false
-z_index = 2
+z_index = 1
 position = Vector2(473, 389)
 texture = ExtResource("2_iuj4m")
 
 [node name="subtitles" type="RichTextLabel" parent="ChatBox"]
-z_index = 1
 offset_left = -132.0
 offset_top = -24.0
 offset_right = 183.0
@@ -313,7 +312,7 @@ bus = &"SFX"
 position = Vector2(-43, 148)
 
 [node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("dice_sliding_into_game_sound", "spawnPoint")]
-position = Vector2(575, 598)
+position = Vector2(401, 572)
 script = ExtResource("5_xpu1r")
 dice_sliding_into_game_sound = NodePath("../DiceSlidingIntoGameSound")
 spawnPoint = NodePath("../Marker2D")
@@ -323,7 +322,7 @@ stream = ExtResource("21_gentr")
 bus = &"SFX"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1208, 598)
+position = Vector2(1216, 572)
 
 [node name="settings" parent="." instance=ExtResource("21_xchji")]
 visible = false
@@ -344,9 +343,9 @@ size_flags_vertical = 6
 [node name="PlayZone" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 590.0
+offset_left = 433.0
 offset_top = 424.0
-offset_right = 1125.0
+offset_right = 968.0
 offset_bottom = 519.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayZone"]
