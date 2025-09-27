@@ -138,51 +138,6 @@ func vibrate():
 	current_anim.tween_property(self, "position", Vector2(3, 0), 0.05).as_relative()
 	current_anim.tween_property(self, "position", Vector2(-3, 0), 0.05).as_relative()
 	current_anim.tween_property(self, "position", current_pos, 0.05)
-##Properties
-#func _setOptions(newValue : Array) -> void:
-	###Cuando se vuelvan a meter nuevas opciones para el dado, reajustemos el tamaño del array para evitar problemas en el random
-	#options.resize(newValue.size())
-	#options = newValue
-	#
-#func _getOptions() -> Array:
-	#return options
-#
-#func _setInterval(newValue : float) -> void:
-	#interval = newValue
-		#
-#func _getInterval() -> float:
-	#return interval
-#
-#func _setTimer(newValue : int) -> void:
-	#timer = newValue
-		#
-#func _getTimer() -> int:
-	#return timer
-#
-#func _setPreviewInterval(newValue : float) -> void:
-	#previewInterval = newValue
-		#
-#func _getPreviewInterval() -> float:
-	#return previewInterval
-	#
-#func _setPreview(newValue : bool) -> void:
-	#preview = newValue
-		#
-#func _getPreview() -> bool:
-	#return preview
-	#
-#func setActive(newValue : bool) -> void:
-	###TODO: Cambiar el color tambien a algo "inactivo"
-	#active = newValue
-	#
-#func _getActive() -> bool:
-	#return active
-#
-#func setIsFinished(newValue : bool) -> void:
-	#isFinished = newValue
-	#
-#func _getIsFinished() -> bool:
-	#return isFinished
 
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:
