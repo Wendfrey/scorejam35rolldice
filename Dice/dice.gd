@@ -2,6 +2,8 @@ extends Sprite2D
 
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 var options : Array[DiceFaceDataResource]
 var interval : float = 0.1
 var timer : int = 10
@@ -26,6 +28,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Inicia el roll del dado
 func roll() -> void:
+	choice = null
+	interval = 0.1
 	ticks = 0
 	isFinished = false
 	##Iniciemos el timer con el intervalo de espera para ver el "roll" del dado
@@ -37,16 +41,27 @@ func roll() -> void:
 func _on_timer_timeout() -> void:
 	##Cuando se acabe el tiempo de espera, que haga el "roll". Si aún no ha acabado el tiempo (timer), reiniciamos el timer
 	##Sigo diciendo, estoy abierto a mejoras. Me disculpo con quien tenga que leer esto
+	
+	
 	ticks = ticks + 1
 	if ticks < timer:
+		if timer - ticks  == 1:
+			interval = 1
+		else:
+			interval += 0.05
+		$TimerRoll.start(interval)
+		self.texture = options.pick_random().texture
+	else:
 		choice = options.pick_random()
 		self.texture = choice.texture
-	else:
 		$TimerRoll.stop()
 		isFinished = true
+		
+	audio_stream_player.play()
 	
 ## Change faces of dice
 func generate_new_dice():
+	choice = null
 	options.clear()
 	for i in range(6):
 		options.append(all_possible_faces.pick_random())

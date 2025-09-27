@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btl61y1qxyw2w"]
+[gd_scene load_steps=5 format=3 uid="uid://btl61y1qxyw2w"]
 
 [ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="3_h7a2f"]
+[ext_resource type="AudioStream" uid="uid://dmfvecv3k1x83" path="res://Assets/sounds/Celebrative-moment-upbeat-band-sitcom-822.wav" id="4_qoqlk"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,6 +56,11 @@ offset_top = 246.99431
 offset_right = 1017.0
 offset_bottom = 277.99432
 text = "Settings"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qoqlk")
+autoplay = true
+bus = &"Music"
 
 [connection signal="button_up" from="ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
