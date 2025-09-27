@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://lcw65s7ygglt"]
+[gd_scene load_steps=12 format=3 uid="uid://lcw65s7ygglt"]
 
 [ext_resource type="Script" uid="uid://dayn7g0yo08wy" path="res://Dice/dice.gd" id="1_yynlm"]
-[ext_resource type="Texture2D" uid="uid://fb5jiwdj201a" path="res://Assets/Texture/dicePlaceholder.png" id="2_2rixr"]
+[ext_resource type="Script" uid="uid://b1pop7b8gyosf" path="res://Dice/DiceFaceDataResource.gd" id="3_nmrgv"]
+[ext_resource type="Resource" uid="uid://bckwejmlg0wl4" path="res://Dice/res/AllNegativeFace.tres" id="4_r7uk3"]
+[ext_resource type="Resource" uid="uid://bdelh772x3xhg" path="res://Dice/res/AllPositiveFace.tres" id="5_clcc5"]
+[ext_resource type="Resource" uid="uid://cbyrkgcwa43wg" path="res://Dice/res/BlueNegativeFace.tres" id="6_8xjo2"]
+[ext_resource type="Resource" uid="uid://d02a0cys6ufwh" path="res://Dice/res/BluePositiveFace.tres" id="7_s1lci"]
+[ext_resource type="Resource" uid="uid://bnhoh4q0k8p7q" path="res://Dice/res/GreenNegativeFace.tres" id="8_w2ngr"]
+[ext_resource type="Resource" uid="uid://cbbrafknj2vou" path="res://Dice/res/GreenPositiveFace.tres" id="9_oa3pg"]
+[ext_resource type="Resource" uid="uid://dkaeifj6kyxwy" path="res://Dice/res/RedNegativeFace.tres" id="10_irlgj"]
+[ext_resource type="Resource" uid="uid://d2v6ryeqds3dg" path="res://Dice/res/RedPositiveFace.tres" id="11_bunnl"]
+[ext_resource type="Resource" uid="uid://dnow6ueevdj48" path="res://Dice/res/WhiteNeutralAddDice.tres" id="12_58irk"]
 
 [node name="Dice" type="Sprite2D"]
-scale = Vector2(0.11376592, 0.10876416)
-texture = ExtResource("2_2rixr")
 script = ExtResource("1_yynlm")
+all_possible_faces = Array[ExtResource("3_nmrgv")]([ExtResource("4_r7uk3"), ExtResource("5_clcc5"), ExtResource("6_8xjo2"), ExtResource("7_s1lci"), ExtResource("8_w2ngr"), ExtResource("9_oa3pg"), ExtResource("10_irlgj"), ExtResource("11_bunnl"), ExtResource("12_58irk")])
 
 [node name="TimerRoll" type="Timer" parent="."]
 

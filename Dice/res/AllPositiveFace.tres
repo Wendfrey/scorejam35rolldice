@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiceFaceDataResource" load_steps=3 format=3 uid="uid://bdelh772x3xhg"]
+
+[ext_resource type="Script" uid="uid://b1pop7b8gyosf" path="res://Dice/DiceFaceDataResource.gd" id="1_73pqb"]
+[ext_resource type="Texture2D" uid="uid://c4cpe2rrr2ccv" path="res://Assets/Texture/dice/FaceAllPositive.tres" id="2_73pqb"]
+
+[resource]
+script = ExtResource("1_73pqb")
+texture = ExtResource("2_73pqb")
+faceColor = 4
+metadata/_custom_type_script = "uid://b1pop7b8gyosf"
