@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddrh4xi0tsdll"]
+
+[ext_resource type="Script" uid="uid://imbefukwv63" path="res://game_over.gd" id="1_ccer4"]
+[ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="2_ccer4"]
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccer4")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
+position = Vector2(575.2222, 321)
+scale = Vector2(0.90190977, 0.89444447)
+texture = ExtResource("1_yxx3c")
+
+[node name="ProgressBar" type="ProgressBar" parent="Background"]
+modulate = Color(9.687732, 0, 9.687732, 1)
+z_index = -1
+offset_left = 565.055
+offset_top = -312.85928
+offset_right = 624.28827
+offset_bottom = -40.4993
+rotation = 0.13534549
+value = 25.0
+fill_mode = 3
+show_percentage = false
+
+[node name="SquareBox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(321, 80)
+scale = Vector2(1.690141, 1)
+texture = ExtResource("2_ccer4")
+
+[node name="Label" type="Label" parent="SquareBox"]
+offset_left = -145.0138
+offset_top = -35.0
+offset_right = 1.3699188
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+text = "Whats your name?"
+
+[node name="TextEdit" type="TextEdit" parent="SquareBox"]
+offset_left = -132.48898
+offset_top = -7.0
+offset_right = 50.291687
+offset_bottom = 27.0
+
+[node name="Button" type="Button" parent="SquareBox"]
+offset_left = 61.533314
+offset_top = -5.0
+offset_right = 158.53331
+offset_bottom = 26.0
+text = "Enter Score"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 611.36096
+offset_top = 11.000008
+offset_right = 1204.72
+offset_bottom = 563.36096
+rotation = 1.5707964
+texture = ExtResource("2_ccer4")
+region_rect = Rect2(1.4995098, 0.3518982, 353.27338, 107.29672)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="scoreboard" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 38.999996
+offset_top = 44.360962
+offset_right = 551.505
+offset_bottom = 520.92896
+
+[connection signal="pressed" from="SquareBox/Button" to="." method="_on_button_pressed"]
