@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dh65ff7eutfe2"]
+
+[ext_resource type="Texture2D" uid="uid://nqan3bbuix5f" path="res://Assets/Texture/dice/dice_faces.png" id="1_rgfbc"]
+
+[resource]
+atlas = ExtResource("1_rgfbc")
+region = Rect2(32, 32, 32, 32)
