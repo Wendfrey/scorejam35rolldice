@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvaj577vtc3ab"
+path="res://.godot/imported/synth (1).wav-f3f336652126d554fa2801f4430cdd24.sample"
+
+[deps]
+
+source_file="res://Assets/sounds/synth (1).wav"
+dest_files=["res://.godot/imported/synth (1).wav-f3f336652126d554fa2801f4430cdd24.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
