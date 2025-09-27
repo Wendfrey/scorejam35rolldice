@@ -10,11 +10,12 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarRed/RedBar
 @onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarBlue/BlueBar
 @onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/TextureRect/GreenBar
+@onready var turn_label: Label = $MarginContainer/TurnLabel
 
 var spectatorCount:int
 var aproval:float
 
-var handTextures:Array =[
+var handTextures:Array = [
 	"res://Assets/Texture/HostCharacter/HandA.png",
 	"res://Assets/Texture/HostCharacter/HandB.png",
 	"res://Assets/Texture/HostCharacter/HandC.png",
@@ -22,7 +23,6 @@ var handTextures:Array =[
 	"res://Assets/Texture/HostCharacter/HandE.png",
 	"res://Assets/Texture/HostCharacter/HandF.png",
 	"res://Assets/Texture/HostCharacter/HandG.png"
-	
 ]
 
 
@@ -32,15 +32,18 @@ var handTextures:Array =[
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
 
+var currentTurn = 1
+
 func _ready() -> void:
 	
 	update_aproval()
 	
-	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
-	await get_tree().create_timer(0.2).timeout
-	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
-	await get_tree().create_timer(0.2).timeout
-	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
 	
 	update_spritemood("RedMan", red_bar.value)
 	update_spritemood("BlueMan", blue_bar.value)
@@ -109,7 +112,7 @@ func _dice_rolled(face:DiceFaceDataResource):
 			effect *= -1
 			target_effect = false
 		DiceFaceDataResource.Effect.ADD_DICE:
-			dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+			add_dice_and_connect()
 			target_comment = "dice"
 
 	match(face.faceColor):
@@ -159,3 +162,21 @@ func _unhandled_input(event):
 				settings.hide()
 			else:
 				settings.show()
+
+
+func _on_pass_turn_button_pressed() -> void:
+	currentTurn += 1
+	turn_label.text = "TURN {turn} / 10".format({turn = currentTurn})
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+
+func add_dice_and_connect() -> bool:
+	var dice = dicehandler.spawn_dice()
+	if dice:
+		dice.connect("dice_rolled",_dice_rolled)
+		return true
+	return false

@@ -20,7 +20,6 @@ func spawn_dice():
 		get_tree().create_timer(0.2).timeout.connect(_play_sound)
 		return new_dice
 	else:
-		push_error("too many dices")
 		return null
 
 func reposition_childs():
