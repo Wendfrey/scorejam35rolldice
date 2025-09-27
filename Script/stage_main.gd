@@ -36,14 +36,19 @@ func _ready() -> void:
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	update_spritemood("RedMan", red_bar.value)
+	update_spritemood("BlueMan", blue_bar.value)
+	update_spritemood("GreenMan", green_bar.value)
 	
 	
 func end_game():
 	if red_bar.value > 100 or blue_bar.value > 100 or green_bar.value > 100:
 		pass
+		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
 	aproval_bar.value =100 - aproval
+	
 func build_comment(target: String, effect: bool) -> String:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
@@ -59,6 +64,7 @@ func build_comment(target: String, effect: bool) -> String:
 			"{target} negative2"
 			]
 		return negatives[rng.randi_range(0, negatives.size() - 1)].format({"target": target})
+		
 func show_comment(raw_text: String, speed := 0.03) -> void:
 	subtitles.bbcode_enabled = true
 	subtitles.bbcode_text = raw_text
@@ -101,17 +107,23 @@ func _dice_rolled(face:DiceFaceDataResource):
 		DiceFaceDataResource.FaceColor.RED:
 			red_bar.value += effect
 			target_comment = "Red"
+			update_spritemood("RedMan", red_bar.value)
 		DiceFaceDataResource.FaceColor.BLUE:
 			blue_bar.value += effect
 			target_comment = "Blue"
+			update_spritemood("BlueMan", blue_bar.value)
 		DiceFaceDataResource.FaceColor.GREEN:
 			green_bar.value += effect
 			target_comment = "Green"
+			update_spritemood("GreenMan", green_bar.value)
 		DiceFaceDataResource.FaceColor.ALL:
 			red_bar.value += effect
 			blue_bar.value += effect
 			green_bar.value += effect
 			target_comment = "Everyone"
+			update_spritemood("RedMan", red_bar.value)
+			update_spritemood("BlueMan", blue_bar.value)
+			update_spritemood("GreenMan", green_bar.value)
 	
 	update_aproval()
 	if target_comment != "dice":
@@ -119,3 +131,14 @@ func _dice_rolled(face:DiceFaceDataResource):
 	else:
 		comment = "There is an uncomfortable silence in the room"
 	show_comment(comment,0.9)
+	
+func update_spritemood(target_man : String, value : float) -> void:
+	var man : AnimatedSprite2D = get_node(str("MarginContainer/CanvasLayer/Background/", target_man))
+	if value >= 50:
+		man.animation = "default"
+	elif value > 30:
+		man.animation = "tense"
+	elif value > 10:
+		man.animation = "bother"
+	else:
+		man.animation = "angry"
