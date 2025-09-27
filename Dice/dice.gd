@@ -34,6 +34,7 @@ var previous_roll = -1
 
 var current_anim:Tween = null
 var current_pos
+var is_anim_move_playing: bool = false
 
 
 func _ready() -> void:
@@ -49,7 +50,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and ticks == timer:
 		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
 			show_menu(false)
-		elif get_rect().has_point(get_local_mouse_position()):
+		elif get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
 			show_menu(true)
 
 ## Inicia el roll del dado
@@ -141,7 +142,9 @@ func vibrate():
 func animate_move_to(new_position:Vector2):
 	var anim = get_tree().create_tween()
 	anim.bind_node(self)
+	anim.tween_property(self, "is_anim_move_playing", true, 0)
 	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
+	anim.tween_property(self, "is_anim_move_playing", false, 0)
 
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:
