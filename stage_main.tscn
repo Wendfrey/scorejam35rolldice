@@ -1,10 +1,131 @@
-[gd_scene load_steps=7 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=26 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
+[ext_resource type="Texture2D" uid="uid://s0lxyugi2wcv" path="res://Assets/Texture/GuestCharacters/MoodBarGreen.png" id="3_ui1y4"]
+[ext_resource type="Texture2D" uid="uid://cwis7q7veiglj" path="res://Assets/Texture/GuestCharacters/MoodBarBlue.png" id="4_8nq3n"]
+[ext_resource type="Texture2D" uid="uid://r2k1np8gctiw" path="res://Assets/Texture/GuestCharacters/MoodBarRed.png" id="5_wbisv"]
 [ext_resource type="Script" uid="uid://4a1b761hl1su" path="res://dicehandler.gd" id="5_xpu1r"]
 [ext_resource type="Texture2D" uid="uid://fy67gd7edvsv" path="res://Assets/Texture/HostCharacter/HostHead.png" id="5_y4mod"]
+[ext_resource type="Texture2D" uid="uid://dn0oskln8l40l" path="res://Assets/Texture/GuestCharacters/BlueD.png" id="6_doe6i"]
 [ext_resource type="AudioStream" uid="uid://bvaj577vtc3ab" path="res://Assets/sounds/synth (1).wav" id="6_fliql"]
+[ext_resource type="Texture2D" uid="uid://d2u5a5xi487ii" path="res://Assets/Texture/GuestCharacters/BlueC.png" id="7_4v4ig"]
+[ext_resource type="Texture2D" uid="uid://xy7pla0sning" path="res://Assets/Texture/GuestCharacters/BlueA.png" id="8_4b4pr"]
+[ext_resource type="Texture2D" uid="uid://wud7plqe62i4" path="res://Assets/Texture/GuestCharacters/BlueB.png" id="9_yehyh"]
+[ext_resource type="Texture2D" uid="uid://dy25x3gmej0a8" path="res://Assets/Texture/GuestCharacters/RedD.png" id="10_xchji"]
+[ext_resource type="Texture2D" uid="uid://cimwu207ho6ci" path="res://Assets/Texture/GuestCharacters/RedC.png" id="11_gentr"]
+[ext_resource type="Texture2D" uid="uid://detooekhr0wpe" path="res://Assets/Texture/GuestCharacters/RedA.png" id="12_4r2iv"]
+[ext_resource type="Texture2D" uid="uid://b8va0f2h7oxb1" path="res://Assets/Texture/GuestCharacters/RedB.png" id="13_iuj4m"]
+[ext_resource type="Texture2D" uid="uid://pew6tpo7lrfn" path="res://Assets/Texture/GuestCharacters/GreenD.png" id="14_xgppn"]
+[ext_resource type="Texture2D" uid="uid://miotlqke1uxe" path="res://Assets/Texture/GuestCharacters/GreenC.png" id="15_hn1fj"]
+[ext_resource type="Texture2D" uid="uid://ccylatfe34wla" path="res://Assets/Texture/GuestCharacters/GreenA.png" id="16_h52rb"]
+[ext_resource type="Texture2D" uid="uid://c2o4l3rl2s1y6" path="res://Assets/Texture/GuestCharacters/GreenB.png" id="17_wg5ij"]
+[ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_xchji")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_gentr")
+}],
+"loop": true,
+"name": &"bother",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_4r2iv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_iuj4m")
+}],
+"loop": true,
+"name": &"tense",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ydcg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_doe6i")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4v4ig")
+}],
+"loop": true,
+"name": &"bother",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4b4pr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_yehyh")
+}],
+"loop": true,
+"name": &"tense",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwcgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_xgppn")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_hn1fj")
+}],
+"loop": true,
+"name": &"bother",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_h52rb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_wg5ij")
+}],
+"loop": true,
+"name": &"tense",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fliql"]
 random_pitch = 1.1
@@ -27,8 +148,22 @@ layer = -1
 [node name="Background" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
 modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
 position = Vector2(575.2222, 321)
-scale = Vector2(0.90190977, 0.89444447)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_ibjt6")
+
+[node name="RedMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
+position = Vector2(71.77771, 54)
+sprite_frames = SubResource("SpriteFrames_jslxq")
+frame_progress = 0.2773899
+
+[node name="BlueMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
+position = Vector2(241.77777, 27)
+sprite_frames = SubResource("SpriteFrames_2ydcg")
+frame_progress = 0.2228511
+
+[node name="GreenMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
+position = Vector2(362.77777, 38)
+sprite_frames = SubResource("SpriteFrames_pwcgf")
 
 [node name="Red" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
 position = Vector2(541, 267)
@@ -40,48 +175,78 @@ position = Vector2(541, 267)
 [node name="AprovalBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
 modulate = Color(9.687732, 0, 9.687732, 1)
 z_index = -1
-offset_left = 567.4379
-offset_top = -311.9254
-offset_right = 626.6712
-offset_bottom = -39.56543
+offset_left = 566.32916
+offset_top = -314.16147
+offset_right = 625.56244
+offset_bottom = -41.801483
 rotation = 0.13534549
 fill_mode = 3
 show_percentage = false
 
-[node name="RedBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
-modulate = Color(7.3073163, 1.2045506, 0.930884, 1)
-self_modulate = Color(1, 0, 0, 1)
-offset_left = -64.55437
-offset_top = -168.81987
-offset_right = -51.09761
-offset_bottom = -136.66637
-rotation = -1.5992011
-scale = Vector2(-1.3659117, 3.7380378)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+clip_contents = true
+offset_left = 880.0
+offset_top = 120.0
+offset_right = 1093.0
+offset_bottom = 188.0
+texture = ExtResource("3_ui1y4")
+metadata/_edit_group_ = true
+
+[node name="GreenBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/TextureRect"]
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(0, 1, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 36.88769
+offset_top = 50.359665
+offset_right = 57.3399
+offset_bottom = 221.48051
+rotation = -1.6902542
 value = 50.0
 fill_mode = 2
 show_percentage = false
 
-[node name="BlueBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
+[node name="MoodBarBlue" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+offset_left = 701.0
+offset_top = 109.99999
+offset_right = 910.0
+offset_bottom = 160.0
+rotation = -0.13748147
+texture = ExtResource("4_8nq3n")
+metadata/_edit_group_ = true
+
+[node name="BlueBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/MoodBarBlue"]
 modulate = Color(0.12737615, 0.4067867, 1.5426515, 1)
 self_modulate = Color(0, 0, 2.3464565, 1)
-offset_left = 147.21849
-offset_top = -194.53415
-offset_right = 160.67525
-offset_bottom = -162.38065
-rotation = -1.5992011
-scale = Vector2(-0.99075115, 4.055507)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 34.05713
+offset_top = 23.313894
+offset_right = 57.04196
+offset_bottom = 184.2805
+rotation = -1.4718208
 value = 50.0
 fill_mode = 2
 show_percentage = false
 
-[node name="GreenBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
-modulate = Color(0, 1, 0, 1)
-offset_left = 368.97018
-offset_top = -177.76396
-offset_right = 382.42697
-offset_bottom = -145.61046
-rotation = -1.5992011
-scale = Vector2(-0.99075115, 4.055507)
+[node name="MoodBarRed" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+offset_left = 492.0
+offset_top = 129.0
+offset_right = 708.0
+offset_bottom = 185.0
+texture = ExtResource("5_wbisv")
+metadata/_edit_group_ = true
+
+[node name="RedBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/MoodBarRed"]
+modulate = Color(7.3073163, 1.2045506, 0.930884, 1)
+self_modulate = Color(1, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 27.974117
+offset_top = 30.580482
+offset_right = 47.005783
+offset_bottom = 205.03116
+rotation = -1.5874139
 value = 50.0
 fill_mode = 2
 show_percentage = false
@@ -110,6 +275,26 @@ layout_mode = 2
 stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
 
-[node name="dicehandler" type="Node2D" parent="."]
+[node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("spawnPoint")]
 position = Vector2(575, 598)
 script = ExtResource("5_xpu1r")
+spawnPoint = NodePath("../Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1208, 598)
+
+[node name="settings" parent="." instance=ExtResource("21_xchji")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 401.0
+offset_top = 186.0
+offset_right = 892.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6

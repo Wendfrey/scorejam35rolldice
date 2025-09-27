@@ -7,24 +7,17 @@ signal dice_rolled(face:DiceFaceDataResource)
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-
-@onready var face_2: Sprite2D = $Face2
-@onready var face_3: Sprite2D = $Face3
-@onready var face_4: Sprite2D = $Face4
-@onready var face_5: Sprite2D = $Face5
-@onready var face_6: Sprite2D = $Face6
 @onready var dice_menu: Control = $DiceMenu
 @onready var label_face_number: Label = $LabelFaceNumber
 
-@onready var texture_array: Array[Sprite2D] = [
+@onready var texture_array: Array = [
 	self,
-	face_2,
-	face_3,
-	face_4,
-	face_5,
-	face_6
+	$DiceMenu/Face2,
+	$DiceMenu/Face3,
+	$DiceMenu/Face4,
+	$DiceMenu/Face5,
+	$DiceMenu/Face6
 ]
-
 
 var options : Array[DiceFaceDataResource]
 var interval : float = 0.1
@@ -39,6 +32,11 @@ var num_choice: int = 0
 var choice: DiceFaceDataResource
 var previous_roll = -1
 
+var current_anim:Tween = null
+var current_pos
+var is_anim_move_playing: bool = false
+
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	generate_new_dice()
@@ -48,9 +46,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and ticks == timer and dice_menu.visible:
 		generate_new_dice()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and ticks == timer:
+		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
+			show_menu(false)
+		elif get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
+			show_menu(true)
+
 ## Inicia el roll del dado
 func roll() -> void:
 	show_menu(false)
+	is_menu_displayed = true
 	previous_roll = num_choice
 	num_choice = rng.randi_range(0, options.size()-1)
 	choice = options[num_choice]
@@ -98,7 +104,9 @@ func _on_timer_timeout() -> void:
 	vibrate()
 	if isFinished:
 		await get_tree().create_timer(1).timeout
+		is_menu_displayed = false
 		queue_free()
+
 ## Change faces of dice
 func generate_new_dice():
 	choice = null
@@ -108,13 +116,6 @@ func generate_new_dice():
 		texture_array[i].texture = options[i].texture
 	label_face_number.text = str(1)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and ticks == timer:
-		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
-			show_menu(false)
-		elif get_rect().has_point(get_local_mouse_position()):
-			show_menu(true)
-		
 func show_menu(visibility:bool):
 	if is_menu_displayed and visibility:
 		return
@@ -127,9 +128,6 @@ func show_menu(visibility:bool):
 		
 	z_index = 1 if visibility else 0
 
-var current_anim:Tween = null
-var current_pos
-
 func vibrate():
 	if current_anim:
 		current_anim.stop()
@@ -140,6 +138,13 @@ func vibrate():
 	current_anim.tween_property(self, "position", Vector2(3, 0), 0.05).as_relative()
 	current_anim.tween_property(self, "position", Vector2(-3, 0), 0.05).as_relative()
 	current_anim.tween_property(self, "position", current_pos, 0.05)
+
+func animate_move_to(new_position:Vector2):
+	var anim = get_tree().create_tween()
+	anim.bind_node(self)
+	anim.tween_property(self, "is_anim_move_playing", true, 0)
+	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
+	anim.tween_property(self, "is_anim_move_playing", false, 0)
 
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:

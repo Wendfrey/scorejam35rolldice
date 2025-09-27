@@ -2,12 +2,14 @@ extends Node2D
 
 const DICE = preload("uid://lcw65s7ygglt")
 
+@onready var settings: Panel = $settings
+
 @onready var dicehandler: Node2D = $dicehandler
 
 @onready var aproval_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/AprovalBar
-@onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/RedBar
-@onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/BlueBar
-@onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/GreenBar
+@onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarRed/RedBar
+@onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarBlue/BlueBar
+@onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/TextureRect/GreenBar
 
 var spectatorCount:int
 var aproval:float
@@ -34,16 +36,24 @@ func _ready() -> void:
 	update_aproval()
 	
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	await get_tree().create_timer(0.2).timeout
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	await get_tree().create_timer(0.2).timeout
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	
+	update_spritemood("RedMan", red_bar.value)
+	update_spritemood("BlueMan", blue_bar.value)
+	update_spritemood("GreenMan", green_bar.value)
 	
 	
 func end_game():
 	if red_bar.value > 100 or blue_bar.value > 100 or green_bar.value > 100:
 		pass
+		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
-	aproval_bar.value = aproval
+	aproval_bar.value =100 - aproval
+	
 func build_comment(target: String, effect: bool) -> String:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
@@ -59,6 +69,7 @@ func build_comment(target: String, effect: bool) -> String:
 			"{target} negative2"
 			]
 		return negatives[rng.randi_range(0, negatives.size() - 1)].format({"target": target})
+		
 func show_comment(raw_text: String, speed := 0.03) -> void:
 	subtitles.bbcode_enabled = true
 	subtitles.bbcode_text = raw_text
@@ -76,35 +87,72 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		subtitles.visible_ratio += speed * get_process_delta_time()
 		subtitles.visible_ratio = min(subtitles.visible_ratio, 1.0)
 		await get_tree().process_frame
+	await get_tree().create_timer(1).timeout
+	subtitles.text = ""
 
 func _dice_rolled(face:DiceFaceDataResource):
-	
 	var effect = 10
-	
-	
-	
-	
+	var target_comment = ""
+	var target_effect:bool
+	var comment = ""
 	print(DiceFaceDataResource.Effect.keys()[face.effect])
 	print(DiceFaceDataResource.FaceColor.keys()[face.faceColor])
 	
 	match(face.effect):
 		DiceFaceDataResource.Effect.POSITIVE:
 			pass
+			target_effect = true
 		DiceFaceDataResource.Effect.NEGATIVE:
 			effect *= -1
+			target_effect = false
 		DiceFaceDataResource.Effect.ADD_DICE:
-			pass
+			dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+			target_comment = "dice"
 
 	match(face.faceColor):
 		DiceFaceDataResource.FaceColor.RED:
 			red_bar.value += effect
+			target_comment = "Red"
+			update_spritemood("RedMan", red_bar.value)
 		DiceFaceDataResource.FaceColor.BLUE:
 			blue_bar.value += effect
+			target_comment = "Blue"
+			update_spritemood("BlueMan", blue_bar.value)
 		DiceFaceDataResource.FaceColor.GREEN:
 			green_bar.value += effect
+			target_comment = "Green"
+			update_spritemood("GreenMan", green_bar.value)
 		DiceFaceDataResource.FaceColor.ALL:
 			red_bar.value += effect
 			blue_bar.value += effect
 			green_bar.value += effect
-
+			target_comment = "Everyone"
+			update_spritemood("RedMan", red_bar.value)
+			update_spritemood("BlueMan", blue_bar.value)
+			update_spritemood("GreenMan", green_bar.value)
 	
+	update_aproval()
+	if target_comment != "dice":
+		comment = build_comment(target_comment,target_effect)
+	else:
+		comment = "There is an uncomfortable silence in the room"
+	show_comment(comment,0.9)
+	
+func update_spritemood(target_man : String, value : float) -> void:
+	var man : AnimatedSprite2D = get_node(str("MarginContainer/CanvasLayer/Background/", target_man))
+	if value >= 50:
+		man.animation = "default"
+	elif value > 30:
+		man.animation = "tense"
+	elif value > 10:
+		man.animation = "bother"
+	else:
+		man.animation = "angry"
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			if settings.visible:
+				settings.hide()
+			else:
+				settings.show()

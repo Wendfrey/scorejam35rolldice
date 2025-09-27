@@ -36,7 +36,8 @@ func _on_button_credits_pressed() -> void:
 		credits_container.hide()
 	else:
 		credits_container.show()
-
-
+		tutocontainer.hide()
+		setting.hide()
+		
 func _on_close_credits_button_pressed() -> void:
 	credits_container.hide()
