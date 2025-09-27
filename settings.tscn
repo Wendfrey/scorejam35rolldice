@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://kwa2xtrp7onn"]
+[gd_scene load_steps=3 format=3 uid="uid://kwa2xtrp7onn"]
 
+[ext_resource type="Script" uid="uid://dw7tke3i7ipg0" path="res://settings.gd" id="1_nkug2"]
 [ext_resource type="Script" uid="uid://jh81l1oppp35" path="res://mainvolume.gd" id="2_3ykye"]
 
 [node name="settings" type="Panel"]
 offset_left = 117.0
 offset_top = 174.0
 offset_right = 608.0
-offset_bottom = 324.0
+offset_bottom = 349.0
+script = ExtResource("1_nkug2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -57,3 +59,9 @@ offset_right = 319.0
 offset_bottom = 62.0
 text = "Sound Effects
 "
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit to menu"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]
