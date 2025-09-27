@@ -1,6 +1,8 @@
 extends Node2D
 
+const DICE = preload("uid://lcw65s7ygglt")
 
+@onready var dicehandler: Node2D = $dicehandler
 
 var redStress:float
 var greenStress:float
@@ -28,7 +30,9 @@ var handTextures:Array =[
 func _ready() -> void:
 	var comment = build_comment("green", true)
 	await show_comment(comment, 0.99)
-
+	dicehandler.spawn_dice()
+	dicehandler.spawn_dice()
+	dicehandler.spawn_dice()
 func end_game():
 	if redStress > 100 or greenStress > 100 or blueStress > 100:
 		pass

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
-[ext_resource type="PackedScene" uid="uid://lcw65s7ygglt" path="res://Dice/Dice.tscn" id="3_ibjt6"]
+[ext_resource type="Script" uid="uid://4a1b761hl1su" path="res://dicehandler.gd" id="5_xpu1r"]
 [ext_resource type="Texture2D" uid="uid://fy67gd7edvsv" path="res://Assets/Texture/HostCharacter/HostHead.png" id="5_y4mod"]
 [ext_resource type="AudioStream" uid="uid://bvaj577vtc3ab" path="res://Assets/sounds/synth (1).wav" id="6_fliql"]
 
@@ -48,15 +48,6 @@ rotation = 0.13534549
 fill_mode = 3
 show_percentage = false
 
-[node name="Dice" parent="." instance=ExtResource("3_ibjt6")]
-position = Vector2(575, 597)
-
-[node name="Dice2" parent="." instance=ExtResource("3_ibjt6")]
-position = Vector2(675, 597)
-
-[node name="Dice3" parent="." instance=ExtResource("3_ibjt6")]
-position = Vector2(775, 597)
-
 [node name="HostHead" type="Sprite2D" parent="."]
 position = Vector2(144, 461)
 scale = Vector2(0.8178726, 0.81787264)
@@ -80,3 +71,7 @@ layout_mode = 2
 [node name="speech_sfx1" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
+
+[node name="dicehandler" type="Node2D" parent="."]
+position = Vector2(575, 598)
+script = ExtResource("5_xpu1r")
