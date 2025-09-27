@@ -28,7 +28,7 @@ var handTextures:Array =[
 
 
 @onready var subtitles: RichTextLabel = $MarginContainer2/subtitles
-@onready var hand: Sprite2D = $HostHead/Hand
+#TODO GOYO CABRON @onready var hand: Sprite2D = $HostHead/Hand
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
 
 func _ready() -> void:
@@ -81,7 +81,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 			break
 		if subtitles.visible_ratio < 1 and not speech_sfx_1.playing:
 			speech_sfx_1.play()
-			hand.texture = load(handTextures[randi_range(0,handTextures.size()-1)])
+			#TODO GOYO CABRON hand.texture = load(handTextures[randi_range(0,handTextures.size()-1)])
 
 		
 		subtitles.visible_ratio += speed * get_process_delta_time()
