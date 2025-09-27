@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=35 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
 [ext_resource type="Texture2D" uid="uid://d0607kpcrij5m" path="res://Assets/Texture/UI/ChatBox.png" id="2_iuj4m"]
+[ext_resource type="Texture2D" uid="uid://dru2yvjajal1j" path="res://Assets/Texture/pixelblanco.png" id="3_hn1fj"]
 [ext_resource type="Texture2D" uid="uid://s0lxyugi2wcv" path="res://Assets/Texture/GuestCharacters/MoodBarGreen.png" id="3_ui1y4"]
 [ext_resource type="Texture2D" uid="uid://cwis7q7veiglj" path="res://Assets/Texture/GuestCharacters/MoodBarBlue.png" id="4_8nq3n"]
 [ext_resource type="Texture2D" uid="uid://r2k1np8gctiw" path="res://Assets/Texture/GuestCharacters/MoodBarRed.png" id="5_wbisv"]
@@ -181,6 +182,18 @@ size_flags_vertical = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
 layer = -1
 
+[node name="Pixelblanco" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
+modulate = Color(0.61135805, 0.5729016, 0.8349614, 1)
+position = Vector2(611, 218)
+scale = Vector2(1210, 480.00003)
+texture = ExtResource("3_hn1fj")
+
+[node name="Pixelblanco2" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
+modulate = Color(0.60465837, 0.54859024, 0.8055153, 1)
+position = Vector2(613, 682)
+scale = Vector2(1210, 480.00003)
+texture = ExtResource("3_hn1fj")
+
 [node name="Background" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
 modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
 position = Vector2(575.2222, 321)
@@ -328,10 +341,6 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-
 [node name="PlayZone" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -406,5 +415,16 @@ stream = ExtResource("22_gentr")
 volume_db = -25.0
 autoplay = true
 parameters/looping = true
+
+[node name="TotalSpectatorsLabel" type="RichTextLabel" parent="."]
+offset_left = 759.0
+offset_top = 19.0
+offset_right = 935.0
+offset_bottom = 77.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "0k"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]

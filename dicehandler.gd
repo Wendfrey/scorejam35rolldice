@@ -9,13 +9,13 @@ var do_repositions: bool = false
 func _ready() -> void:
 	child_order_changed.connect(reposition_childs)
 
-func spawn_dice():
+func spawn_dice(get_red_bar_call:Callable, get_green_bar_call:Callable, get_blue_bar_call:Callable):
 	if get_child_count() < 6:
 		do_repositions = false
 		var new_dice = DICE.instantiate() 
 		add_child(new_dice)
 		new_dice.position = spawnPoint.position - position + Vector2((get_child_count()-1) * 100, 0)
-		new_dice.animate_move_to(Vector2((get_child_count()-1) * 100, 0))
+		new_dice.init_dice(Vector2((get_child_count()-1) * 100, 0), get_red_bar_call, get_green_bar_call, get_blue_bar_call, Callable())
 		do_repositions = true
 		get_tree().create_timer(0.2).timeout.connect(_play_sound)
 		return new_dice
@@ -27,5 +27,9 @@ func reposition_childs():
 		for i in range(get_child_count()):
 			get_child(i).animate_move_to(Vector2(i * 100, 0))
 
+func recalculate_dice_spectators():
+		for i in range(get_child_count()):
+			get_child(i).calculate_spectator_score()
+	
 func _play_sound():
 	dice_sliding_into_game_sound.play()
