@@ -41,3 +41,8 @@ func _on_button_credits_pressed() -> void:
 		
 func _on_close_credits_button_pressed() -> void:
 	credits_container.hide()
+
+
+func _on_credits_label_meta_clicked(meta: Variant) -> void:
+	print(meta)
+	DisplayServer.clipboard_set(meta)

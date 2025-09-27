@@ -153,4 +153,5 @@ text = "Close"
 [connection signal="button_up" from="Background/Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
 [connection signal="button_up" from="Background/Control/ButtonSetting" to="." method="_on_button_setting_button_up"]
 [connection signal="pressed" from="Background/Control/ButtonCredits" to="." method="_on_button_credits_pressed"]
+[connection signal="meta_clicked" from="CreditsContainer/MarginContainer/VBoxContainer/CreditsLabel" to="." method="_on_credits_label_meta_clicked"]
 [connection signal="pressed" from="CreditsContainer/MarginContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
