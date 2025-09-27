@@ -284,6 +284,7 @@ spawnPoint = NodePath("../Marker2D")
 
 [node name="DiceSlidingIntoGameSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_gentr")
+bus = &"SFX"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1208, 598)
