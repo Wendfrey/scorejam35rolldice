@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var subtitles: RichTextLabel = $"MarginContainer2/subtitles"
 
 var redStress:float
 var greenStress:float
@@ -9,8 +8,7 @@ var spectatorCount:int
 var aproval:float
 
 func _ready() -> void:
-	var comment = build_comment("green", false)
-	
+	pass
 
 func end_game():
 	if redStress > 100 or greenStress > 100 or blueStress > 100:

@@ -1,26 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=7 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
 [ext_resource type="PackedScene" uid="uid://lcw65s7ygglt" path="res://Dice/Dice.tscn" id="3_ibjt6"]
+[ext_resource type="Script" path="res://Dice/DiceFaceDataResource.gd" id="4_fliql"]
+[ext_resource type="Texture2D" uid="uid://fy67gd7edvsv" path="res://Assets/Texture/HostCharacter/HostHead.png" id="5_y4mod"]
+[ext_resource type="Texture2D" uid="uid://dtwcsascqb7uo" path="res://Assets/Texture/HostCharacter/HandA.png" id="6_ui1y4"]
 
 [node name="StageMain" type="Node2D"]
 script = ExtResource("1_b0byo")
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-z_index = 1
-offset_left = 517.0
-offset_top = 401.0
-offset_right = 867.0
-offset_bottom = 441.0
-scale = Vector2(1.3199999, 1)
-
-[node name="Panel" type="Panel" parent="MarginContainer2"]
-layout_mode = 2
-
-[node name="subtitles" type="RichTextLabel" parent="MarginContainer2"]
-layout_mode = 2
-bbcode_enabled = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -59,3 +47,13 @@ show_percentage = false
 
 [node name="Dice" parent="." instance=ExtResource("3_ibjt6")]
 position = Vector2(575, 560)
+all_possible_faces = Array[ExtResource("4_fliql")]([])
+
+[node name="HostHead" type="Sprite2D" parent="."]
+position = Vector2(144, 461)
+scale = Vector2(0.8178726, 0.81787264)
+texture = ExtResource("5_y4mod")
+
+[node name="HandA" type="Sprite2D" parent="HostHead"]
+position = Vector2(255, 77)
+texture = ExtResource("6_ui1y4")
