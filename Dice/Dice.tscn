@@ -83,16 +83,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r7uk3")
 metadata/_edit_use_anchors_ = true
 
-[node name="DiceRollButton" type="Button" parent="DiceMenu"]
-visible = false
-layout_mode = 0
-offset_left = 93.0
-offset_top = 117.0
-offset_right = 142.0
-offset_bottom = 148.0
-mouse_filter = 1
-text = "ROLL"
-
 [node name="Face2" type="TextureRect" parent="DiceMenu"]
 layout_mode = 0
 offset_left = 57.0
@@ -133,8 +123,18 @@ offset_right = 89.0
 offset_bottom = 40.0
 texture = ExtResource("1_r7uk3")
 
+[node name="SpectatorLabel" type="RichTextLabel" parent="DiceMenu"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 8.0
+offset_right = 141.0
+offset_bottom = 76.0
+bbcode_enabled = true
+text = "[rainbow]+20K[/rainbow]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="ZoneDetectorArea2D" to="." method="_on_zone_detector_area_2d_area_entered"]
 [connection signal="area_exited" from="ZoneDetectorArea2D" to="." method="_on_zone_detector_area_2d_area_exited"]
 [connection signal="timeout" from="TimerRoll" to="." method="_on_timer_timeout"]
 [connection signal="mouse_exited" from="DiceMenu" to="." method="_on_dice_menu_mouse_exited"]
-[connection signal="pressed" from="DiceMenu/DiceRollButton" to="." method="_on_dice_roll_button_pressed"]

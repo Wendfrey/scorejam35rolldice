@@ -2,13 +2,17 @@ extends Sprite2D
 
 static var is_menu_displayed:bool = false
 
-signal dice_rolled(face:DiceFaceDataResource)
+const BASE_FACE_VALUE:float = 4
+const BASE_STR_SPECTATOR_TEXT = "[rainbow]{points}K[/rainbow]"
+
+signal dice_rolled(face:DiceFaceDataResource, spectator_amount)
 
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var dice_menu: Control = $DiceMenu
 @onready var label_face_number: Label = $LabelFaceNumber
+@onready var spectator_label: RichTextLabel = $DiceMenu/SpectatorLabel
 
 @onready var texture_array: Array = [
 	self,
@@ -36,13 +40,19 @@ var current_anim:Tween = null
 var current_pos
 var is_anim_move_playing: bool = false
 
+var grabbed: bool = false
 var current_zone: Area2D = null
+
+var get_red_bar_value:Callable = Callable()
+var get_green_bar_value:Callable = Callable()
+var get_blue_bar_value:Callable = Callable()
+var get_tension_bar_value:Callable = Callable()
+
+var spectactor_score:int = 0
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
-	generate_new_dice()
 
-var grabbed: bool = false
 ## Input control
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and ticks == timer and dice_menu.visible:
@@ -77,6 +87,15 @@ func _input(event: InputEvent) -> void:
 		
 	if event is InputEventMouseMotion and grabbed:
 		global_position = get_global_mouse_position()
+
+func init_dice(new_pos: Vector2, _red_bar_callable:Callable, _green_bar_callable:Callable, _blue_bar_callable:Callable, _tension_bar_callable:Callable):
+	get_red_bar_value = _red_bar_callable
+	get_blue_bar_value = _blue_bar_callable
+	get_green_bar_value = _green_bar_callable
+	get_tension_bar_value = _tension_bar_callable
+	
+	animate_move_to(new_pos)
+	generate_new_dice()
 
 ## Inicia el roll del dado
 func roll() -> void:
@@ -123,7 +142,7 @@ func _on_timer_timeout() -> void:
 		isFinished = true
 		self.texture = choice.texture
 		label_face_number.text = str(num_choice + 1)
-		dice_rolled.emit(choice)
+		dice_rolled.emit(choice, spectactor_score)
 		
 	audio_stream_player.play()
 	vibrate()
@@ -140,6 +159,8 @@ func generate_new_dice():
 		options.append(all_possible_faces.pick_random())
 		texture_array[i].texture = options[i].texture
 	label_face_number.text = str(1)
+	
+	calculate_spectator_score()
 
 func show_menu(visibility:bool):
 	if is_menu_displayed and visibility:
@@ -171,6 +192,35 @@ func animate_move_to(new_position:Vector2):
 	anim.tween_property(self, "is_anim_move_playing", true, 0)
 	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
 	anim.tween_property(self, "is_anim_move_playing", false, 0)
+
+func calculate_spectator_score():
+	var green_mult = lerpf(1.5, 0, get_green_bar_value.call() / 100.0) 
+	var blue_mult = lerpf(1.5, 0.5, get_blue_bar_value.call() / 100.0) 
+	var red_mult = lerpf(1.5, 0.5, get_red_bar_value.call() / 100.0)
+	var accumulated_spectator_value: float = BASE_FACE_VALUE * 2
+	for option:DiceFaceDataResource in options:
+		var mult = 0
+		match (option.faceColor):
+			DiceFaceDataResource.FaceColor.RED:
+				mult = red_mult
+			DiceFaceDataResource.FaceColor.BLUE:
+				mult = blue_mult
+			DiceFaceDataResource.FaceColor.GREEN:
+				mult = green_mult
+			DiceFaceDataResource.FaceColor.ALL:
+				mult = (red_mult + blue_mult + green_mult) / 3
+			DiceFaceDataResource.FaceColor.WHITE:
+				mult = 1
+		
+		match (option.effect):
+			DiceFaceDataResource.Effect.POSITIVE:
+				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
+			DiceFaceDataResource.Effect.NEGATIVE:
+				accumulated_spectator_value += mult * BASE_FACE_VALUE
+			DiceFaceDataResource.Effect.ADD_DICE:
+				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
+	spectactor_score = floori(accumulated_spectator_value)
+	spectator_label.text = BASE_STR_SPECTATOR_TEXT.format({points= spectactor_score})
 
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:

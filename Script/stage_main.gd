@@ -12,27 +12,14 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/TextureRect/GreenBar
 @onready var turn_label: Label = $MarginContainer/TurnLabel
 @onready var chat_box: Sprite2D = $ChatBox
-
-var spectatorCount:int
-var aproval:float
-
-var handTextures:Array = [
-	"res://Assets/Texture/HostCharacter/HandA.png",
-	"res://Assets/Texture/HostCharacter/HandB.png",
-	"res://Assets/Texture/HostCharacter/HandC.png",
-	"res://Assets/Texture/HostCharacter/HandD.png",
-	"res://Assets/Texture/HostCharacter/HandE.png",
-	"res://Assets/Texture/HostCharacter/HandF.png",
-	"res://Assets/Texture/HostCharacter/HandG.png"
-]
-
-
-
 @onready var subtitles: RichTextLabel = $ChatBox/subtitles
 @onready var hostCharHead: AnimationPlayer = $HostCharacter/HeadAnimation
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
+@onready var total_spectators_label: RichTextLabel = $TotalSpectatorsLabel
 
+var totalSpectators:int
+var aproval:float
 var currentTurn = 1
 
 func _ready() -> void:
@@ -105,7 +92,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 	chat_box.hide()
 	hostCharHead.play("Idle")
 
-func _dice_rolled(face:DiceFaceDataResource):
+func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
 	var effect = 10
 	var target_comment = ""
 	var target_effect:bool
@@ -147,6 +134,10 @@ func _dice_rolled(face:DiceFaceDataResource):
 			update_spritemood("GreenMan", green_bar.value)
 	
 	update_aproval()
+	
+	totalSpectators += dice_spectator
+	total_spectators_label.text = "{sp}k".format({sp = totalSpectators})
+	dicehandler.recalculate_dice_spectators()
 	if target_comment != "dice":
 		comment = build_comment(target_comment,target_effect)
 	else:
@@ -185,7 +176,7 @@ func _on_pass_turn_button_pressed() -> void:
 		await get_tree().create_timer(0.2).timeout
 
 func add_dice_and_connect() -> bool:
-	var dice = dicehandler.spawn_dice()
+	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
 	if dice:
 		dice.connect("dice_rolled",_dice_rolled)
 		return true
