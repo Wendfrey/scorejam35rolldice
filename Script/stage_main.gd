@@ -28,7 +28,8 @@ var handTextures:Array =[
 
 
 @onready var subtitles: RichTextLabel = $MarginContainer2/subtitles
-#TODO GOYO CABRON @onready var hand: Sprite2D = $HostHead/Hand
+@onready var hostCharHead: AnimationPlayer = $HostCharacter/HeadAnimation
+@onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
 
 func _ready() -> void:
@@ -74,6 +75,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 	subtitles.bbcode_enabled = true
 	subtitles.bbcode_text = raw_text
 	subtitles.visible_ratio = 0.0
+	hostCharHand.play("Hand" + str(randi_range(1,9)))
 
 	while subtitles.visible_ratio < 1:
 		if Input.is_action_just_pressed("ui_accept"):
@@ -81,7 +83,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 			break
 		if subtitles.visible_ratio < 1 and not speech_sfx_1.playing:
 			speech_sfx_1.play()
-			#TODO GOYO CABRON hand.texture = load(handTextures[randi_range(0,handTextures.size()-1)])
+			hostCharHead.play("Talk" + str(randi_range(1,6)))
 
 		
 		subtitles.visible_ratio += speed * get_process_delta_time()
@@ -89,6 +91,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		await get_tree().process_frame
 	await get_tree().create_timer(1).timeout
 	subtitles.text = ""
+	hostCharHead.play("Idle")
 
 func _dice_rolled(face:DiceFaceDataResource):
 	var effect = 10

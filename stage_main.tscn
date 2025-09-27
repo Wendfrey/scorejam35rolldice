@@ -269,6 +269,7 @@ stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
 
 [node name="HostCharacter" parent="." instance=ExtResource("19_gentr")]
+position = Vector2(-43, 148)
 
 [node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("dice_sliding_into_game_sound", "spawnPoint")]
 position = Vector2(575, 598)
