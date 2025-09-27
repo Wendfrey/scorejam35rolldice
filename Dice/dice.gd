@@ -96,7 +96,9 @@ func _on_timer_timeout() -> void:
 		
 	audio_stream_player.play()
 	vibrate()
-	
+	if isFinished:
+		await get_tree().create_timer(1).timeout
+		queue_free()
 ## Change faces of dice
 func generate_new_dice():
 	choice = null

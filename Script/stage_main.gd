@@ -4,9 +4,11 @@ const DICE = preload("uid://lcw65s7ygglt")
 
 @onready var dicehandler: Node2D = $dicehandler
 
-var redStress:float
-var greenStress:float
-var blueStress:float
+@onready var aproval_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/AprovalBar
+@onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/RedBar
+@onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/BlueBar
+@onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/GreenBar
+
 var spectatorCount:int
 var aproval:float
 
@@ -28,22 +30,23 @@ var handTextures:Array =[
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
 
 func _ready() -> void:
-	var comment = build_comment("green", true)
-	await show_comment(comment, 0.99)
-	dicehandler.spawn_dice()
-	dicehandler.spawn_dice()
-	dicehandler.spawn_dice()
+	
+	update_aproval()
+	
+	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	
+	
 func end_game():
-	if redStress > 100 or greenStress > 100 or blueStress > 100:
+	if red_bar.value > 100 or blue_bar.value > 100 or green_bar.value > 100:
 		pass
 func update_aproval():
-	aproval = (redStress + greenStress + blueStress)/3
-
+	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
+	aproval_bar.value = aproval
 func build_comment(target: String, effect: bool) -> String:
-
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
-
 	if effect:
 		var positives = [
 			"{target} is [rainbow]shining[/rainbow] today, dont you think?",
@@ -56,7 +59,6 @@ func build_comment(target: String, effect: bool) -> String:
 			"{target} negative2"
 			]
 		return negatives[rng.randi_range(0, negatives.size() - 1)].format({"target": target})
-
 func show_comment(raw_text: String, speed := 0.03) -> void:
 	subtitles.bbcode_enabled = true
 	subtitles.bbcode_text = raw_text
@@ -74,3 +76,35 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		subtitles.visible_ratio += speed * get_process_delta_time()
 		subtitles.visible_ratio = min(subtitles.visible_ratio, 1.0)
 		await get_tree().process_frame
+
+func _dice_rolled(face:DiceFaceDataResource):
+	
+	var effect = 10
+	
+	
+	
+	
+	print(DiceFaceDataResource.Effect.keys()[face.effect])
+	print(DiceFaceDataResource.FaceColor.keys()[face.faceColor])
+	
+	match(face.effect):
+		DiceFaceDataResource.Effect.POSITIVE:
+			pass
+		DiceFaceDataResource.Effect.NEGATIVE:
+			effect *= -1
+		DiceFaceDataResource.Effect.ADD_DICE:
+			pass
+
+	match(face.faceColor):
+		DiceFaceDataResource.FaceColor.RED:
+			red_bar.value += effect
+		DiceFaceDataResource.FaceColor.BLUE:
+			blue_bar.value += effect
+		DiceFaceDataResource.FaceColor.GREEN:
+			green_bar.value += effect
+		DiceFaceDataResource.FaceColor.ALL:
+			red_bar.value += effect
+			blue_bar.value += effect
+			green_bar.value += effect
+
+	
