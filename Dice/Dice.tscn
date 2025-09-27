@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://lcw65s7ygglt"]
+
+[ext_resource type="Script" uid="uid://dayn7g0yo08wy" path="res://Dice/dice.gd" id="1_yynlm"]
+[ext_resource type="Texture2D" uid="uid://fb5jiwdj201a" path="res://Assets/Texture/dicePlaceholder.png" id="2_2rixr"]
+
+[node name="Dice" type="Sprite2D"]
+scale = Vector2(0.11376592, 0.10876416)
+texture = ExtResource("2_2rixr")
+script = ExtResource("1_yynlm")
+
+[node name="TimerRoll" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerRoll" to="." method="_on_timer_timeout"]
