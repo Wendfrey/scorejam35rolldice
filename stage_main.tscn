@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=22 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -150,6 +150,7 @@ position = Vector2(575.2222, 321)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_ibjt6")
 
+[node name="RedMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
 position = Vector2(71.77771, 54)
 sprite_frames = SubResource("SpriteFrames_jslxq")
 frame_progress = 0.2773899
