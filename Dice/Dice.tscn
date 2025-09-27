@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://lcw65s7ygglt"]
+[gd_scene load_steps=15 format=3 uid="uid://lcw65s7ygglt"]
 
+[ext_resource type="Texture2D" uid="uid://t6tad2kbkbjk" path="res://Assets/Texture/dice/FaceRedPositive.tres" id="1_r7uk3"]
 [ext_resource type="Script" uid="uid://dayn7g0yo08wy" path="res://Dice/dice.gd" id="1_yynlm"]
 [ext_resource type="Script" uid="uid://b1pop7b8gyosf" path="res://Dice/DiceFaceDataResource.gd" id="3_nmrgv"]
 [ext_resource type="Resource" uid="uid://bckwejmlg0wl4" path="res://Dice/res/AllNegativeFace.tres" id="4_r7uk3"]
@@ -13,9 +14,25 @@
 [ext_resource type="Resource" uid="uid://dnow6ueevdj48" path="res://Dice/res/WhiteNeutralAddDice.tres" id="12_58irk"]
 [ext_resource type="AudioStream" uid="uid://di2g5cdk1ewus" path="res://Assets/sounds/dice_rolling.wav" id="12_nmrgv"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_r7uk3"]
+font_size = 10
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Dice" type="Sprite2D"]
+texture = ExtResource("1_r7uk3")
 script = ExtResource("1_yynlm")
 all_possible_faces = Array[ExtResource("3_nmrgv")]([ExtResource("4_r7uk3"), ExtResource("5_clcc5"), ExtResource("6_8xjo2"), ExtResource("7_s1lci"), ExtResource("8_w2ngr"), ExtResource("9_oa3pg"), ExtResource("10_irlgj"), ExtResource("11_bunnl"), ExtResource("12_58irk")])
+metadata/_edit_horizontal_guides_ = [-20.0, -16.0, -52.0, -56.0, -92.0]
+metadata/_edit_vertical_guides_ = [16.0, 20.0, -20.0, -16.0]
+
+[node name="LabelFaceNumber" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 26.0
+text = "1"
+label_settings = SubResource("LabelSettings_r7uk3")
 
 [node name="TimerRoll" type="Timer" parent="."]
 one_shot = true
@@ -25,4 +42,61 @@ stream = ExtResource("12_nmrgv")
 pitch_scale = 1.05
 bus = &"SFX"
 
+[node name="Face2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -36)
+texture = ExtResource("1_r7uk3")
+
+[node name="Face3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(36, -36)
+texture = ExtResource("1_r7uk3")
+
+[node name="Face4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-36, -36)
+texture = ExtResource("1_r7uk3")
+
+[node name="Face5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -72)
+texture = ExtResource("1_r7uk3")
+
+[node name="Face6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -108)
+texture = ExtResource("1_r7uk3")
+
+[node name="DiceMenu" type="Control" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -73.0
+offset_top = -132.0
+offset_right = 73.0
+offset_bottom = 21.0
+
+[node name="ColorRect" type="ColorRect" parent="DiceMenu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.21568628)
+metadata/_edit_use_anchors_ = true
+
+[node name="DiceRollButton" type="Button" parent="DiceMenu"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 117.0
+offset_right = 142.0
+offset_bottom = 148.0
+mouse_filter = 1
+text = "ROLL"
+
 [connection signal="timeout" from="TimerRoll" to="." method="_on_timer_timeout"]
+[connection signal="mouse_exited" from="DiceMenu" to="." method="_on_dice_menu_mouse_exited"]
+[connection signal="pressed" from="DiceMenu/DiceRollButton" to="." method="_on_dice_roll_button_pressed"]
