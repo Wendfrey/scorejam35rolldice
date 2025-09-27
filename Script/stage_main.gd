@@ -34,8 +34,11 @@ func _ready() -> void:
 	update_aproval()
 	
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	await get_tree().create_timer(0.2).timeout
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	await get_tree().create_timer(0.2).timeout
 	dicehandler.spawn_dice().connect("dice_rolled",_dice_rolled)
+	
 	update_spritemood("RedMan", red_bar.value)
 	update_spritemood("BlueMan", blue_bar.value)
 	update_spritemood("GreenMan", green_bar.value)
@@ -84,6 +87,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		await get_tree().process_frame
 	await get_tree().create_timer(1).timeout
 	subtitles.text = ""
+
 func _dice_rolled(face:DiceFaceDataResource):
 	var effect = 10
 	var target_comment = ""

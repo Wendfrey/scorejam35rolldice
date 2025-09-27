@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=25 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -274,6 +274,10 @@ layout_mode = 2
 stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
 
-[node name="dicehandler" type="Node2D" parent="."]
+[node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("spawnPoint")]
 position = Vector2(575, 598)
 script = ExtResource("5_xpu1r")
+spawnPoint = NodePath("../Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1208, 598)
