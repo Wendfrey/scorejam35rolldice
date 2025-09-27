@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=28 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cwis7q7veiglj" path="res://Assets/Texture/GuestCharacters/MoodBarBlue.png" id="4_8nq3n"]
 [ext_resource type="Texture2D" uid="uid://r2k1np8gctiw" path="res://Assets/Texture/GuestCharacters/MoodBarRed.png" id="5_wbisv"]
 [ext_resource type="Script" uid="uid://4a1b761hl1su" path="res://dicehandler.gd" id="5_xpu1r"]
-[ext_resource type="Texture2D" uid="uid://fy67gd7edvsv" path="res://Assets/Texture/HostCharacter/HostHead.png" id="5_y4mod"]
 [ext_resource type="Texture2D" uid="uid://dn0oskln8l40l" path="res://Assets/Texture/GuestCharacters/BlueD.png" id="6_doe6i"]
 [ext_resource type="AudioStream" uid="uid://bvaj577vtc3ab" path="res://Assets/sounds/synth (1).wav" id="6_fliql"]
 [ext_resource type="Texture2D" uid="uid://d2u5a5xi487ii" path="res://Assets/Texture/GuestCharacters/BlueC.png" id="7_4v4ig"]
@@ -20,8 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://miotlqke1uxe" path="res://Assets/Texture/GuestCharacters/GreenC.png" id="15_hn1fj"]
 [ext_resource type="Texture2D" uid="uid://ccylatfe34wla" path="res://Assets/Texture/GuestCharacters/GreenA.png" id="16_h52rb"]
 [ext_resource type="Texture2D" uid="uid://c2o4l3rl2s1y6" path="res://Assets/Texture/GuestCharacters/GreenB.png" id="17_wg5ij"]
+[ext_resource type="PackedScene" uid="uid://dlwx61rbdhme4" path="res://Assets/rigged/HostCharacter.tscn" id="19_gentr"]
+[ext_resource type="AudioStream" uid="uid://dad2tgnghrsey" path="res://Assets/sounds/playing-cards-on-a-wooden-table-55088.wav" id="21_gentr"]
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
-[ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
@@ -128,6 +128,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_gentr"]
+font_size = 25
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fliql"]
 random_pitch = 1.1
 streams_count = 1
@@ -137,11 +142,12 @@ stream_0/stream = ExtResource("6_fliql")
 script = ExtResource("1_b0byo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+z_index = 2
+offset_left = 32.0
+offset_top = 19.0
+offset_right = 76.0
+offset_bottom = 42.0
+size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
 layer = -1
@@ -252,13 +258,10 @@ value = 50.0
 fill_mode = 2
 show_percentage = false
 
-[node name="HostHead" type="Sprite2D" parent="."]
-position = Vector2(144, 461)
-scale = Vector2(0.8178726, 0.81787264)
-texture = ExtResource("5_y4mod")
-
-[node name="Hand" type="Sprite2D" parent="HostHead"]
-position = Vector2(255, 77)
+[node name="TurnLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "TURN 1 /  10"
+label_settings = SubResource("LabelSettings_gentr")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 offset_left = 588.0
@@ -276,10 +279,18 @@ layout_mode = 2
 stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
 
-[node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("spawnPoint")]
+[node name="HostCharacter" parent="." instance=ExtResource("19_gentr")]
+position = Vector2(-43, 148)
+
+[node name="dicehandler" type="Node2D" parent="." node_paths=PackedStringArray("dice_sliding_into_game_sound", "spawnPoint")]
 position = Vector2(575, 598)
 script = ExtResource("5_xpu1r")
+dice_sliding_into_game_sound = NodePath("../DiceSlidingIntoGameSound")
 spawnPoint = NodePath("../Marker2D")
+
+[node name="DiceSlidingIntoGameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_gentr")
+bus = &"SFX"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1208, 598)
@@ -300,9 +311,21 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_gentr")
-volume_db = -25.0
-autoplay = true
-bus = &"Music"
-parameters/looping = true
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 585.0
+offset_top = 433.0
+offset_right = 1087.0
+offset_bottom = 505.0
+
+[node name="PassTurnButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PASS TURN"
+
+[connection signal="pressed" from="Control/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
