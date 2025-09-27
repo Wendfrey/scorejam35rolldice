@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgvnwdfrqver3"
-path="res://.godot/imported/diceInactive.png-095a3a710a7cfac83b8ed8753e06e972.ctex"
+uid="uid://cimwu207ho6ci"
+path="res://.godot/imported/RedC.png-08b38d1aa6e54c6a237d3d7ac8a0721d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texture/diceInactive.png"
-dest_files=["res://.godot/imported/diceInactive.png-095a3a710a7cfac83b8ed8753e06e972.ctex"]
+source_file="res://Assets/Texture/GuestCharacters/RedC.png"
+dest_files=["res://.godot/imported/RedC.png-08b38d1aa6e54c6a237d3d7ac8a0721d.ctex"]
 
 [params]
 

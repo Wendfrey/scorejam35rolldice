@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fb5jiwdj201a"
-path="res://.godot/imported/dicePlaceholder.png-c0479fac785a064d7d9bff47f588efed.ctex"
+uid="uid://pew6tpo7lrfn"
+path="res://.godot/imported/GreenD.png-b6be91713186be35bb9816e147f9ec48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texture/dicePlaceholder.png"
-dest_files=["res://.godot/imported/dicePlaceholder.png-c0479fac785a064d7d9bff47f588efed.ctex"]
+source_file="res://Assets/Texture/GuestCharacters/GreenD.png"
+dest_files=["res://.godot/imported/GreenD.png-b6be91713186be35bb9816e147f9ec48.ctex"]
 
 [params]
 
