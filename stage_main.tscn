@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=31 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -138,8 +138,19 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_fliql")
 
+[sub_resource type="LabelSettings" id="LabelSettings_4r2iv"]
+font_size = 25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gentr"]
+size = Vector2(224, 90)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iuj4m"]
+font_size = 25
+
 [node name="StageMain" type="Node2D"]
 script = ExtResource("1_b0byo")
+metadata/_edit_horizontal_guides_ = [472.0]
+metadata/_edit_vertical_guides_ = [708.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 2
@@ -311,21 +322,66 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="Control" type="Control" parent="."]
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="PlayZone" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 585.0
-offset_top = 433.0
-offset_right = 1087.0
-offset_bottom = 505.0
+offset_left = 590.0
+offset_top = 424.0
+offset_right = 1125.0
+offset_bottom = 519.0
 
-[node name="PassTurnButton" type="Button" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayZone"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "PASS TURN"
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Control/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
+[node name="Control2" type="PanelContainer" parent="PlayZone/HBoxContainer"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control2"]
+layout_mode = 2
+text = "ROLL DICE"
+label_settings = SubResource("LabelSettings_4r2iv")
+horizontal_alignment = 1
+
+[node name="RollZone" type="Area2D" parent="PlayZone/HBoxContainer/Control2"]
+position = Vector2(115, 47)
+metadata/zone = "ROLL"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control2/RollZone"]
+shape = SubResource("RectangleShape2D_gentr")
+
+[node name="Control" type="PanelContainer" parent="PlayZone/HBoxContainer"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control"]
+layout_mode = 2
+text = "REFRESH DICE"
+label_settings = SubResource("LabelSettings_iuj4m")
+horizontal_alignment = 1
+
+[node name="RerollZone" type="Area2D" parent="PlayZone/HBoxContainer/Control"]
+position = Vector2(115, 47)
+metadata/zone = "REFRESH"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control/RerollZone"]
+shape = SubResource("RectangleShape2D_gentr")
+
+[node name="PassTurnButton" type="Button" parent="PlayZone/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "PASS"
+
+[connection signal="pressed" from="PlayZone/HBoxContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]

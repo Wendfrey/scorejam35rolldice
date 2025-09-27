@@ -36,22 +36,47 @@ var current_anim:Tween = null
 var current_pos
 var is_anim_move_playing: bool = false
 
+var current_zone: Area2D = null
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	generate_new_dice()
 
+var grabbed: bool = false
 ## Input control
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and ticks == timer and dice_menu.visible:
 		generate_new_dice()
-
+		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and ticks == timer:
 		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
 			show_menu(false)
 		elif get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
 			show_menu(true)
+			
+	if is_menu_displayed and dice_menu.visible and event.is_action_pressed("gmply_grab") and get_rect().has_point(get_local_mouse_position()):
+		grabbed = true
+		print("grabbed")
+		current_pos = position
+		show_menu(false)
+		is_menu_displayed = true
+	elif grabbed and event.is_action_released("gmply_grab"):
+		is_menu_displayed = false
+		print("released")
+		grabbed = false
+		if current_zone and current_zone.has_meta("zone"):
+			match(current_zone.get_meta("zone", "")):
+				"ROLL":
+					roll()
+				"REFRESH":
+					generate_new_dice()
+					animate_move_to(current_pos)
+		else:
+			animate_move_to(current_pos)
+		
+	if event is InputEventMouseMotion and grabbed:
+		global_position = get_global_mouse_position()
 
 ## Inicia el roll del dado
 func roll() -> void:
@@ -142,6 +167,7 @@ func vibrate():
 func animate_move_to(new_position:Vector2):
 	var anim = get_tree().create_tween()
 	anim.bind_node(self)
+	current_pos = new_position
 	anim.tween_property(self, "is_anim_move_playing", true, 0)
 	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
 	anim.tween_property(self, "is_anim_move_playing", false, 0)
@@ -154,6 +180,10 @@ func _on_dice_menu_mouse_exited() -> void:
 	if not dice_menu.get_rect().has_point(get_local_mouse_position()):
 		show_menu(false)
 
+func _on_zone_detector_area_2d_area_exited(area: Area2D) -> void:
+	if current_zone and area and current_zone == area:
+		current_zone = null
 
-func _on_dice_menu_mouse_entered() -> void:
-	print("Entered")
+func _on_zone_detector_area_2d_area_entered(area: Area2D) -> void:
+	if area:
+		current_zone = area
