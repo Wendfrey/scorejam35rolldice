@@ -7,6 +7,9 @@ var blueStress:float
 var spectatorCount:int
 var aproval:float
 
+
+
+
 func _ready() -> void:
 	pass
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://btl61y1qxyw2w"]
+[gd_scene load_steps=7 format=3 uid="uid://btl61y1qxyw2w"]
 
 [ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="3_h7a2f"]
+[ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="3_iwfq2"]
 [ext_resource type="AudioStream" uid="uid://dmfvecv3k1x83" path="res://Assets/sounds/Celebrative-moment-upbeat-band-sitcom-822.wav" id="4_qoqlk"]
+[ext_resource type="Script" uid="uid://jh81l1oppp35" path="res://mainvolume.gd" id="6_7r1g0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i26rj")
 mainGame = ExtResource("2_eiy7p")
+settings = ExtResource("3_iwfq2")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
@@ -33,28 +36,36 @@ value = 25.0
 fill_mode = 3
 show_percentage = false
 
-[node name="ButtonPlay" type="Button" parent="."]
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -637.7824
+offset_top = -358.88196
+offset_right = -597.7824
+offset_bottom = -318.88196
+
+[node name="ButtonPlay" type="Button" parent="Background/Control"]
 layout_mode = 0
-offset_left = 679.0
-offset_top = 147.0
-offset_right = 1041.0
-offset_bottom = 206.0
+offset_left = 752.84686
+offset_top = 164.34778
+offset_right = 1114.8469
+offset_bottom = 223.34778
 text = "PLAY"
 
-[node name="ButtonTutorial" type="Button" parent="."]
+[node name="ButtonTutorial" type="Button" parent="Background/Control"]
 layout_mode = 0
-offset_left = 754.0
-offset_top = 211.0
-offset_right = 1051.0
-offset_bottom = 242.0
+offset_left = 836.0037
+offset_top = 235.90057
+offset_right = 1133.0037
+offset_bottom = 266.90057
 text = "How to play"
 
-[node name="ButtonSetting" type="Button" parent="."]
+[node name="ButtonSetting" type="Button" parent="Background/Control"]
 layout_mode = 0
-offset_left = 732.0
-offset_top = 246.99431
-offset_right = 1017.0
-offset_bottom = 277.99432
+offset_left = 811.611
+offset_top = 276.14264
+offset_right = 1096.6111
+offset_bottom = 307.14264
 text = "Settings"
 
 [node name="TutoContainer" type="MarginContainer" parent="."]
@@ -80,11 +91,70 @@ Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension me
  Rack up as many [b][rainbow]audience[/rainbow][/b] as you can before the program collapses in chaos! 
 "
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="menumusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoqlk")
+volume_db = -25.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="button_up" from="ButtonPlay" to="." method="_on_button_play_button_up"]
-[connection signal="button_up" from="ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
-[connection signal="button_up" from="ButtonSetting" to="." method="_on_button_setting_button_up"]
+[node name="settings" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 74.0
+offset_top = 142.0
+offset_right = 565.0
+offset_bottom = 292.0
+
+[node name="MarginContainer" type="MarginContainer" parent="settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="settings/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="musicvolume" type="HSlider" parent="settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("6_7r1g0")
+bus_name = "Music"
+
+[node name="Label" type="Label" parent="settings/MarginContainer/VBoxContainer/musicvolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music"
+
+[node name="effectvolume" type="HSlider" parent="settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("6_7r1g0")
+bus_name = "SFX"
+
+[node name="Label" type="Label" parent="settings/MarginContainer/VBoxContainer/effectvolume"]
+layout_mode = 0
+offset_top = 13.0
+offset_right = 319.0
+offset_bottom = 62.0
+text = "Sound Effects
+"
+
+[connection signal="button_up" from="Background/Control/ButtonPlay" to="." method="_on_button_play_button_up"]
+[connection signal="button_up" from="Background/Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
+[connection signal="button_up" from="Background/Control/ButtonSetting" to="." method="_on_button_setting_button_up"]

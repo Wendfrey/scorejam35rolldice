@@ -1,7 +1,11 @@
 extends Control
 
 @export var mainGame:PackedScene
+@export var settings:PackedScene
 @onready var tutocontainer: MarginContainer = $TutoContainer
+@onready var setting: Panel = $settings
+
+
 
 
 
@@ -14,7 +18,12 @@ func _on_button_tutorial_button_up() -> void:
 		tutocontainer.hide()
 	else:
 		tutocontainer.show()
+		setting.hide()
 
 
 func _on_button_setting_button_up() -> void:
-	pass # Replace with function body.
+	if setting.visible:
+		setting.hide()
+	else:
+		tutocontainer.hide()
+		setting.show()
