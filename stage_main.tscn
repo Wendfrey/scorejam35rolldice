@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=6 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
 [ext_resource type="PackedScene" uid="uid://lcw65s7ygglt" path="res://Dice/Dice.tscn" id="3_ibjt6"]
-[ext_resource type="Script" path="res://Dice/DiceFaceDataResource.gd" id="4_fliql"]
 [ext_resource type="Texture2D" uid="uid://fy67gd7edvsv" path="res://Assets/Texture/HostCharacter/HostHead.png" id="5_y4mod"]
 [ext_resource type="Texture2D" uid="uid://dtwcsascqb7uo" path="res://Assets/Texture/HostCharacter/HandA.png" id="6_ui1y4"]
 
@@ -47,7 +46,6 @@ show_percentage = false
 
 [node name="Dice" parent="." instance=ExtResource("3_ibjt6")]
 position = Vector2(575, 560)
-all_possible_faces = Array[ExtResource("4_fliql")]([])
 
 [node name="HostHead" type="Sprite2D" parent="."]
 position = Vector2(144, 461)
