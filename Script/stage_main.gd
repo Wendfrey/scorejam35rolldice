@@ -2,6 +2,8 @@ extends Node2D
 
 const DICE = preload("uid://lcw65s7ygglt")
 
+@onready var settings: Panel = $settings
+
 @onready var dicehandler: Node2D = $dicehandler
 
 @onready var aproval_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/AprovalBar
@@ -146,3 +148,11 @@ func update_spritemood(target_man : String, value : float) -> void:
 		man.animation = "bother"
 	else:
 		man.animation = "angry"
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			if settings.visible:
+				settings.hide()
+			else:
+				settings.show()

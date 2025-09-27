@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=26 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://miotlqke1uxe" path="res://Assets/Texture/GuestCharacters/GreenC.png" id="15_hn1fj"]
 [ext_resource type="Texture2D" uid="uid://ccylatfe34wla" path="res://Assets/Texture/GuestCharacters/GreenA.png" id="16_h52rb"]
 [ext_resource type="Texture2D" uid="uid://c2o4l3rl2s1y6" path="res://Assets/Texture/GuestCharacters/GreenB.png" id="17_wg5ij"]
+[ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
@@ -281,3 +282,19 @@ spawnPoint = NodePath("../Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1208, 598)
+
+[node name="settings" parent="." instance=ExtResource("21_xchji")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 401.0
+offset_top = 186.0
+offset_right = 892.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
