@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=32 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
+[ext_resource type="Texture2D" uid="uid://d0607kpcrij5m" path="res://Assets/Texture/UI/ChatBox.png" id="2_iuj4m"]
 [ext_resource type="Texture2D" uid="uid://s0lxyugi2wcv" path="res://Assets/Texture/GuestCharacters/MoodBarGreen.png" id="3_ui1y4"]
 [ext_resource type="Texture2D" uid="uid://cwis7q7veiglj" path="res://Assets/Texture/GuestCharacters/MoodBarBlue.png" id="4_8nq3n"]
 [ext_resource type="Texture2D" uid="uid://r2k1np8gctiw" path="res://Assets/Texture/GuestCharacters/MoodBarRed.png" id="5_wbisv"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dlwx61rbdhme4" path="res://Assets/rigged/HostCharacter.tscn" id="19_gentr"]
 [ext_resource type="AudioStream" uid="uid://dad2tgnghrsey" path="res://Assets/sounds/playing-cards-on-a-wooden-table-55088.wav" id="21_gentr"]
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
+[ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
@@ -152,6 +154,21 @@ script = ExtResource("1_b0byo")
 metadata/_edit_horizontal_guides_ = [472.0]
 metadata/_edit_vertical_guides_ = [708.0]
 
+[node name="ChatBox" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(473, 389)
+texture = ExtResource("2_iuj4m")
+
+[node name="subtitles" type="RichTextLabel" parent="ChatBox"]
+z_index = 1
+offset_left = -132.0
+offset_top = -24.0
+offset_right = 183.0
+offset_bottom = 26.0
+theme_override_colors/default_color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+bbcode_enabled = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 2
 offset_left = 32.0
@@ -274,18 +291,6 @@ layout_mode = 2
 text = "TURN 1 /  10"
 label_settings = SubResource("LabelSettings_gentr")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-offset_left = 588.0
-offset_top = 374.0
-offset_right = 972.0
-offset_bottom = 415.0
-
-[node name="Panel" type="Panel" parent="MarginContainer2"]
-layout_mode = 2
-
-[node name="subtitles" type="RichTextLabel" parent="MarginContainer2"]
-layout_mode = 2
-
 [node name="speech_sfx1" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_fliql")
 bus = &"SFX"
@@ -383,5 +388,11 @@ shape = SubResource("RectangleShape2D_gentr")
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "PASS"
+
+[node name="musicplayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_gentr")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]

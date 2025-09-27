@@ -11,6 +11,7 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarBlue/BlueBar
 @onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/TextureRect/GreenBar
 @onready var turn_label: Label = $MarginContainer/TurnLabel
+@onready var chat_box: Sprite2D = $ChatBox
 
 var spectatorCount:int
 var aproval:float
@@ -27,7 +28,7 @@ var handTextures:Array = [
 
 
 
-@onready var subtitles: RichTextLabel = $MarginContainer2/subtitles
+@onready var subtitles: RichTextLabel = $ChatBox/subtitles
 @onready var hostCharHead: AnimationPlayer = $HostCharacter/HeadAnimation
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
@@ -50,9 +51,9 @@ func _ready() -> void:
 	update_spritemood("GreenMan", green_bar.value)
 	
 	
-func end_game():
-	if red_bar.value > 100 or blue_bar.value > 100 or green_bar.value > 100:
-		pass
+func check_end_game():
+	if red_bar.value <= 0 or blue_bar.value <= 0 or green_bar.value <= 0:
+		print("game lost")
 		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
@@ -63,18 +64,25 @@ func build_comment(target: String, effect: bool) -> String:
 	rng.randomize()
 	if effect:
 		var positives = [
-			"{target} is [rainbow]shining[/rainbow] today, dont you think?",
-			"{target} positive2"
+			"That was pure [tornado]ICONIC[/tornado], thank you [color={target}]{target}[/colo].",
+			"Drama? Delivered. Shade? Perfect. [color={target}]{target}[/color] is giving [shake]TV gold[/shake].",
+			"[color={target}]{target}[/color] ate. No crumbs left.",
+			"This was peak [shake]tea-spilling[/shake], and [color={target}]{target}[/color] was the kettle."
 		]
 		return positives[rng.randi_range(0, positives.size() - 1)].format({"target": target})
 	else:
 		var negatives =[
-			"{target} negative1",
-			"{target} negative2"
+			"Flop era unlocked, thank you [wave][color={target}]{target}[/color][/wave].",
+			"[color={target}]{target}[/color], [wave]sweetie[/wave], you couldn’t win a debate in a kindergarten.",
+			"This wasn’t iconic, [color={target}]{target}[/color], it was more like ironic.",
+			"[color={target}]{target}[/color], your 15 minutes are already over.",
+			"I'll pretend I didn't hear that,[color={target}]{target}[/color].",
+			"[color={target}]{target}[/colo], you’re not a clown you're the entire circus."
 			]
 		return negatives[rng.randi_range(0, negatives.size() - 1)].format({"target": target})
 		
 func show_comment(raw_text: String, speed := 0.03) -> void:
+	chat_box.show()
 	subtitles.bbcode_enabled = true
 	subtitles.bbcode_text = raw_text
 	subtitles.visible_ratio = 0.0
@@ -92,8 +100,9 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		subtitles.visible_ratio += speed * get_process_delta_time()
 		subtitles.visible_ratio = min(subtitles.visible_ratio, 1.0)
 		await get_tree().process_frame
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.5).timeout
 	subtitles.text = ""
+	chat_box.hide()
 	hostCharHead.play("Idle")
 
 func _dice_rolled(face:DiceFaceDataResource):
@@ -143,6 +152,7 @@ func _dice_rolled(face:DiceFaceDataResource):
 	else:
 		comment = "There is an uncomfortable silence in the room"
 	show_comment(comment,0.9)
+	check_end_game()
 	
 func update_spritemood(target_man : String, value : float) -> void:
 	var man : AnimatedSprite2D = get_node(str("MarginContainer/CanvasLayer/Background/", target_man))
