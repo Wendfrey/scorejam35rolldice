@@ -38,7 +38,7 @@ offset_left = 679.0
 offset_top = 147.0
 offset_right = 1041.0
 offset_bottom = 206.0
-text = "Play"
+text = "PLAY"
 
 [node name="ButtonTutorial" type="Button" parent="."]
 layout_mode = 0
@@ -46,7 +46,7 @@ offset_left = 754.0
 offset_top = 211.0
 offset_right = 1051.0
 offset_bottom = 242.0
-text = "Tutorial"
+text = "How to play"
 
 [node name="ButtonSetting" type="Button" parent="."]
 layout_mode = 0
@@ -55,6 +55,29 @@ offset_top = 246.99431
 offset_right = 1017.0
 offset_bottom = 277.99432
 text = "Settings"
+
+[node name="TutoContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 122.0
+offset_top = 119.0
+offset_right = 581.0
+offset_bottom = 514.0
+
+[node name="Panel" type="Panel" parent="TutoContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutoContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b][color=orange]Welcome to the trashiest talk show on TV![/color][/b] 
+
+Your job is to [b][wave]stir up drama[/wave][/b] among the guests and keep the [b][rainbow]audience[/rainbow][/b] hooked. Each turn, pick a die. Some faces [b]calm the guests[/b], others [b]anger them[/b]. The riskier the die, the more [b][rainbow]audience[/rainbow][/b] you gain! 
+
+Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension means a bigger [b][rainbow]audience[/rainbow][/b] multiplier, but if it drops to [b][shake]0[/shake][/b], a guest will left the stage . You’ll get a huge spike in [b][rainbow]audience[/rainbow][/b], but the show ends immediately.
+
+ Rack up as many [b][rainbow]audience[/rainbow][/b] as you can before the program collapses in chaos! 
+"
 
 [connection signal="button_up" from="ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
