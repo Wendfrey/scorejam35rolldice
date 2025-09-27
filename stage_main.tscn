@@ -37,15 +37,53 @@ position = Vector2(541, 267)
 
 [node name="Blue" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
+[node name="AprovalBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
 modulate = Color(9.687732, 0, 9.687732, 1)
 z_index = -1
-offset_left = 565.055
-offset_top = -312.85928
-offset_right = 624.28827
-offset_bottom = -40.4993
+offset_left = 567.4379
+offset_top = -311.9254
+offset_right = 626.6712
+offset_bottom = -39.56543
 rotation = 0.13534549
 fill_mode = 3
+show_percentage = false
+
+[node name="RedBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
+modulate = Color(7.3073163, 1.2045506, 0.930884, 1)
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -64.55437
+offset_top = -168.81987
+offset_right = -51.09761
+offset_bottom = -136.66637
+rotation = -1.5992011
+scale = Vector2(-1.3659117, 3.7380378)
+value = 50.0
+fill_mode = 2
+show_percentage = false
+
+[node name="BlueBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
+modulate = Color(0.12737615, 0.4067867, 1.5426515, 1)
+self_modulate = Color(0, 0, 2.3464565, 1)
+offset_left = 147.21849
+offset_top = -194.53415
+offset_right = 160.67525
+offset_bottom = -162.38065
+rotation = -1.5992011
+scale = Vector2(-0.99075115, 4.055507)
+value = 50.0
+fill_mode = 2
+show_percentage = false
+
+[node name="GreenBar" type="ProgressBar" parent="MarginContainer/CanvasLayer/Background"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 368.97018
+offset_top = -177.76396
+offset_right = 382.42697
+offset_bottom = -145.61046
+rotation = -1.5992011
+scale = Vector2(-0.99075115, 4.055507)
+value = 50.0
+fill_mode = 2
 show_percentage = false
 
 [node name="HostHead" type="Sprite2D" parent="."]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://t6tad2kbkbjk" path="res://Assets/Texture/dice/FaceRedPositive.tres" id="1_r7uk3"]
 [ext_resource type="Script" uid="uid://dayn7g0yo08wy" path="res://Dice/dice.gd" id="1_yynlm"]
-[ext_resource type="Script" uid="uid://b1pop7b8gyosf" path="res://Dice/DiceFaceDataResource.gd" id="3_nmrgv"]
+[ext_resource type="Script" path="res://Dice/DiceFaceDataResource.gd" id="3_nmrgv"]
 [ext_resource type="Resource" uid="uid://bckwejmlg0wl4" path="res://Dice/res/AllNegativeFace.tres" id="4_r7uk3"]
 [ext_resource type="Resource" uid="uid://bdelh772x3xhg" path="res://Dice/res/AllPositiveFace.tres" id="5_clcc5"]
 [ext_resource type="Resource" uid="uid://cbyrkgcwa43wg" path="res://Dice/res/BlueNegativeFace.tres" id="6_8xjo2"]
