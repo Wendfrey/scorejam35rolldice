@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://kb5ieup31lip"]
 
-[ext_resource type="Texture2D" uid="uid://nqan3bbuix5f" path="res://Assets/Texture/dice/dice_faces.png" id="1_i8ftr"]
+[ext_resource type="Texture2D" uid="uid://dn3gugp8aow4w" path="res://Assets/Texture/dice/dice_faces_new_64.png" id="1_fkj25"]
 
 [resource]
-atlas = ExtResource("1_i8ftr")
-region = Rect2(32, 0, 32, 32)
+atlas = ExtResource("1_fkj25")
+region = Rect2(64, 64, 64, 64)

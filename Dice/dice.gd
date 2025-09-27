@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Control
 
 static var is_menu_displayed:bool = false
 
@@ -13,9 +13,10 @@ signal dice_rolled(face:DiceFaceDataResource, spectator_amount)
 @onready var dice_menu: Control = $DiceMenu
 @onready var label_face_number: Label = $LabelFaceNumber
 @onready var spectator_label: RichTextLabel = $DiceMenu/SpectatorLabel
+@onready var face_1: TextureRect = $Face1
 
 @onready var texture_array: Array = [
-	self,
+	$Face1,
 	$DiceMenu/Face2,
 	$DiceMenu/Face3,
 	$DiceMenu/Face4,
@@ -62,10 +63,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and ticks == timer:
 		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
 			show_menu(false)
-		elif get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
+		elif face_1.get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
 			show_menu(true)
 			
-	if is_menu_displayed and dice_menu.visible and event.is_action_pressed("gmply_grab") and get_rect().has_point(get_local_mouse_position()):
+	if is_menu_displayed and dice_menu.visible and event.is_action_pressed("gmply_grab") and face_1.get_rect().has_point(get_local_mouse_position()):
 		grabbed = true
 		print("grabbed")
 		current_pos = position
@@ -123,7 +124,7 @@ func _on_timer_timeout() -> void:
 			var rnd_number = rng.randi_range(0, options.size()-1)
 			while(rnd_number == num_choice or rnd_number == previous_roll):
 				rnd_number = rng.randi_range(0, options.size()-1)
-			self.texture = options[rnd_number].texture
+			face_1.texture = options[rnd_number].texture
 			label_face_number.text = str(rnd_number + 1)
 			
 			interval = 1
@@ -132,7 +133,7 @@ func _on_timer_timeout() -> void:
 			while(rnd_number == previous_roll):
 				rnd_number = rng.randi_range(0, options.size()-1)
 			previous_roll = rnd_number
-			self.texture = options[rnd_number].texture
+			face_1.texture = options[rnd_number].texture
 			label_face_number.text = str(rnd_number + 1)
 			
 			interval += 0.05
@@ -140,7 +141,7 @@ func _on_timer_timeout() -> void:
 	else:
 		$TimerRoll.stop()
 		isFinished = true
-		self.texture = choice.texture
+		face_1.texture = choice.texture
 		label_face_number.text = str(num_choice + 1)
 		dice_rolled.emit(choice, spectactor_score)
 		
