@@ -117,6 +117,7 @@ offset_left = 66.0
 offset_top = 92.0
 offset_right = 557.0
 offset_bottom = 254.0
+is_mainMenu = true
 
 [node name="CreditsContainer" type="PanelContainer" parent="."]
 visible = false

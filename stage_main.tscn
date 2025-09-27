@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=27 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ccylatfe34wla" path="res://Assets/Texture/GuestCharacters/GreenA.png" id="16_h52rb"]
 [ext_resource type="Texture2D" uid="uid://c2o4l3rl2s1y6" path="res://Assets/Texture/GuestCharacters/GreenB.png" id="17_wg5ij"]
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="21_xchji"]
+[ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
@@ -298,3 +299,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_gentr")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
