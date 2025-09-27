@@ -64,14 +64,20 @@ func build_comment(target: String, effect: bool) -> String:
 	rng.randomize()
 	if effect:
 		var positives = [
-			"{target} positive1",
-			"{target} positive2"
+			"That was pure [tornado]ICONIC[/tornado], thank you [color={target}]{target}[/colo].",
+			"Drama? Delivered. Shade? Perfect. [color={target}]{target}[/color] is giving [shake]TV gold[/shake].",
+			"[color={target}]{target}[/color] ate. No crumbs left.",
+			"This was peak [shake]tea-spilling[/shake], and [color={target}]{target}[/color] was the kettle."
 		]
 		return positives[rng.randi_range(0, positives.size() - 1)].format({"target": target})
 	else:
 		var negatives =[
-			"{target} negative1",
-			"{target} negative2"
+			"Flop era unlocked, thank you [wave][color={target}]{target}[/color][/wave].",
+			"[color={target}]{target}[/color], [wave]sweetie[/wave], you couldn’t win a debate in a kindergarten.",
+			"This wasn’t iconic, [color={target}]{target}[/color], it was more like ironic.",
+			"[color={target}]{target}[/color], your 15 minutes are already over.",
+			"I'll pretend I didn't hear that,[color={target}]{target}[/color].",
+			"[color={target}]{target}[/colo], you’re not a clown you're the entire circus."
 			]
 		return negatives[rng.randi_range(0, negatives.size() - 1)].format({"target": target})
 		
@@ -94,7 +100,7 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		subtitles.visible_ratio += speed * get_process_delta_time()
 		subtitles.visible_ratio = min(subtitles.visible_ratio, 1.0)
 		await get_tree().process_frame
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.5).timeout
 	subtitles.text = ""
 	chat_box.hide()
 	hostCharHead.play("Idle")

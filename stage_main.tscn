@@ -145,6 +145,7 @@ script = ExtResource("1_b0byo")
 
 [node name="ChatBox" type="Sprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(473, 389)
 texture = ExtResource("2_iuj4m")
 
@@ -155,6 +156,7 @@ offset_top = -24.0
 offset_right = 183.0
 offset_bottom = 26.0
 theme_override_colors/default_color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+bbcode_enabled = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 2
