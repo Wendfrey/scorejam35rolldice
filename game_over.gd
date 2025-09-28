@@ -17,7 +17,7 @@ var pos : int
 #http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
 
 func _ready() -> void:
-	total_spectators_label.text = str(globalvar.score)+"K"
+	total_spectators_label.text = str(Globals.final_score)+"K"
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	$HTTPRequest.request(url)
 
@@ -38,7 +38,7 @@ func summit_score(name,score:String):
 
 func _on_button_pressed() -> void:
 	if text_edit.text != "":
-		summit_score(text_edit.text,str(globalvar.score))
+		summit_score(text_edit.text,str(Globals.final_score))
 		square_box.hide()
 	for new_label in get_tree():
 		new_label.queue_free()

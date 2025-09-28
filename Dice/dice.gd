@@ -6,6 +6,7 @@ const BASE_FACE_VALUE:float = 4
 const BASE_STR_SPECTATOR_TEXT = "[rainbow]{points}K[/rainbow]"
 
 signal dice_rolled(face:DiceFaceDataResource, spectator_amount)
+signal new_dice
 
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
@@ -76,8 +77,8 @@ func _input(event: InputEvent) -> void:
 				"ROLL":
 					roll()
 				"REFRESH":
-					generate_new_dice()
-					animate_move_to(current_pos)
+					new_dice.emit()
+					queue_free()
 		else:
 			animate_move_to(current_pos)
 		
@@ -138,12 +139,12 @@ func _on_timer_timeout() -> void:
 		isFinished = true
 		face_1.texture = choice.texture
 		label_face_number.text = str(num_choice + 1)
-		dice_rolled.emit(choice, spectactor_score)
 		
 	audio_stream_player.play()
 	vibrate()
 	if isFinished:
 		await get_tree().create_timer(1).timeout
+		dice_rolled.emit(choice, spectactor_score)
 		is_menu_displayed = false
 		queue_free()
 
@@ -217,8 +218,6 @@ func calculate_spectator_score():
 				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
 	spectactor_score = floori(accumulated_spectator_value)
 	spectator_label.text = BASE_STR_SPECTATOR_TEXT.format({points= spectactor_score})
-	
-	globalvar.score = spectactor_score
 	
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:

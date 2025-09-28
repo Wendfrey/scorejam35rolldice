@@ -1,15 +1,14 @@
 extends Node2D
 
+const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
+
 @export var mousePan:Array[Node2D];
 @export var mousePanSpeedX:Array[float];
 @export var mousePanSpeedY:Array[float];
 
-const DICE = preload("uid://lcw65s7ygglt")
 
 @onready var settings: Panel = $settings
-
 @onready var dicehandler: Node2D = $dicehandler
-
 @onready var aproval_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/AprovalBar
 @onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBars/Red/MoodBarRed/RedBar
 @onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBars/Blue/MoodBarBlue/BlueBar
@@ -40,12 +39,14 @@ func _ready() -> void:
 	
 	savePanOrigins()
 	
-func _process(delta):
+func _process(_delta):
 	backgroundPan()
 	
 func check_end_game():
 	if red_bar.value <= 0 or blue_bar.value <= 0 or green_bar.value <= 0:
-		print("game lost")
+		Globals.final_score = totalSpectators
+		get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+		
 		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
@@ -91,6 +92,8 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 		
 		subtitles.visible_ratio += speed * get_process_delta_time()
 		subtitles.visible_ratio = min(subtitles.visible_ratio, 1.0)
+		if not is_inside_tree():
+			return
 		await get_tree().process_frame
 	await get_tree().create_timer(4).timeout
 	subtitles.text = ""
@@ -179,6 +182,7 @@ func add_dice_and_connect() -> bool:
 	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
 	if dice:
 		dice.connect("dice_rolled",_dice_rolled)
+		dice.connect("new_dice", add_dice_and_connect)
 		return true
 	return false
 
