@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcklhse4ojfjd"]
+[gd_scene load_steps=13 format=3 uid="uid://bcklhse4ojfjd"]
 
 [ext_resource type="Script" uid="uid://imbefukwv63" path="res://game_over.gd" id="1_ccer4"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="1_yxx3c"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5gckpq80g5ic" path="res://Assets/Texture/menu/Focus2.png" id="4_k2vha"]
 [ext_resource type="Texture2D" uid="uid://u5cf50ufu3rb" path="res://Assets/Texture/menu/Focus3.png" id="5_fkf4o"]
 [ext_resource type="Texture2D" uid="uid://0iuhqqoq7ddl" path="res://Assets/Texture/menu/Focus0.png" id="8_fkf4o"]
+[ext_resource type="AudioStream" uid="uid://vbf0r6oxqtbo" path="res://Assets/sounds/Sketchbook 2024-09-25.ogg" id="9_3u7xm"]
 
 [sub_resource type="Animation" id="Animation_fkf4o"]
 length = 0.001
@@ -172,7 +173,6 @@ theme_override_fonts/font = ExtResource("4_8u835")
 theme_override_font_sizes/font_size = 20
 text = "Whats your name?"
 
-
 [node name="TextEdit" type="LineEdit" parent="SubmitScore"]
 layout_mode = 0
 offset_left = 179.0
@@ -223,6 +223,14 @@ theme_override_fonts/font = ExtResource("4_8u835")
 theme_override_font_sizes/font_size = 20
 text = "       MAIN MENU"
 alignment = 0
+
+[node name="Sketchbook20240925" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3u7xm")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="SubmitScore/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="TimerScore" to="." method="_on_timer_score_timeout"]

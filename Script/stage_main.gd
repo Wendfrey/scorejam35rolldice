@@ -27,7 +27,7 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var musicplayer: AudioStreamPlayer = $musicplayer
 
 
-const maxTurns:int = 50;
+const maxTurns:int = 15;
 
 var totalSpectators:int
 var aproval:float

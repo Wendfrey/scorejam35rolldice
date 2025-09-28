@@ -1238,7 +1238,7 @@ bus = &"SFX"
 
 [node name="GameEnd" type="AudioStreamPlayer" parent="GameOverPlayer"]
 stream = ExtResource("30_pwcgf")
-volume_db = -15.0
+volume_db = -20.0
 bus = &"SFX"
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurn/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
