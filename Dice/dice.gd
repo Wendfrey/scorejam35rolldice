@@ -6,6 +6,8 @@ const BASE_STR_SPECTATOR_TEXT = "[rainbow]{points}K[/rainbow]"
 signal dice_rolled(face:DiceFaceDataResource, spectator_amount)
 signal new_dice
 signal dice_roll_start
+signal dice_grabbed(node:Control)
+signal dice_released
 
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
@@ -27,9 +29,6 @@ signal dice_roll_start
 var options : Array[DiceFaceDataResource]
 var interval : float = 0.1
 var timer : int = 10
-var previewInterval : float = 1
-var active : bool = true
-var preview : bool = false
 var isFinished : bool = false
 var rng: RandomNumberGenerator
 var ticks: int  = timer
@@ -40,6 +39,7 @@ var previous_roll = -1
 var current_anim:Tween = null
 var current_pos
 var is_anim_move_playing: bool = false
+var is_roll_happening: bool = false
 
 var grabbed: bool = false
 var current_zone: Area2D = null
@@ -51,25 +51,27 @@ var get_tension_bar_value:Callable = Callable()
 
 var spectactor_score:int = 0
 
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 
 func _gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("gmply_grab"):
+	if event.is_action_pressed("gmply_grab") and not is_roll_happening:
 		grabbed = true
 		show_menu(false)
 		z_index += 1
+		dice_grabbed.emit(self)
+		
 	elif grabbed and event.is_action_released("gmply_grab"):
 		z_index -= 1
 		grabbed = false
+		dice_released.emit()
 		
 		if current_zone and current_zone.has_meta("zone"):
 			match(current_zone.get_meta("zone", "")):
 				"ROLL":
-					print("Roll")
 					roll()
 				"REFRESH":
-					print("Refresh")
 					new_dice.emit()
 					queue_free()
 		else:
@@ -228,11 +230,12 @@ func _on_zone_detector_area_2d_area_entered(area: Area2D) -> void:
 	if area:
 		current_zone = area
 
-
 func _on_mouse_exited() -> void:
-	show_menu(false)
-	z_index -= 1
+	if not is_roll_happening and not grabbed and not get_rect().has_point(get_local_mouse_position()):
+		show_menu(false)
+		z_index -= 1
 
 func _on_mouse_entered() -> void:
-	show_menu(true)
-	z_index += 1
+	if not is_roll_happening and not grabbed:
+		show_menu(true)
+		z_index += 1

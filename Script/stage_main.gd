@@ -125,14 +125,13 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 	hostCharHead.play("Idle")
 
 func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
+	dicehandler.set_dice_is_roll_happening(false)
 	pass_turn_button.disabled = false
 	
 	var effect = 10
 	var target_comment = ""
 	var target_effect:bool
 	var comment = ""
-	print(DiceFaceDataResource.Effect.keys()[face.effect])
-	print(DiceFaceDataResource.FaceColor.keys()[face.faceColor])
 	
 	match(face.effect):
 		DiceFaceDataResource.Effect.POSITIVE:
@@ -234,6 +233,7 @@ func add_dice_and_connect(is_dice_destroyed:bool = false) -> bool:
 	return false
 	
 func _on_dice_dice_roll():
+	dicehandler.set_dice_is_roll_happening(true)
 	pass_turn_button.disabled = true
 
 func _on_dice_new_dice():
