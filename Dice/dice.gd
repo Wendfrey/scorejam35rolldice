@@ -7,6 +7,7 @@ const BASE_STR_SPECTATOR_TEXT = "[rainbow]{points}K[/rainbow]"
 
 signal dice_rolled(face:DiceFaceDataResource, spectator_amount)
 signal new_dice
+signal dice_roll_start
 
 @export var all_possible_faces: Array[DiceFaceDataResource]
 
@@ -104,6 +105,8 @@ func roll() -> void:
 	interval = 0.1
 	ticks = 0
 	isFinished = false
+	
+	dice_roll_start.emit()
 	##Iniciemos el timer con el intervalo de espera para ver el "roll" del dado
 	##Estoy abierto a mejoras
 	$TimerRoll.wait_time = interval

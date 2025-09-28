@@ -20,6 +20,9 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
 @onready var total_spectators_label: RichTextLabel = $MarginContainer/CanvasLayer/Background/TotalSpectatorsLabel
+@onready var pass_turn_button: Button = $PlayZone/HBoxContainer/PassTurn/PassTurnButton
+@onready var refresh_zone_shape: CollisionShape2D = $PlayZone/HBoxContainer/RefreshPanel/RefreshZone/CollisionShape2D
+@onready var refresh_zone_panel: Panel = $PlayZone/HBoxContainer/RefreshPanel
 
 var totalSpectators:int
 var aproval:float
@@ -101,6 +104,8 @@ func show_comment(raw_text: String, speed := 0.03) -> void:
 	hostCharHead.play("Idle")
 
 func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
+	pass_turn_button.disabled = false
+	
 	var effect = 10
 	var target_comment = ""
 	var target_effect:bool
@@ -172,8 +177,9 @@ func _unhandled_input(event):
 			else:
 				settings.show()
 
-
 func _on_pass_turn_button_pressed() -> void:
+	refresh_zone_shape.disabled = false
+	refresh_zone_panel.modulate = Color.WHITE
 	currentTurn += 1
 	turn_label.text = "TURN {turn} / 10".format({turn = currentTurn})
 	generate_three_dice()
@@ -182,9 +188,18 @@ func add_dice_and_connect() -> bool:
 	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
 	if dice:
 		dice.connect("dice_rolled",_dice_rolled)
-		dice.connect("new_dice", add_dice_and_connect)
+		dice.connect("new_dice", _on_dice_new_dice)
+		dice.connect("dice_roll_start", _on_dice_dice_roll)
 		return true
 	return false
+	
+func _on_dice_dice_roll():
+	pass_turn_button.disabled = true
+
+func _on_dice_new_dice():
+	refresh_zone_shape.disabled = true
+	refresh_zone_panel.modulate = Color.RED
+	add_dice_and_connect()
 
 func generate_three_dice():
 	if add_dice_and_connect():
@@ -201,7 +216,6 @@ func savePanOrigins() -> void:
 		mousePanX[i] = item.position.x;
 		mousePanY[i] = item.position.y;
 		i+=1;
-	
 
 func backgroundPan() -> void:
 	if mousePanX.size() >0:
