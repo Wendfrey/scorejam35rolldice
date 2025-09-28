@@ -361,8 +361,8 @@ font_size = 25
 [node name="StageMain" type="Node2D" node_paths=PackedStringArray("mousePan")]
 script = ExtResource("1_b0byo")
 mousePan = [NodePath("MarginContainer/CanvasLayer/Background"), NodePath("HostCharacter"), NodePath("MarginContainer/CanvasLayer/FondoPlano2"), NodePath("MarginContainer/CanvasLayer/MoodBars/Red"), NodePath("MarginContainer/CanvasLayer/MoodBars/Blue"), NodePath("MarginContainer/CanvasLayer/MoodBars/Green"), NodePath("ChatBox")]
-mousePanSpeedX = Array[float]([7.0, -3.0, 0.0, 8.0, 11.0, 9.5, -7.0])
-mousePanSpeedY = Array[float]([3.0, -1.0, 9.0, 5.0, 8.0, 6.5, -3.0])
+mousePanSpeedX = Array[float]([7.0, -3.0, 0.0, 8.0, 11.0, 9.5, -14.0])
+mousePanSpeedY = Array[float]([3.0, -1.0, 9.0, 5.0, 8.0, 6.5, -6.0])
 metadata/_edit_horizontal_guides_ = [472.0]
 metadata/_edit_vertical_guides_ = [708.0]
 
