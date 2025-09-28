@@ -146,6 +146,7 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("5_fkf4o")
 
 [node name="SubmitScore" type="NinePatchRect" parent="."]
+visible = false
 modulate = Color(0.7294118, 0.8666667, 1, 1)
 z_index = 1
 layout_mode = 0

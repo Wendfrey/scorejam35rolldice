@@ -12,13 +12,11 @@ var url = "http://www.mabl.icu/gamejam/scores.csv"
 var scoreSeparator : String = "-"
 var csv : Array
 var pos : int
-
+var min_score : int
 
 #http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
 
 func _ready() -> void:
-	total_spectators_label.visible = Globals.submit_score
-	square_box.visible = Globals.submit_score
 	total_spectators_label.text = str(Globals.final_score)+"K"
 	get_leadeboard_data()
 	
@@ -30,6 +28,20 @@ func get_leadeboard_data():
 func _on_request_completed(result, response_code, headers, body):
 	pos = 0
 	csv = body.get_string_from_utf8().split("\n")
+	
+	if Globals.submit_score:
+		if csv.size() > 1 && str(csv[csv.size() - 1]) == "":
+			var last_entry = csv[csv.size() - 2]
+			min_score = int(last_entry.split(",")[1])
+		elif csv.size() > 0 && str(csv[csv.size() - 1]) != "":
+			var last_entry = csv[csv.size() - 1]
+			min_score = int(last_entry.split(",")[1])
+		else:
+			min_score = 0
+			
+		if Globals.final_score > 0 && Globals.final_score > min_score:
+			square_box.visible = true
+	
 	timerScore.start()
 	$HTTPRequest.request_completed.disconnect(_on_request_completed)
 			
@@ -39,6 +51,7 @@ func summit_score(name,score:String):
 	summit_url = "http://www.mabl.icu/gamejam/submitScore.php?name="+name+"&score="+score
 	$HTTPRequest.request_completed.connect(_on_summit_score_completed)
 	$HTTPRequest.request(summit_url)
+	Globals.submit_score = false
 	
 func _on_summit_score_completed(result, response_code, headers, body):
 	$HTTPRequest.request_completed.disconnect(_on_summit_score_completed)
@@ -64,11 +77,13 @@ func _on_timer_score_timeout() -> void:
 			new_label.text = str(csv.size() - pos, ". ", split[0])
 			new_label.position = Vector2(45, 30 + (25 * (csv.size() - pos - 1)))
 			new_label.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			new_label.add_theme_font_override("font", load("res://Assets/font/Modak-Regular.ttf"))
 			
 			var new_labelScore = Label.new()
 			new_labelScore.text = split[1]
 			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
 			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			new_labelScore.add_theme_font_override("font", load("res://Assets/font/Modak-Regular.ttf")) 
 
 			
 			new_label.add_to_group("Scorelabel")
