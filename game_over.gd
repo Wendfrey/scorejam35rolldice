@@ -59,7 +59,7 @@ func _on_summit_score_completed(result, response_code, headers, body):
 	
 func _on_button_pressed() -> void:
 	var regex = RegEx.new()
-	regex.compile("[^A-Za-z0-9]")
+	regex.compile("[^A-Za-z]")
 	var typedText = regex.sub(text_edit.text,'',true)
 	if text_edit.text != typedText:
 		text_edit.text = typedText
