@@ -1239,8 +1239,12 @@ libraries = {
 
 [node name="GameOver" type="AudioStreamPlayer" parent="GameOverPlayer"]
 stream = ExtResource("29_jslxq")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="GameEnd" type="AudioStreamPlayer" parent="GameOverPlayer"]
 stream = ExtResource("30_pwcgf")
+volume_db = -15.0
+bus = &"SFX"
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurn/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
