@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddrh4xi0tsdll"]
+[gd_scene load_steps=4 format=3 uid="uid://bcklhse4ojfjd"]
 
 [ext_resource type="Script" uid="uid://imbefukwv63" path="res://game_over.gd" id="1_ccer4"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="1_yxx3c"]
@@ -62,11 +62,10 @@ text = "Enter Score"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 611.36096
-offset_top = 11.000008
-offset_right = 1204.72
-offset_bottom = 563.36096
-rotation = 1.5707964
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 602.359
+offset_bottom = 561.36096
 texture = ExtResource("2_ccer4")
 region_rect = Rect2(1.4995098, 0.3518982, 353.27338, 107.29672)
 patch_margin_left = 20
@@ -74,11 +73,8 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="scoreboard" type="RichTextLabel" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 38.999996
-offset_top = 44.360962
-offset_right = 551.505
-offset_bottom = 520.92896
+[node name="TimerScore" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="pressed" from="SquareBox/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="TimerScore" to="." method="_on_timer_score_timeout"]

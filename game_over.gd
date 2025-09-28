@@ -4,11 +4,13 @@ extends Control
 @onready var square_box: Sprite2D = $SquareBox
 @onready var scoreboardbg: NinePatchRect = $NinePatchRect
 @onready var scoreboard: RichTextLabel = $NinePatchRect/scoreboard
-@onready var v_box_container: VBoxContainer = $NinePatchRect/MarginContainer/VBoxContainer
-
+@onready var timerScore : Timer = $TimerScore
 
 var score
 var url = "http://www.mabl.icu/gamejam/scores.csv"
+var scoreSeparator : String = "-"
+var csv : Array
+var pos : int
 
 
 #http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
@@ -19,13 +21,11 @@ func _ready() -> void:
 
 
 func _on_request_completed(result, response_code, headers, body):
-	var pos = 1
-	var csv = body.get_string_from_utf8().split("\n")
-	for i:String in csv:
-		if pos < 21:
-			var split = i.split(",")
-			scoreboard.text +=str(pos)+"."+split[0]+".................................."+split[1]+"\n"
-		pos += 1
+	pos = 0
+	csv = body.get_string_from_utf8().split("\n")
+	timerScore.start()
+
+			
 
 func summit_score(name,score:String):
 	var summit_url
@@ -42,3 +42,24 @@ func _on_button_pressed() -> void:
 		$HTTPRequest.request_completed.connect(_on_request_completed)
 		$HTTPRequest.request(url)
 	
+
+
+func _on_timer_score_timeout() -> void:
+	if pos < csv.size():
+		if csv[csv.size() - pos - 1] != "":
+			var new_label = Label.new()
+			
+			var split = csv[csv.size() - pos - 1].split(",")
+			new_label.text = str(csv.size() - pos, ". ", split[0])
+			new_label.position = Vector2(45, 30 + (25 * (csv.size() - pos - 1)))
+			new_label.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			
+			var new_labelScore = Label.new()
+			new_labelScore.text = split[1]
+			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
+			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			add_child(new_label)
+			add_child(new_labelScore)
+		pos = pos + 1
+		timerScore.start()
+			
