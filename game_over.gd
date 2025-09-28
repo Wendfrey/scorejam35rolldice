@@ -60,10 +60,10 @@ func _on_summit_score_completed(result, response_code, headers, body):
 func _on_button_pressed() -> void:
 	var regex = RegEx.new()
 	regex.compile("[^A-Za-z0-9]")
-	var typedText = regex.search(text_edit.text).get_string(0)
+	var typedText = regex.sub(text_edit.text,'',true)
 	if text_edit.text != typedText:
 		text_edit.text = typedText
-	elif typedText != "":
+	elif typedText.length() > 2:
 		square_box.hide()
 		var scoretag = get_tree().get_nodes_in_group("Scorelabel")
 		for i in scoretag:
