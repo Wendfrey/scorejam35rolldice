@@ -15,6 +15,8 @@ func spawn_dice(get_red_bar_call:Callable, get_green_bar_call:Callable, get_blue
 		do_repositions = false
 		var new_dice = DICE.instantiate() 
 		add_child(new_dice)
+		new_dice.dice_grabbed.connect(_on_dice_grab)
+		new_dice.dice_released.connect(_on_dice_grab_release)
 		new_dice.position = spawnPoint.position - position + Vector2((get_child_count()-1) * MARGIN_X, 0)
 		new_dice.init_dice(Vector2((get_child_count()-1) * MARGIN_X, 0), get_red_bar_call, get_green_bar_call, get_blue_bar_call, Callable())
 		do_repositions = true
@@ -34,3 +36,21 @@ func recalculate_dice_spectators():
 	
 func _play_sound():
 	dice_sliding_into_game_sound.play()
+	
+func _on_dice_grab(node:Control):
+	if is_inside_tree():
+		for i in range(get_child_count()):
+			if get_child(i) == node:
+				continue
+			get_child(i).mouse_filter = Control.MouseFilter.MOUSE_FILTER_IGNORE
+	
+func _on_dice_grab_release():
+	if is_inside_tree():
+		for i in range(get_child_count()):
+			get_child(i).mouse_filter = Control.MouseFilter.MOUSE_FILTER_STOP
+
+func set_dice_is_roll_happening(value:bool):
+	if is_inside_tree():
+		for i in range(get_child_count()):
+			get_child(i).is_roll_happening = value
+			
