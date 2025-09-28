@@ -1,8 +1,8 @@
 extends Control
 
+@onready var tutocontainer: NinePatchRect = $NinePatchRect
 @export var mainGame:PackedScene
 @export var settings:PackedScene
-@onready var tutocontainer: MarginContainer = $TutoContainer
 @onready var setting: Panel = $settings
 @onready var credits_container: PanelContainer = $CreditsContainer
 @onready var credits_label: RichTextLabel = $CreditsContainer/MarginContainer/VBoxContainer/CreditsLabel
