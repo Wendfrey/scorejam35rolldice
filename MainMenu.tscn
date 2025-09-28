@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btl61y1qxyw2w"]
+[gd_scene load_steps=9 format=3 uid="uid://btl61y1qxyw2w"]
 
 [ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="3_iwfq2"]
 [ext_resource type="AudioStream" uid="uid://dmfvecv3k1x83" path="res://Assets/sounds/Celebrative-moment-upbeat-band-sitcom-822.wav" id="4_qoqlk"]
 [ext_resource type="FontFile" uid="uid://2flahwjxpli" path="res://Assets/font/Modak-Regular.ttf" id="5_7r1g0"]
+[ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="6_cqjrg"]
+[ext_resource type="Texture2D" uid="uid://dru2yvjajal1j" path="res://Assets/Texture/pixelblanco.png" id="8_e2xy7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -74,6 +76,7 @@ offset_left = 811.611
 offset_top = 276.14264
 offset_right = 1096.6111
 offset_bottom = 307.14264
+theme_override_fonts/font = ExtResource("5_7r1g0")
 text = "Settings"
 
 [node name="ButtonCredits" type="Button" parent="Background/Control"]
@@ -82,27 +85,40 @@ offset_left = 790.54474
 offset_top = 314.16147
 offset_right = 1075.5448
 offset_bottom = 345.16147
+theme_override_fonts/font = ExtResource("5_7r1g0")
 text = "Credits"
 
-[node name="TutoContainer" type="MarginContainer" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 122.0
-offset_top = 119.0
-offset_right = 581.0
-offset_bottom = 514.0
+offset_left = 124.0
+offset_top = 100.0
+offset_right = 553.0
+offset_bottom = 507.0
+texture = ExtResource("6_cqjrg")
+region_rect = Rect2(1.4995098, 0.3518982, 353.27338, 107.29672)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="TutoContainer"]
-layout_mode = 2
+[node name="TutoContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 422.0
+offset_bottom = 389.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TutoContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/TutoContainer"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0.21950102, 0.21950102, 0.21950102, 1)
+theme_override_fonts/normal_font = ExtResource("5_7r1g0")
 bbcode_enabled = true
 text = "[b][color=orange]Welcome to the trashiest talk show on TV![/color][/b] 
 
 Your job is to [b][wave]stir up drama[/wave][/b] among the guests and keep the [b][rainbow]audience[/rainbow][/b] hooked. Each turn, pick a die. Some faces [b]calm the guests[/b], others [b]anger them[/b]. The riskier the die, the more [b][rainbow]audience[/rainbow][/b] you gain! 
 
-Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension means a bigger [b][rainbow]audience[/rainbow][/b] multiplier, but if it drops to [b][shake]0[/shake][/b], a guest will left the stage . You’ll get a huge spike in [b][rainbow]audience[/rainbow][/b], but the show ends immediately.
+Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension means a bigger [b][rainbow]audience[/rainbow][/b] multiplier, but if it drops to [b][shake]0[/shake][/b], a guest will left the stage and the show ends [shake]immediately[/shake].
 
  Rack up as many [b][rainbow]audience[/rainbow][/b] as you can before the program collapses in chaos! 
 "
@@ -152,6 +168,20 @@ selection_enabled = true
 [node name="CloseCreditsButton" type="Button" parent="CreditsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Close"
+
+[node name="FondoPlano1" type="Sprite2D" parent="."]
+modulate = Color(0.5564873, 0.51042265, 0.7959496, 1)
+z_index = -1
+position = Vector2(595, 216)
+scale = Vector2(1221, 466)
+texture = ExtResource("8_e2xy7")
+
+[node name="FondoPlano2" type="Sprite2D" parent="."]
+modulate = Color(0.6592049, 0.61212206, 0.84186274, 1)
+z_index = -1
+position = Vector2(590, 655.00006)
+scale = Vector2(1210, 528)
+texture = ExtResource("8_e2xy7")
 
 [connection signal="button_up" from="Background/Control/ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="Background/Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
