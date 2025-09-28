@@ -34,29 +34,28 @@ fill_mode = 3
 show_percentage = false
 
 [node name="SquareBox" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(321, 80)
+position = Vector2(842, 168)
 scale = Vector2(1.690141, 1)
 texture = ExtResource("2_ccer4")
 
 [node name="Label" type="Label" parent="SquareBox"]
-offset_left = -145.0138
+offset_left = -127.79999
 offset_top = -35.0
-offset_right = 1.3699188
+offset_right = 18.583725
 offset_bottom = -12.0
 theme_override_colors/font_color = Color(0.13682577, 0.13682574, 0.13682571, 1)
 text = "Whats your name?"
 
 [node name="TextEdit" type="TextEdit" parent="SquareBox"]
-offset_left = -132.48898
+offset_left = -38.458336
 offset_top = -7.0
-offset_right = 50.291687
+offset_right = 144.32233
 offset_bottom = 27.0
 
 [node name="Button" type="Button" parent="SquareBox"]
-offset_left = 61.533314
+offset_left = -140.81668
 offset_top = -5.0
-offset_right = 158.53331
+offset_right = -43.81668
 offset_bottom = 26.0
 text = "Enter Score"
 
@@ -75,6 +74,17 @@ patch_margin_bottom = 20
 
 [node name="TimerScore" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="TotalSpectatorsLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 759.0
+offset_top = 19.0
+offset_right = 935.0
+offset_bottom = 77.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="SquareBox/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="TimerScore" to="." method="_on_timer_score_timeout"]

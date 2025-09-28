@@ -222,7 +222,9 @@ func calculate_spectator_score():
 				accumulated_spectator_value -= (2.0-mult) * BASE_FACE_VALUE
 	spectactor_score = floori(accumulated_spectator_value)
 	spectator_label.text = BASE_STR_SPECTATOR_TEXT.format({points= spectactor_score})
-
+	
+	globalvar.score = spectactor_score
+	
 func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:
 		roll()
