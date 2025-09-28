@@ -54,11 +54,6 @@ var spectactor_score:int = 0
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 
-## Input control
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and ticks == timer and dice_menu.visible:
-		generate_new_dice()
-		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and ticks == timer:
 		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
