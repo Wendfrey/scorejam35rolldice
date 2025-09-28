@@ -139,7 +139,7 @@ func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
 			effect *= -1
 			target_effect = false
 		DiceFaceDataResource.Effect.ADD_DICE:
-			add_dice_and_connect()
+			add_dice_and_connect(true)
 			target_comment = "dice"
 
 	match(face.faceColor):
@@ -213,8 +213,8 @@ func refresh_turn_text() -> void:
 	turn_label.text = "TURN {turn} / {max}".format({turn = currentTurn, max = maxTurns})
 	
 
-func add_dice_and_connect() -> bool:
-	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
+func add_dice_and_connect(is_dice_destroyed:bool = false) -> bool:
+	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"), is_dice_destroyed)
 	if dice:
 		dice.connect("dice_rolled",_dice_rolled)
 		dice.connect("new_dice", _on_dice_new_dice)
@@ -228,7 +228,7 @@ func _on_dice_dice_roll():
 func _on_dice_new_dice():
 	refresh_zone_shape.disabled = true
 	refresh_zone_panel.modulate = Color.RED
-	add_dice_and_connect()
+	add_dice_and_connect(true)
 
 func generate_three_dice():
 	if add_dice_and_connect():
