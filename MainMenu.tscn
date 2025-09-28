@@ -438,7 +438,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="CreditsLabel" type="RichTextLabel" parent="CreditsContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2

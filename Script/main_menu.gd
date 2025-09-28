@@ -9,6 +9,7 @@ extends Control
 
 func _ready() -> void:
 	var creditsTxt:FileAccess = FileAccess.open("res://credits.txt", FileAccess.READ)
+	var test = creditsTxt.get_as_text()
 	credits_label.text = creditsTxt.get_as_text()
 
 func _on_button_play_button_up() -> void:
