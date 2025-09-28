@@ -10,8 +10,8 @@ var do_repositions: bool = false
 func _ready() -> void:
 	child_order_changed.connect(reposition_childs)
 
-func spawn_dice(get_red_bar_call:Callable, get_green_bar_call:Callable, get_blue_bar_call:Callable):
-	if get_child_count() < 6:
+func spawn_dice(get_red_bar_call:Callable, get_green_bar_call:Callable, get_blue_bar_call:Callable,  dice_about_to_be_destroyed: bool = false):
+	if get_child_count() < 6 or (get_child_count() == 6 and dice_about_to_be_destroyed):
 		do_repositions = false
 		var new_dice = DICE.instantiate() 
 		add_child(new_dice)
