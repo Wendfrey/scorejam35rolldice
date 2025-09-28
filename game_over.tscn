@@ -210,5 +210,17 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ButtonMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 765.0
+offset_top = 508.0
+offset_right = 932.0
+offset_bottom = 553.4087
+theme_override_fonts/font = ExtResource("4_8u835")
+theme_override_font_sizes/font_size = 20
+text = "       MAIN MENU"
+alignment = 0
+
 [connection signal="pressed" from="SubmitScore/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="TimerScore" to="." method="_on_timer_score_timeout"]
+[connection signal="button_up" from="ButtonMenu" to="." method="_on_button_menu_button_up"]

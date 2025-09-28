@@ -67,6 +67,7 @@ func do_end_game(scenario:String):
 	gameOverPlayer.play(scenario)
 	await get_tree().create_timer(1.5).timeout
 	Globals.final_score = totalSpectators
+	Globals.submit_score = true
 	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
 		
 func update_aproval():
