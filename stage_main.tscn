@@ -413,6 +413,7 @@ text = "PASS"
 stream = ExtResource("22_gentr")
 volume_db = -25.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="TotalSpectatorsLabel" type="RichTextLabel" parent="."]
