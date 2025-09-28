@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5gckpq80g5ic" path="res://Assets/Texture/menu/Focus2.png" id="4_k2vha"]
 [ext_resource type="Texture2D" uid="uid://u5cf50ufu3rb" path="res://Assets/Texture/menu/Focus3.png" id="5_fkf4o"]
 [ext_resource type="Texture2D" uid="uid://0iuhqqoq7ddl" path="res://Assets/Texture/menu/Focus0.png" id="8_fkf4o"]
-[ext_resource type="AudioStream" uid="uid://vbf0r6oxqtbo" path="res://Assets/sounds/Sketchbook 2024-09-25.ogg" id="9_3u7xm"]
+[ext_resource type="AudioStream" uid="uid://bmfkuicj42mve" path="res://Assets/sounds/Sketchbook 2024-09-25.ogg" id="9_3u7xm"]
 
 [sub_resource type="Animation" id="Animation_fkf4o"]
 length = 0.001

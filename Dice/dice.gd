@@ -37,7 +37,7 @@ var choice: DiceFaceDataResource
 var previous_roll = -1
 
 var current_anim:Tween = null
-var current_pos
+var current_pos:Vector2
 var is_anim_move_playing: bool = false
 var is_roll_happening: bool = false
 
@@ -74,8 +74,11 @@ func _gui_input(event: InputEvent) -> void:
 				"REFRESH":
 					new_dice.emit()
 					queue_free()
-		else:
+		elif current_pos.distance_squared_to(position) > 100.0:
 			animate_move_to(current_pos)
+		else:
+			show_menu(true)
+			position = current_pos
 		
 	if event is InputEventMouseMotion and grabbed:
 		global_position = get_global_mouse_position() - size / 2
@@ -185,7 +188,7 @@ func animate_move_to(new_position:Vector2):
 	anim.tween_property(self, "is_anim_move_playing", false, 0)
 	anim.tween_callback(func(): z_index -= 1)
 	anim.tween_callback(func():
-		if get_global_rect().has_point(get_global_mouse_position()):
+		if get_rect().has_point(get_local_mouse_position()):
 			show_menu(true)
 	)
 
