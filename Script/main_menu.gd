@@ -46,3 +46,8 @@ func _on_close_credits_button_pressed() -> void:
 func _on_credits_label_meta_clicked(meta: Variant) -> void:
 	print(meta)
 	DisplayServer.clipboard_set(meta)
+
+
+func _on_button_scoreboards_pressed() -> void:
+	Globals.submit_score = false
+	get_tree().change_scene_to_file("res://game_over.tscn")

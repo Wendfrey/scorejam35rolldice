@@ -1,10 +1,11 @@
 extends Control
-@onready var button: Button = $SquareBox/Button
-@onready var text_edit: TextEdit = $SquareBox/TextEdit
-@onready var square_box: NinePatchRect = $SquareBox
+@onready var button: Button = $SubmitScore/Button
+@onready var text_edit: TextEdit = $SubmitScore/TextEdit
+@onready var square_box: NinePatchRect = $SubmitScore
 @onready var scoreboardbg: NinePatchRect = $NinePatchRect
 @onready var timerScore : Timer = $TimerScore
 @onready var total_spectators_label: RichTextLabel = $TotalSpectatorsLabel
+@onready var score_labels_node : Control = $ScoreLabelsNode
 
 var score
 var url = "http://www.mabl.icu/gamejam/scores.csv"
@@ -16,6 +17,8 @@ var pos : int
 #http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
 
 func _ready() -> void:
+	total_spectators_label.visible = Globals.submit_score
+	square_box.visible = Globals.submit_score
 	total_spectators_label.text = str(Globals.final_score)+"K"
 	get_leadeboard_data()
 	
@@ -66,11 +69,13 @@ func _on_timer_score_timeout() -> void:
 			new_labelScore.text = split[1]
 			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
 			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+
 			
 			new_label.add_to_group("Scorelabel")
 			new_labelScore.add_to_group("Scorelabel")
-			add_child(new_label)
-			add_child(new_labelScore)
+			score_labels_node.add_child(new_label)
+			score_labels_node.add_child(new_labelScore)
+		
 
 		pos += 1
 	else:
