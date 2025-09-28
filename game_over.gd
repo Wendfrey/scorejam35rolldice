@@ -18,6 +18,7 @@ var min_score : int
 
 func _ready() -> void:
 	total_spectators_label.text = str(Globals.final_score)+"K"
+	total_spectators_label.visible = Globals.submit_score
 	get_leadeboard_data()
 	
 func get_leadeboard_data():
@@ -79,15 +80,17 @@ func _on_timer_score_timeout() -> void:
 			
 			var split = csv[csv.size() - pos - 1].split(",")
 			new_label.text = str(csv.size() - pos, ". ", split[0])
+			new_label.add_theme_font_size_override("font_size", 25)
 			new_label.position = Vector2(45, 30 + (25 * (csv.size() - pos - 1)))
 			new_label.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
-			new_label.add_theme_font_override("font", load("res://Assets/font/Modak-Regular.ttf"))
+			new_label.add_theme_font_override("font", load("res://Assets/font/Caveat-Bold.ttf"))
 			
 			var new_labelScore = Label.new()
 			new_labelScore.text = split[1]
 			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
 			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
-			new_labelScore.add_theme_font_override("font", load("res://Assets/font/Modak-Regular.ttf")) 
+			new_labelScore.add_theme_font_size_override("font_size", 25)
+			new_labelScore.add_theme_font_override("font", load("res://Assets/font/Caveat-Bold.ttf")) 
 
 			
 			new_label.add_to_group("Scorelabel")
