@@ -367,11 +367,10 @@ text = "       Credits"
 alignment = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-visible = false
 self_modulate = Color(0.5295806, 0.5961825, 0.7443426, 1)
 layout_mode = 0
-offset_left = 654.0
-offset_top = 210.0
+offset_left = 634.0
+offset_top = 110.0
 offset_right = 1083.0
 offset_bottom = 617.0
 texture = ExtResource("6_cqjrg")
@@ -383,10 +382,10 @@ patch_margin_bottom = 20
 
 [node name="TutoContainer" type="MarginContainer" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 28.0
+offset_left = 32.0
 offset_top = 20.0
 offset_right = 422.0
-offset_bottom = 389.0
+offset_bottom = 485.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/TutoContainer"]
 layout_mode = 2
@@ -394,13 +393,14 @@ theme_override_colors/default_color = Color(0.21950102, 0.21950102, 0.21950102, 
 theme_override_fonts/normal_font = ExtResource("5_7r1g0")
 bbcode_enabled = true
 text = "[b][color=orange]Welcome to the trashiest talk show on TV![/color][/b] 
+ 
+Mouse Controls Only!
 
-Your job is to [b][wave]stir up drama[/wave][/b] among the guests and keep the [b][rainbow]audience[/rainbow][/b] hooked. Each turn, pick a die. Some faces [b]calm the guests[/b], others [b]anger them[/b]. The riskier the die, the more [b][rainbow]audience[/rainbow][/b] you gain! 
+Your job is to [b][wave]stir up drama[/wave][/b] among the guests and keep the [b][rainbow]audience[/rainbow][/b] hooked. Each turn, [b]DRAG[/b] dice over the 'Roll Dice' or the 'Refresh Dice'. Some faces [b]calm the guests[/b], others [b]anger them[/b]. The riskier the die, the more [b][rainbow]audience[/rainbow][/b] you gain! 
 
-Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension means a bigger [b][rainbow]audience[/rainbow][/b] multiplier, but if it drops to [b][shake]0[/shake][/b], a guest will left the stage and the show ends [shake]immediately[/shake].
+Watch the [b][color=orange]mood bar[/color][/b] of the guests. Higher tension means a bigger [b][rainbow]audience[/rainbow][/b] multiplier, but if it drops to [b][shake]0[/shake][/b], a guest will leave the stage and the show ends [shake]immediately[/shake].
 
- Rack up as many [b][rainbow]audience[/rainbow][/b] as you can before the program collapses in chaos! 
-"
+ Rack up as many [b][rainbow]audience[/rainbow][/b] as you can before the program collapses in chaos! "
 
 [node name="menumusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoqlk")
