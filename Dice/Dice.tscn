@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://di2g5cdk1ewus" path="res://Assets/sounds/dice_rolling.wav" id="12_nmrgv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7uk3"]
-size = Vector2(52, 52)
+size = Vector2(22, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_r7uk3"]
 font_size = 12
