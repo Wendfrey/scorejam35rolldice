@@ -31,10 +31,10 @@ func _on_request_completed(result, response_code, headers, body):
 	csv = body.get_string_from_utf8().split("\n")
 	
 	if Globals.submit_score:
-		if csv.size() > 21 && str(csv[csv.size() - 1]) == "":
+		if csv.size() >= 21 && str(csv[csv.size() - 1]) == "":
 			var last_entry = csv[csv.size() - 2]
 			min_score = int(last_entry.split(",")[1])
-		elif csv.size() > 20 && str(csv[csv.size() - 1]) != "":
+		elif csv.size() >= 20 && str(csv[csv.size() - 1]) != "":
 			var last_entry = csv[csv.size() - 1]
 			min_score = int(last_entry.split(",")[1])
 		else:
