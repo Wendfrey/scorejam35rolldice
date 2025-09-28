@@ -58,6 +58,7 @@ func _on_timer_score_timeout() -> void:
 			new_labelScore.text = split[1]
 			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
 			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			
 			add_child(new_label)
 			add_child(new_labelScore)
 		pos = pos + 1

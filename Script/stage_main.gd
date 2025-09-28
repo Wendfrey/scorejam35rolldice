@@ -20,7 +20,7 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var hostCharHead: AnimationPlayer = $HostCharacter/HeadAnimation
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
-@onready var total_spectators_label: RichTextLabel = $TotalSpectatorsLabel
+@onready var total_spectators_label: RichTextLabel = $MarginContainer/CanvasLayer/Background/TotalSpectatorsLabel
 
 var totalSpectators:int
 var aproval:float
@@ -32,13 +32,7 @@ var mousePanY:Array[float] = []
 func _ready() -> void:
 	
 	update_aproval()
-	
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
+	generate_three_dice()
 	
 	update_spritemood("RedMan", red_bar.value)
 	update_spritemood("BlueMan", blue_bar.value)
@@ -179,12 +173,7 @@ func _unhandled_input(event):
 func _on_pass_turn_button_pressed() -> void:
 	currentTurn += 1
 	turn_label.text = "TURN {turn} / 10".format({turn = currentTurn})
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
-	if add_dice_and_connect():
-		await get_tree().create_timer(0.2).timeout
+	generate_three_dice()
 
 func add_dice_and_connect() -> bool:
 	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
@@ -192,6 +181,13 @@ func add_dice_and_connect() -> bool:
 		dice.connect("dice_rolled",_dice_rolled)
 		return true
 	return false
+
+func generate_three_dice():
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	if add_dice_and_connect():
+		await get_tree().create_timer(0.2).timeout
+	add_dice_and_connect()
 
 func savePanOrigins() -> void:
 	var i = 0;
