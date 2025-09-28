@@ -1,7 +1,7 @@
 extends Control
 @onready var button: Button = $SquareBox/Button
 @onready var text_edit: TextEdit = $SquareBox/TextEdit
-@onready var square_box: Sprite2D = $SquareBox
+@onready var square_box: NinePatchRect = $SquareBox
 @onready var scoreboardbg: NinePatchRect = $NinePatchRect
 @onready var timerScore : Timer = $TimerScore
 @onready var total_spectators_label: RichTextLabel = $TotalSpectatorsLabel
@@ -44,7 +44,6 @@ func _on_summit_score_completed(result, response_code, headers, body):
 func _on_button_pressed() -> void:
 	
 	if text_edit.text != "":
-
 		square_box.hide()
 		var scoretag = get_tree().get_nodes_in_group("Scorelabel")
 		for i in scoretag:

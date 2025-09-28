@@ -23,6 +23,9 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var pass_turn_button: Button = $PlayZone/HBoxContainer/PassTurn/PassTurnButton
 @onready var refresh_zone_shape: CollisionShape2D = $PlayZone/HBoxContainer/RefreshPanel/RefreshZone/CollisionShape2D
 @onready var refresh_zone_panel: Panel = $PlayZone/HBoxContainer/RefreshPanel
+@onready var gameOverPlayer:AnimationPlayer = $GameOverPlayer
+
+const maxTurns:int = 15;
 
 var totalSpectators:int
 var aproval:float
@@ -41,15 +44,27 @@ func _ready() -> void:
 	update_spritemood("GreenMan", green_bar.value)
 	
 	savePanOrigins()
+	refresh_turn_text()
+	gameOverPlayer.play("RESET")
 	
 func _process(_delta):
 	backgroundPan()
 	
 func check_end_game():
-	if red_bar.value <= 0 or blue_bar.value <= 0 or green_bar.value <= 0:
-		Globals.final_score = totalSpectators
-		get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+	if red_bar.value <= 0:
+		do_end_game("RED")
+	elif blue_bar.value <= 0:
+		do_end_game("BLUE")
+	elif green_bar.value <= 0:
+		do_end_game("GREEN")
 		
+		
+func do_end_game(scenario:String):
+	pass_turn_button.disabled = true
+	gameOverPlayer.play(scenario)
+	await get_tree().create_timer(1.5).timeout
+	Globals.final_score = totalSpectators
+	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
 		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3
@@ -181,8 +196,18 @@ func _on_pass_turn_button_pressed() -> void:
 	refresh_zone_shape.disabled = false
 	refresh_zone_panel.modulate = Color.WHITE
 	currentTurn += 1
-	turn_label.text = "TURN {turn} / 10".format({turn = currentTurn})
-	generate_three_dice()
+	if currentTurn > maxTurns:
+		do_end_game("END")
+	else:
+		pass_turn_button.disabled = true
+		refresh_turn_text()
+		generate_three_dice()
+		await get_tree().create_timer(0.8).timeout
+		pass_turn_button.disabled = false
+
+func refresh_turn_text() -> void:
+	turn_label.text = "TURN {turn} / {max}".format({turn = currentTurn, max = maxTurns})
+	
 
 func add_dice_and_connect() -> bool:
 	var dice = dicehandler.spawn_dice(red_bar.get.bind("value"), green_bar.get.bind("value"), blue_bar.get.bind("value"))
