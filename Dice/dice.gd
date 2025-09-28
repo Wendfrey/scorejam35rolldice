@@ -1,6 +1,4 @@
-extends Control
-
-static var is_menu_displayed:bool = false
+extends TextureRect
 
 const BASE_FACE_VALUE:float = 4
 const BASE_STR_SPECTATOR_TEXT = "[rainbow]{points}K[/rainbow]"
@@ -15,10 +13,10 @@ signal dice_roll_start
 @onready var dice_menu: Control = $DiceMenu
 @onready var label_face_number: Label = $LabelFaceNumber
 @onready var spectator_label: RichTextLabel = $DiceMenu/SpectatorLabel
-@onready var face_1: TextureRect = $Face1
+@onready var face_1: TextureRect = self
 
 @onready var texture_array: Array = [
-	$Face1,
+	self,
 	$DiceMenu/Face2,
 	$DiceMenu/Face3,
 	$DiceMenu/Face4,
@@ -56,35 +54,29 @@ var spectactor_score:int = 0
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and ticks == timer:
-		if dice_menu.visible and not dice_menu.get_rect().has_point(get_local_mouse_position()):
-			show_menu(false)
-		elif face_1.get_rect().has_point(get_local_mouse_position()) and not is_anim_move_playing:
-			show_menu(true)
-			
-	if is_menu_displayed and dice_menu.visible and event.is_action_pressed("gmply_grab") and face_1.get_rect().has_point(get_local_mouse_position()):
+func _gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("gmply_grab"):
 		grabbed = true
-		print("grabbed")
-		current_pos = position
 		show_menu(false)
-		is_menu_displayed = true
+		z_index += 1
 	elif grabbed and event.is_action_released("gmply_grab"):
-		is_menu_displayed = false
-		print("released")
+		z_index -= 1
 		grabbed = false
+		
 		if current_zone and current_zone.has_meta("zone"):
 			match(current_zone.get_meta("zone", "")):
 				"ROLL":
+					print("Roll")
 					roll()
 				"REFRESH":
+					print("Refresh")
 					new_dice.emit()
 					queue_free()
 		else:
 			animate_move_to(current_pos)
 		
 	if event is InputEventMouseMotion and grabbed:
-		global_position = get_global_mouse_position()
+		global_position = get_global_mouse_position() - size / 2
 
 func init_dice(new_pos: Vector2, _red_bar_callable:Callable, _green_bar_callable:Callable, _blue_bar_callable:Callable, _tension_bar_callable:Callable):
 	get_red_bar_value = _red_bar_callable
@@ -98,7 +90,6 @@ func init_dice(new_pos: Vector2, _red_bar_callable:Callable, _green_bar_callable
 ## Inicia el roll del dado
 func roll() -> void:
 	show_menu(false)
-	is_menu_displayed = true
 	previous_roll = num_choice
 	num_choice = rng.randi_range(0, options.size()-1)
 	choice = options[num_choice]
@@ -148,7 +139,6 @@ func _on_timer_timeout() -> void:
 	if isFinished:
 		await get_tree().create_timer(1).timeout
 		dice_rolled.emit(choice, spectactor_score)
-		is_menu_displayed = false
 		queue_free()
 
 ## Change faces of dice
@@ -163,16 +153,14 @@ func generate_new_dice():
 	calculate_spectator_score()
 
 func show_menu(visibility:bool):
-	if is_menu_displayed and visibility:
+	if dice_menu.visible == visibility:
 		return
-		
-	is_menu_displayed = visibility
 	
 	dice_menu.visible = visibility
 	for i in range(1, 6):
 		texture_array[i].visible = visibility
 		
-	z_index = 1 if visibility else 0
+	z_index += 1 if visibility else -1
 
 func vibrate():
 	if current_anim:
@@ -189,9 +177,15 @@ func animate_move_to(new_position:Vector2):
 	var anim = get_tree().create_tween()
 	anim.bind_node(self)
 	current_pos = new_position
+	anim.tween_callback(func(): z_index += 1)
 	anim.tween_property(self, "is_anim_move_playing", true, 0)
 	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
 	anim.tween_property(self, "is_anim_move_playing", false, 0)
+	anim.tween_callback(func(): z_index -= 1)
+	anim.tween_callback(func():
+		if get_global_rect().has_point(get_global_mouse_position()):
+			show_menu(true)
+	)
 
 func calculate_spectator_score():
 	var green_mult = lerpf(1.5, 0, get_green_bar_value.call() / 100.0) 
@@ -226,10 +220,6 @@ func _on_dice_roll_button_pressed() -> void:
 	if ticks == timer:
 		roll()
 
-func _on_dice_menu_mouse_exited() -> void:
-	if not dice_menu.get_rect().has_point(get_local_mouse_position()):
-		show_menu(false)
-
 func _on_zone_detector_area_2d_area_exited(area: Area2D) -> void:
 	if current_zone and area and current_zone == area:
 		current_zone = null
@@ -237,3 +227,12 @@ func _on_zone_detector_area_2d_area_exited(area: Area2D) -> void:
 func _on_zone_detector_area_2d_area_entered(area: Area2D) -> void:
 	if area:
 		current_zone = area
+
+
+func _on_mouse_exited() -> void:
+	show_menu(false)
+	z_index -= 1
+
+func _on_mouse_entered() -> void:
+	show_menu(true)
+	z_index += 1

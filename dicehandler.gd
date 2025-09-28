@@ -1,7 +1,6 @@
 extends Node2D
 
 const DICE = preload("uid://lcw65s7ygglt")
-const DiceScript = preload("uid://dayn7g0yo08wy")
 const MARGIN_X = 125
 @export var dice_sliding_into_game_sound: AudioStreamPlayer
 
@@ -9,7 +8,6 @@ const MARGIN_X = 125
 
 var do_repositions: bool = false
 func _ready() -> void:
-	DiceScript.is_menu_displayed = false
 	child_order_changed.connect(reposition_childs)
 
 func spawn_dice(get_red_bar_call:Callable, get_green_bar_call:Callable, get_blue_bar_call:Callable):

@@ -34,15 +34,20 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Dice" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Face1" type="TextureRect"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 0
+texture = ExtResource("1_r7uk3")
 script = ExtResource("1_yynlm")
 all_possible_faces = Array[ExtResource("3_nmrgv")]([ExtResource("4_r7uk3"), ExtResource("5_clcc5"), ExtResource("6_8xjo2"), ExtResource("7_s1lci"), ExtResource("8_w2ngr"), ExtResource("9_oa3pg"), ExtResource("10_irlgj"), ExtResource("11_bunnl"), ExtResource("12_58irk")])
-metadata/_edit_vertical_guides_ = [-32.0, 32.0, -42.0, 42.0]
-metadata/_edit_horizontal_guides_ = [-32.0, -40.0, -104.0, -114.0, -178.0, -188.0]
+metadata/_edit_vertical_guides_ = [-32.0]
+metadata/_edit_horizontal_guides_ = [-32.0, -42.0]
 
 [node name="ZoneDetectorArea2D" type="Area2D" parent="."]
+position = Vector2(32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetectorArea2D"]
 shape = SubResource("RectangleShape2D_r7uk3")
@@ -55,20 +60,19 @@ stream = ExtResource("12_nmrgv")
 pitch_scale = 1.05
 bus = &"SFX"
 
-[node name="Face1" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-texture = ExtResource("1_r7uk3")
-
 [node name="LabelFaceNumber" type="Label" parent="."]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 11.0
-offset_right = 47.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "1"
 label_settings = SubResource("LabelSettings_r7uk3")
 
@@ -76,10 +80,11 @@ label_settings = SubResource("LabelSettings_r7uk3")
 visible = false
 show_behind_parent = true
 anchors_preset = 0
-offset_left = -116.0
-offset_top = -271.0
-offset_right = 116.0
-offset_bottom = 41.0
+offset_left = -84.0
+offset_top = -241.0
+offset_right = 148.0
+offset_bottom = 71.0
+mouse_filter = 2
 
 [node name="ColorRect" type="PanelContainer" parent="DiceMenu"]
 show_behind_parent = true
@@ -89,6 +94,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r7uk3")
 metadata/_edit_use_anchors_ = true
 
@@ -98,6 +104,7 @@ offset_left = 84.0
 offset_top = 167.0
 offset_right = 148.0
 offset_bottom = 231.0
+mouse_filter = 2
 texture = ExtResource("1_r7uk3")
 
 [node name="Face3" type="TextureRect" parent="DiceMenu"]
@@ -106,6 +113,7 @@ offset_left = 84.0
 offset_top = 93.0
 offset_right = 148.0
 offset_bottom = 157.0
+mouse_filter = 2
 texture = ExtResource("1_r7uk3")
 
 [node name="Face4" type="TextureRect" parent="DiceMenu"]
@@ -114,6 +122,7 @@ offset_left = 84.0
 offset_top = 19.0
 offset_right = 148.0
 offset_bottom = 83.0
+mouse_filter = 2
 texture = ExtResource("1_r7uk3")
 
 [node name="Face5" type="TextureRect" parent="DiceMenu"]
@@ -122,6 +131,7 @@ offset_left = 10.0
 offset_top = 93.0
 offset_right = 74.0
 offset_bottom = 157.0
+mouse_filter = 2
 texture = ExtResource("1_r7uk3")
 
 [node name="Face6" type="TextureRect" parent="DiceMenu"]
@@ -130,6 +140,7 @@ offset_left = 158.0
 offset_top = 93.0
 offset_right = 222.0
 offset_bottom = 157.0
+mouse_filter = 2
 texture = ExtResource("1_r7uk3")
 
 [node name="SpectatorLabel" type="RichTextLabel" parent="DiceMenu"]
@@ -138,13 +149,15 @@ offset_left = 158.0
 offset_top = 12.0
 offset_right = 225.0
 offset_bottom = 83.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[rainbow]+20K[/rainbow]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="area_entered" from="ZoneDetectorArea2D" to="." method="_on_zone_detector_area_2d_area_entered"]
 [connection signal="area_exited" from="ZoneDetectorArea2D" to="." method="_on_zone_detector_area_2d_area_exited"]
 [connection signal="timeout" from="TimerRoll" to="." method="_on_timer_timeout"]
-[connection signal="mouse_exited" from="DiceMenu" to="." method="_on_dice_menu_mouse_exited"]
