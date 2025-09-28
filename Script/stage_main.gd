@@ -20,7 +20,7 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var hostCharHead: AnimationPlayer = $HostCharacter/HeadAnimation
 @onready var hostCharHand: AnimationPlayer = $HostCharacter/HandAnimation
 @onready var speech_sfx_1: AudioStreamPlayer = $speech_sfx1
-@onready var total_spectators_label: RichTextLabel = $TotalSpectatorsLabel
+@onready var total_spectators_label: RichTextLabel = $MarginContainer/CanvasLayer/Background/TotalSpectatorsLabel
 
 var totalSpectators:int
 var aproval:float

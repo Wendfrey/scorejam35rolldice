@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://btl61y1qxyw2w"]
+[gd_scene load_steps=7 format=3 uid="uid://btl61y1qxyw2w"]
 
 [ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="3_h7a2f"]
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="3_iwfq2"]
 [ext_resource type="AudioStream" uid="uid://dmfvecv3k1x83" path="res://Assets/sounds/Celebrative-moment-upbeat-band-sitcom-822.wav" id="4_qoqlk"]
+[ext_resource type="FontFile" uid="uid://2flahwjxpli" path="res://Assets/font/Modak-Regular.ttf" id="5_7r1g0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,6 +56,7 @@ offset_left = 752.84686
 offset_top = 164.34778
 offset_right = 1114.8469
 offset_bottom = 223.34778
+theme_override_fonts/font = ExtResource("5_7r1g0")
 text = "PLAY"
 
 [node name="ButtonTutorial" type="Button" parent="Background/Control"]
@@ -63,6 +65,7 @@ offset_left = 836.0037
 offset_top = 235.90057
 offset_right = 1133.0037
 offset_bottom = 266.90057
+theme_override_fonts/font = ExtResource("5_7r1g0")
 text = "How to play"
 
 [node name="ButtonSetting" type="Button" parent="Background/Control"]
