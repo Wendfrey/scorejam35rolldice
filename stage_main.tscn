@@ -625,12 +625,12 @@ metadata/zone = "ROLL"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control2/RollZone"]
 shape = SubResource("RectangleShape2D_gentr")
 
-[node name="Control" type="Panel" parent="PlayZone/HBoxContainer"]
+[node name="RefreshPanel" type="Panel" parent="PlayZone/HBoxContainer"]
 z_index = -1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control"]
+[node name="Label" type="Label" parent="PlayZone/HBoxContainer/RefreshPanel"]
 layout_mode = 0
 offset_top = 30.0
 offset_right = 230.0
@@ -639,11 +639,11 @@ text = "REFRESH DICE"
 label_settings = SubResource("LabelSettings_iuj4m")
 horizontal_alignment = 1
 
-[node name="RerollZone" type="Area2D" parent="PlayZone/HBoxContainer/Control"]
+[node name="RefreshZone" type="Area2D" parent="PlayZone/HBoxContainer/RefreshPanel"]
 position = Vector2(115, 47)
 metadata/zone = "REFRESH"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control/RerollZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/RefreshPanel/RefreshZone"]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_gentr")
 
@@ -657,6 +657,7 @@ offset_left = 2.0
 offset_top = 3.0
 offset_right = 70.0
 offset_bottom = 91.0
+focus_mode = 0
 theme_override_colors/font_color = Color(0.00014651388, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)

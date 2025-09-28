@@ -16,7 +16,7 @@ var pos : int
 #http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
 
 func _ready() -> void:
-	total_spectators_label.text = str(globalvar.score)+"K"
+	total_spectators_label.text = str(Globals.final_score)+"K"
 	get_leadeboard_data()
 	
 func get_leadeboard_data():
@@ -44,13 +44,13 @@ func _on_summit_score_completed(result, response_code, headers, body):
 func _on_button_pressed() -> void:
 	
 	if text_edit.text != "":
+
 		square_box.hide()
-		
 		var scoretag = get_tree().get_nodes_in_group("Scorelabel")
 		for i in scoretag:
 			i.queue_free()
 			
-		summit_score(text_edit.text,str(globalvar.score+90))
+		summit_score(text_edit.text,str(Globals.final_score))
 
 
 func _on_timer_score_timeout() -> void:
@@ -67,10 +67,12 @@ func _on_timer_score_timeout() -> void:
 			new_labelScore.text = split[1]
 			new_labelScore.position = Vector2(475, 30 + (25 * (csv.size() - pos - 1)))
 			new_labelScore.set("theme_override_colors/font_color", Color(0.0, 0.0, 0.0, 1.0))
+			
 			new_label.add_to_group("Scorelabel")
 			new_labelScore.add_to_group("Scorelabel")
 			add_child(new_label)
 			add_child(new_labelScore)
+
 		pos += 1
 	else:
 		timerScore.stop()

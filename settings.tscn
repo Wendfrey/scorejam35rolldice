@@ -6,11 +6,24 @@
 [ext_resource type="FontFile" uid="uid://2flahwjxpli" path="res://Assets/font/Modak-Regular.ttf" id="4_gc0em"]
 
 [node name="settings" type="Panel"]
+z_index = 60
 offset_left = 117.0
 offset_top = 174.0
 offset_right = 608.0
 offset_bottom = 349.0
 script = ExtResource("1_nkug2")
+
+[node name="Control" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2758.0
+offset_top = -1014.0
+offset_right = 2456.0
+offset_bottom = 1047.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -47,6 +60,7 @@ step = 0.001
 value = 1.0
 script = ExtResource("2_3ykye")
 bus_name = "Music"
+bus_index = null
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/musicvolume"]
 layout_mode = 1
@@ -70,6 +84,7 @@ step = 0.001
 value = 1.0
 script = ExtResource("2_3ykye")
 bus_name = "SFX"
+bus_index = null
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/effectvolume"]
 layout_mode = 0
