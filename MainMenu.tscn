@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btl61y1qxyw2w"]
+[gd_scene load_steps=19 format=3 uid="uid://btl61y1qxyw2w"]
 
 [ext_resource type="Script" uid="uid://cp0ft5gk8qym3" path="res://Script/main_menu.gd" id="1_i26rj"]
 [ext_resource type="PackedScene" uid="uid://v30r43fb1vp" path="res://stage_main.tscn" id="2_eiy7p"]
@@ -6,8 +6,232 @@
 [ext_resource type="PackedScene" uid="uid://kwa2xtrp7onn" path="res://settings.tscn" id="3_iwfq2"]
 [ext_resource type="AudioStream" uid="uid://dmfvecv3k1x83" path="res://Assets/sounds/Celebrative-moment-upbeat-band-sitcom-822.wav" id="4_qoqlk"]
 [ext_resource type="FontFile" uid="uid://2flahwjxpli" path="res://Assets/font/Modak-Regular.ttf" id="5_7r1g0"]
+[ext_resource type="Texture2D" uid="uid://dhy7cyymamprk" path="res://Assets/Texture/menu/Focus1.png" id="6_afec1"]
 [ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="6_cqjrg"]
+[ext_resource type="Texture2D" uid="uid://5gckpq80g5ic" path="res://Assets/Texture/menu/Focus2.png" id="7_31qfy"]
 [ext_resource type="Texture2D" uid="uid://dru2yvjajal1j" path="res://Assets/Texture/pixelblanco.png" id="8_e2xy7"]
+[ext_resource type="Texture2D" uid="uid://u5cf50ufu3rb" path="res://Assets/Texture/menu/Focus3.png" id="8_qie43"]
+[ext_resource type="Texture2D" uid="uid://0iuhqqoq7ddl" path="res://Assets/Texture/menu/Focus0.png" id="9_31qfy"]
+
+[sub_resource type="Animation" id="Animation_qie43"]
+resource_name = "blinking"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Focus3:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.51, 3.6433332, 5.166667, 5.3, 8.866667, 8.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_qie43"), ExtResource("9_31qfy"), ExtResource("8_qie43"), ExtResource("9_31qfy"), ExtResource("8_qie43"), ExtResource("9_31qfy"), ExtResource("8_qie43")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Focus2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.61, 2.7533333, 4.49, 4.633333, 4.766667, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_31qfy"), ExtResource("9_31qfy"), ExtResource("7_31qfy"), ExtResource("9_31qfy"), ExtResource("7_31qfy"), ExtResource("9_31qfy"), ExtResource("7_31qfy")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Focus1:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.32, 1.47, 1.6166667, 1.7666667, 6.2866664, 6.4366665, 6.583333, 6.733333, 6.9, 8.033334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1")]
+}
+
+[sub_resource type="Animation" id="Animation_61cf8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Focus3:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_qie43")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Focus2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_31qfy")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Focus1:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_afec1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnncn"]
+_data = {
+&"RESET": SubResource("Animation_61cf8"),
+&"blinking": SubResource("Animation_qie43")
+}
+
+[sub_resource type="Animation" id="Animation_31qfy"]
+resource_name = "panningBG"
+length = 25.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12, 25),
+"transitions": PackedFloat32Array(-2.5, -2.5, 1),
+"update": 0,
+"values": [Vector2(519.67, 351), Vector2(575, 351), Vector2(519.67, 351)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Focos/Focus1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12, 25),
+"transitions": PackedFloat32Array(-2.5, -2.5, 1),
+"update": 0,
+"values": [Vector2(558, 347), Vector2(575.445, 347), Vector2(558, 347)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/Focos/Focus2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 12, 25),
+"transitions": PackedFloat32Array(-2.5, -2.5, 1),
+"update": 0,
+"values": [Vector2(582, 344), Vector2(553.765, 344), Vector2(582, 344)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/Focos/Focus3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 12, 25),
+"transitions": PackedFloat32Array(-2.5, -2.5, 1),
+"update": 0,
+"values": [Vector2(545, 339), Vector2(573.83, 339), Vector2(545, 339)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 12, 25),
+"transitions": PackedFloat32Array(-2.5, -2.5, 1),
+"update": 0,
+"values": [-0.017453292, 0.034906585, -0.017453292]
+}
+
+[sub_resource type="Animation" id="Animation_rnncn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(519.67, 351)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Focos/Focus1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(558, 347)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/Focos/Focus2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(582, 344)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/Focos/Focus3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(545, 339)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.017453292]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3fnrj"]
+_data = {
+&"RESET": SubResource("Animation_rnncn"),
+&"panningBG": SubResource("Animation_31qfy")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -21,10 +245,23 @@ mainGame = ExtResource("2_eiy7p")
 settings = ExtResource("3_iwfq2")
 metadata/_edit_use_anchors_ = true
 
+[node name="FondoPlano1" type="Sprite2D" parent="."]
+modulate = Color(0.4886735, 0.5555421, 0.71102804, 1)
+position = Vector2(595, 216)
+scale = Vector2(1221, 466)
+texture = ExtResource("8_e2xy7")
+
+[node name="FondoPlano2" type="Sprite2D" parent="."]
+modulate = Color(0.54675853, 0.6309083, 0.76595336, 1)
+position = Vector2(590, 655.00006)
+scale = Vector2(1210, 528)
+texture = ExtResource("8_e2xy7")
+
 [node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
-position = Vector2(575.2222, 321)
-scale = Vector2(0.90190977, 0.89444447)
+modulate = Color(0.70305836, 0.77957326, 0.8747987, 1)
+position = Vector2(519.67, 351)
+scale = Vector2(1, 0.991)
+skew = -0.017453292
 texture = ExtResource("3_h7a2f")
 
 [node name="ProgressBar" type="ProgressBar" parent="Background"]
@@ -39,62 +276,104 @@ value = 25.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Control" type="Control" parent="Background"]
-layout_mode = 3
+[node name="Focos" type="Node2D" parent="Background"]
+position = Vector2(-522, -354.18768)
+scale = Vector2(1, 1.0090817)
+
+[node name="Focus1" type="Sprite2D" parent="Background/Focos"]
+position = Vector2(558, 347)
+texture = ExtResource("6_afec1")
+
+[node name="Focus2" type="Sprite2D" parent="Background/Focos"]
+position = Vector2(582, 344)
+texture = ExtResource("7_31qfy")
+
+[node name="Focus3" type="Sprite2D" parent="Background/Focos"]
+position = Vector2(545, 339)
+texture = ExtResource("8_qie43")
+
+[node name="FocusBlink" type="AnimationPlayer" parent="Background/Focos"]
+libraries = {
+&"": SubResource("AnimationLibrary_rnncn")
+}
+autoplay = "blinking"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -640.0
-offset_top = -360.0
-offset_right = -640.0
-offset_bottom = -360.0
+offset_left = -118.0
+offset_top = -5.76001
+offset_right = -118.0
+offset_bottom = -5.76001
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtonPlay" type="Button" parent="Background/Control"]
+[node name="ButtonPlay" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 752.84686
-offset_top = 164.34778
-offset_right = 1114.8469
-offset_bottom = 223.34778
+offset_left = 115.0
+offset_top = 553.7437
+offset_right = 704.0
+offset_bottom = 646.5792
 theme_override_fonts/font = ExtResource("5_7r1g0")
-text = "PLAY"
+theme_override_font_sizes/font_size = 35
+text = "     START THE SHOW!"
+alignment = 0
 
-[node name="ButtonTutorial" type="Button" parent="Background/Control"]
+[node name="ButtonTutorial" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 836.0037
-offset_top = 235.90057
-offset_right = 1133.0037
-offset_bottom = 266.90057
+offset_left = 114.0
+offset_top = 497.2351
+offset_right = 488.0
+offset_bottom = 542.6438
 theme_override_fonts/font = ExtResource("5_7r1g0")
-text = "How to play"
+theme_override_font_sizes/font_size = 20
+text = "        How to play"
+alignment = 0
 
-[node name="ButtonSetting" type="Button" parent="Background/Control"]
+[node name="ButtonSetting" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 811.611
-offset_top = 276.14264
-offset_right = 1096.6111
-offset_bottom = 307.14264
+offset_left = 114.0
+offset_top = 391.76
+offset_right = 433.0
+offset_bottom = 436.1596
 theme_override_fonts/font = ExtResource("5_7r1g0")
-text = "Settings"
+theme_override_font_sizes/font_size = 20
+text = "        Settings"
+alignment = 0
 
-[node name="ButtonCredits" type="Button" parent="Background/Control"]
+[node name="ButtonScoreboards" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 790.54474
-offset_top = 314.16147
-offset_right = 1075.5448
-offset_bottom = 345.16147
+offset_left = 114.0
+offset_top = 442.76
+offset_right = 468.0
+offset_bottom = 487.1596
 theme_override_fonts/font = ExtResource("5_7r1g0")
-text = "Credits"
+theme_override_font_sizes/font_size = 20
+text = "        Scoreboard"
+alignment = 0
+
+[node name="ButtonCredits" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 338.76
+offset_right = 404.0
+offset_bottom = 384.1687
+theme_override_fonts/font = ExtResource("5_7r1g0")
+theme_override_font_sizes/font_size = 20
+text = "       Credits"
+alignment = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 visible = false
+self_modulate = Color(0.5295806, 0.5961825, 0.7443426, 1)
 layout_mode = 0
-offset_left = 124.0
-offset_top = 100.0
-offset_right = 553.0
-offset_bottom = 507.0
+offset_left = 654.0
+offset_top = 210.0
+offset_right = 1083.0
+offset_bottom = 617.0
 texture = ExtResource("6_cqjrg")
 region_rect = Rect2(1.4995098, 0.3518982, 353.27338, 107.29672)
 patch_margin_left = 20
@@ -132,10 +411,10 @@ bus = &"Music"
 [node name="settings" parent="." instance=ExtResource("3_iwfq2")]
 visible = false
 layout_mode = 0
-offset_left = 66.0
-offset_top = 92.0
-offset_right = 557.0
-offset_bottom = 254.0
+offset_left = 626.0
+offset_top = 430.0
+offset_right = 1117.0
+offset_bottom = 592.0
 is_mainMenu = true
 
 [node name="CreditsContainer" type="PanelContainer" parent="."]
@@ -159,6 +438,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="CreditsLabel" type="RichTextLabel" parent="CreditsContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
@@ -169,23 +449,15 @@ selection_enabled = true
 layout_mode = 2
 text = "Close"
 
-[node name="FondoPlano1" type="Sprite2D" parent="."]
-modulate = Color(0.5564873, 0.51042265, 0.7959496, 1)
-z_index = -1
-position = Vector2(595, 216)
-scale = Vector2(1221, 466)
-texture = ExtResource("8_e2xy7")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3fnrj")
+}
+autoplay = "panningBG"
 
-[node name="FondoPlano2" type="Sprite2D" parent="."]
-modulate = Color(0.6592049, 0.61212206, 0.84186274, 1)
-z_index = -1
-position = Vector2(590, 655.00006)
-scale = Vector2(1210, 528)
-texture = ExtResource("8_e2xy7")
-
-[connection signal="button_up" from="Background/Control/ButtonPlay" to="." method="_on_button_play_button_up"]
-[connection signal="button_up" from="Background/Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
-[connection signal="button_up" from="Background/Control/ButtonSetting" to="." method="_on_button_setting_button_up"]
-[connection signal="pressed" from="Background/Control/ButtonCredits" to="." method="_on_button_credits_pressed"]
+[connection signal="button_up" from="Control/ButtonPlay" to="." method="_on_button_play_button_up"]
+[connection signal="button_up" from="Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
+[connection signal="button_up" from="Control/ButtonSetting" to="." method="_on_button_setting_button_up"]
+[connection signal="pressed" from="Control/ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="meta_clicked" from="CreditsContainer/MarginContainer/VBoxContainer/CreditsLabel" to="." method="_on_credits_label_meta_clicked"]
 [connection signal="pressed" from="CreditsContainer/MarginContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
