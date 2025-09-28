@@ -134,6 +134,7 @@ func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
 	
 	match(face.effect):
 		DiceFaceDataResource.Effect.POSITIVE:
+			effect *= 0.8
 			pass
 			target_effect = true
 		DiceFaceDataResource.Effect.NEGATIVE:
@@ -205,10 +206,17 @@ func _on_pass_turn_button_pressed() -> void:
 		do_end_game("END")
 	else:
 		pass_turn_button.disabled = true
-		refresh_turn_text()
-		generate_three_dice()
-		await get_tree().create_timer(0.8).timeout
-		pass_turn_button.disabled = false
+		red_bar.value -= 2
+		blue_bar.value -= 2
+		green_bar.value -= 2
+		update_spritemood("RedMan", red_bar.value)
+		update_spritemood("BlueMan", blue_bar.value)
+		update_spritemood("GreenMan", green_bar.value)
+		if !check_end_game():
+			refresh_turn_text()
+			generate_three_dice()
+			await get_tree().create_timer(0.8).timeout
+			pass_turn_button.disabled = false
 
 func refresh_turn_text() -> void:
 	turn_label.text = "TURN {turn} / {max}".format({turn = currentTurn, max = maxTurns})
