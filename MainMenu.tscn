@@ -13,6 +13,45 @@
 [ext_resource type="Texture2D" uid="uid://u5cf50ufu3rb" path="res://Assets/Texture/menu/Focus3.png" id="8_qie43"]
 [ext_resource type="Texture2D" uid="uid://0iuhqqoq7ddl" path="res://Assets/Texture/menu/Focus0.png" id="9_31qfy"]
 
+[sub_resource type="Animation" id="Animation_61cf8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Focus3:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_qie43")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Focus2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_31qfy")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Focus1:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_afec1")]
+}
+
 [sub_resource type="Animation" id="Animation_qie43"]
 resource_name = "blinking"
 length = 10.0
@@ -54,49 +93,73 @@ tracks/2/keys = {
 "values": [ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1"), ExtResource("9_31qfy"), ExtResource("6_afec1")]
 }
 
-[sub_resource type="Animation" id="Animation_61cf8"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnncn"]
+_data = {
+&"RESET": SubResource("Animation_61cf8"),
+&"blinking": SubResource("Animation_qie43")
+}
+
+[sub_resource type="Animation" id="Animation_rnncn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Focus3:texture")
+tracks/0/path = NodePath("Background:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_qie43")]
+"update": 0,
+"values": [Vector2(519.67, 351)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Focus2:texture")
+tracks/1/path = NodePath("Background/Focos/Focus1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_31qfy")]
+"update": 0,
+"values": [Vector2(558, 347)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Focus1:texture")
+tracks/2/path = NodePath("Background/Focos/Focus2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_afec1")]
+"update": 0,
+"values": [Vector2(582, 344)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnncn"]
-_data = {
-&"RESET": SubResource("Animation_61cf8"),
-&"blinking": SubResource("Animation_qie43")
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/Focos/Focus3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(545, 339)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.017453292]
 }
 
 [sub_resource type="Animation" id="Animation_31qfy"]
@@ -162,69 +225,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(-2.5, -2.5, 1),
 "update": 0,
 "values": [-0.017453292, 0.034906585, -0.017453292]
-}
-
-[sub_resource type="Animation" id="Animation_rnncn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(519.67, 351)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Background/Focos/Focus1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(558, 347)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Background/Focos/Focus2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(582, 344)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Background/Focos/Focus3:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(545, 339)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Background:skew")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.017453292]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3fnrj"]
