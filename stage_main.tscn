@@ -28,6 +28,140 @@
 [ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 [ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="24_xgppn"]
 
+[sub_resource type="Animation" id="Animation_hn1fj"]
+resource_name = "Idle"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RedMan:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.02), Vector2(1, 1), Vector2(1, 1.02), Vector2(1, 1), Vector2(1, 1.02), Vector2(1, 1), Vector2(1, 1.02), Vector2(1, 1), Vector2(1, 1.02), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RedMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(71.77771, 54), Vector2(71.778, 55), Vector2(71.77771, 54), Vector2(71.778, 55), Vector2(71.77771, 54), Vector2(71.778, 55), Vector2(71.77771, 54), Vector2(71.778, 55), Vector2(71.77771, 54), Vector2(71.778, 55), Vector2(71.77771, 54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlueMan:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(241.77777, 27), Vector2(241.778, 26), Vector2(241.77777, 27), Vector2(241.778, 26), Vector2(241.77777, 27), Vector2(241.778, 26), Vector2(241.77777, 27), Vector2(241.778, 26), Vector2(241.77777, 27)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlueMan:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GreenMan:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5, 10, 15, 20),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1), Vector2(1, 1.015), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h52rb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RedMan:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RedMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(71.77771, 54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlueMan:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(241.77777, 27)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlueMan:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GreenMan:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg5ij"]
+_data = {
+&"Idle": SubResource("Animation_hn1fj"),
+&"RESET": SubResource("Animation_h52rb")
+}
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_jslxq"]
 animations = [{
 "frames": [{
@@ -62,67 +196,6 @@ animations = [{
 "name": &"tense",
 "speed": 5.0
 }]
-
-[sub_resource type="Animation" id="Animation_hn1fj"]
-resource_name = "Idle"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RedMan:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RedMan:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(71.77771, 54), Vector2(71.778, 56), Vector2(71.77771, 54)]
-}
-
-[sub_resource type="Animation" id="Animation_h52rb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RedMan:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RedMan:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(71.77771, 54)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg5ij"]
-_data = {
-&"Idle": SubResource("Animation_hn1fj"),
-&"RESET": SubResource("Animation_h52rb")
-}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2ydcg"]
 animations = [{
@@ -258,6 +331,13 @@ position = Vector2(590, 655.00006)
 scale = Vector2(1210, 528)
 texture = ExtResource("3_hn1fj")
 
+[node name="Breathe" type="AnimationPlayer" parent="MarginContainer/CanvasLayer"]
+root_node = NodePath("../Background")
+libraries = {
+&"": SubResource("AnimationLibrary_wg5ij")
+}
+autoplay = "Idle"
+
 [node name="Background" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
 modulate = Color(0.6784314, 0.7882353, 0.9411765, 1)
 z_index = 1
@@ -270,25 +350,14 @@ position = Vector2(71.77771, 54)
 sprite_frames = SubResource("SpriteFrames_jslxq")
 animation = &"angry"
 
-[node name="RedBreathe" type="AnimationPlayer" parent="MarginContainer/CanvasLayer/Background"]
-libraries = {
-&"": SubResource("AnimationLibrary_wg5ij")
-}
-autoplay = "Idle"
-
 [node name="BlueMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
 position = Vector2(241.77777, 27)
 sprite_frames = SubResource("SpriteFrames_2ydcg")
-frame_progress = 0.2228511
-
-[node name="BlueBreathe" type="AnimationPlayer" parent="MarginContainer/CanvasLayer/Background"]
+animation = &"angry"
 
 [node name="GreenMan" type="AnimatedSprite2D" parent="MarginContainer/CanvasLayer/Background"]
 position = Vector2(362.77777, 38)
 sprite_frames = SubResource("SpriteFrames_pwcgf")
-
-[node name="GreenBreathe" type="AnimationPlayer" parent="MarginContainer/CanvasLayer/Background"]
-root_node = NodePath("../BlueBreathe")
 
 [node name="Red" type="Sprite2D" parent="MarginContainer/CanvasLayer/Background"]
 position = Vector2(541, 267)
