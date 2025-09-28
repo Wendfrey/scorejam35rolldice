@@ -8,7 +8,7 @@ extends Control
 @onready var score_labels_node : Control = $ScoreLabelsNode
 
 var score
-var url = "http://www.mabl.icu/gamejam/scores.csv"
+var url = "https://www.mabl.icu/gamejam/scores.csv"
 var scoreSeparator : String = "-"
 var csv : Array
 var pos : int
@@ -49,7 +49,7 @@ func _on_request_completed(result, response_code, headers, body):
 
 func summit_score(name,score:String):
 	var summit_url
-	summit_url = "http://www.mabl.icu/gamejam/submitScore.php?name="+name+"&score="+score
+	summit_url = "https://www.mabl.icu/gamejam/submitScore.php?name="+name+"&score="+score
 	$HTTPRequest.request_completed.connect(_on_summit_score_completed)
 	$HTTPRequest.request(summit_url)
 	Globals.submit_score = false

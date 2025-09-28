@@ -25,6 +25,7 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var refresh_zone_panel: Panel = $PlayZone/HBoxContainer/RefreshPanel
 @onready var gameOverPlayer:AnimationPlayer = $GameOverPlayer
 @onready var musicplayer: AudioStreamPlayer = $musicplayer
+@onready var roll_panel: Panel = $PlayZone/HBoxContainer/RollPanel
 
 
 const maxTurns:int = 15;
@@ -275,3 +276,18 @@ func zeroToOne(num:float):
 	if num > 1:
 		return 1
 	return num
+
+
+func _on_roll_zone_area_entered(_area: Area2D) -> void:
+	roll_panel.modulate = Color.BLUE
+
+func _on_roll_zone_area_exited(_area: Area2D) -> void:
+	roll_panel.modulate = Color.WHITE
+
+func _on_refresh_zone_area_entered(_area: Area2D) -> void:
+	if not refresh_zone_shape.disabled:
+		refresh_zone_panel.modulate = Color.BLUE
+
+func _on_refresh_zone_area_exited(_area: Area2D) -> void:
+	if not refresh_zone_shape.disabled:
+		refresh_zone_panel.modulate = Color.WHITE

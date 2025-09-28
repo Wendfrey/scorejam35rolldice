@@ -962,13 +962,13 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Control2" type="Panel" parent="PlayZone/HBoxContainer"]
+[node name="RollPanel" type="Panel" parent="PlayZone/HBoxContainer"]
 z_index = -1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control2"]
+[node name="Label" type="Label" parent="PlayZone/HBoxContainer/RollPanel"]
 layout_mode = 0
 offset_top = 11.0
 offset_right = 230.0
@@ -978,11 +978,11 @@ ROLL DICE"
 label_settings = SubResource("LabelSettings_4r2iv")
 horizontal_alignment = 1
 
-[node name="RollZone" type="Area2D" parent="PlayZone/HBoxContainer/Control2"]
+[node name="RollZone" type="Area2D" parent="PlayZone/HBoxContainer/RollPanel"]
 position = Vector2(115, 47)
 metadata/zone = "ROLL"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/Control2/RollZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone/HBoxContainer/RollPanel/RollZone"]
 shape = SubResource("RectangleShape2D_gentr")
 
 [node name="RefreshPanel" type="Panel" parent="PlayZone/HBoxContainer"]
@@ -1021,7 +1021,6 @@ offset_top = 3.0
 offset_right = 70.0
 offset_bottom = 91.0
 focus_mode = 0
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.00014651388, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -1249,4 +1248,8 @@ stream = ExtResource("30_pwcgf")
 volume_db = -20.0
 bus = &"SFX"
 
+[connection signal="area_entered" from="PlayZone/HBoxContainer/RollPanel/RollZone" to="." method="_on_roll_zone_area_entered"]
+[connection signal="area_exited" from="PlayZone/HBoxContainer/RollPanel/RollZone" to="." method="_on_roll_zone_area_exited"]
+[connection signal="area_entered" from="PlayZone/HBoxContainer/RefreshPanel/RefreshZone" to="." method="_on_refresh_zone_area_entered"]
+[connection signal="area_exited" from="PlayZone/HBoxContainer/RefreshPanel/RefreshZone" to="." method="_on_refresh_zone_area_exited"]
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurn/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
