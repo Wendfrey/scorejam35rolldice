@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var mousePan:Array[Node2D];
+@export var mousePanSpeedX:Array[float];
+@export var mousePanSpeedY:Array[float];
+
 const DICE = preload("uid://lcw65s7ygglt")
 
 @onready var settings: Panel = $settings
@@ -7,9 +11,9 @@ const DICE = preload("uid://lcw65s7ygglt")
 @onready var dicehandler: Node2D = $dicehandler
 
 @onready var aproval_bar: ProgressBar = $MarginContainer/CanvasLayer/Background/AprovalBar
-@onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarRed/RedBar
-@onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBarBlue/BlueBar
-@onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/TextureRect/GreenBar
+@onready var red_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBars/Red/MoodBarRed/RedBar
+@onready var blue_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBars/Blue/MoodBarBlue/BlueBar
+@onready var green_bar: ProgressBar = $MarginContainer/CanvasLayer/MoodBars/Green/MoodBarGreen/GreenBar
 @onready var turn_label: Label = $MarginContainer/TurnLabel
 @onready var chat_box: Sprite2D = $ChatBox
 @onready var subtitles: RichTextLabel = $ChatBox/subtitles
@@ -21,6 +25,9 @@ const DICE = preload("uid://lcw65s7ygglt")
 var totalSpectators:int
 var aproval:float
 var currentTurn = 1
+var mousePanX:Array[float] = []
+var mousePanY:Array[float] = []
+
 
 func _ready() -> void:
 	
@@ -37,6 +44,10 @@ func _ready() -> void:
 	update_spritemood("BlueMan", blue_bar.value)
 	update_spritemood("GreenMan", green_bar.value)
 	
+	savePanOrigins()
+	
+func _process(delta):
+	backgroundPan()
 	
 func check_end_game():
 	if red_bar.value <= 0 or blue_bar.value <= 0 or green_bar.value <= 0:
@@ -181,3 +192,32 @@ func add_dice_and_connect() -> bool:
 		dice.connect("dice_rolled",_dice_rolled)
 		return true
 	return false
+
+func savePanOrigins() -> void:
+	var i = 0;
+	mousePanX.resize(mousePan.size())
+	mousePanY.resize(mousePan.size())
+	for item in mousePan:
+		mousePanX[i] = item.position.x;
+		mousePanY[i] = item.position.y;
+		i+=1;
+	
+
+func backgroundPan() -> void:
+	if mousePanX.size() >0:
+		var moved = Vector2(
+			zeroToOne(get_viewport().get_mouse_position().x/get_viewport().get_visible_rect().size.x),
+			zeroToOne(get_viewport().get_mouse_position().y/get_viewport().get_visible_rect().size.y))
+		var i = 0;
+		for item in mousePan:
+			item.position.x = mousePanX[i]-(moved.x*mousePanSpeedX[i]);
+			item.position.y = mousePanY[i]-(moved.y*mousePanSpeedY[i]);
+			i+=1;
+		
+	
+func zeroToOne(num:float):
+	if num < 0:
+		return 0
+	if num > 1:
+		return 1
+	return num
