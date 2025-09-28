@@ -367,6 +367,7 @@ text = "       Credits"
 alignment = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 self_modulate = Color(0.5295806, 0.5961825, 0.7443426, 1)
 layout_mode = 0
 offset_left = 634.0
