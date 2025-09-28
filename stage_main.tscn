@@ -510,6 +510,7 @@ text = "PASS"
 stream = ExtResource("22_gentr")
 volume_db = -25.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
