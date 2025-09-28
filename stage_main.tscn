@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=48 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -28,7 +28,8 @@
 [ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 [ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="24_xgppn"]
 [ext_resource type="Texture2D" uid="uid://y0oase15vke7" path="res://Assets/Texture/UI/embellecedor.png" id="26_h52rb"]
-[ext_resource type="AudioStream" uid="uid://q2wqvf6868o7" path="res://Assets/sounds/85059__zgump__bass-rvb-2.wav" id="29_2ydcg"]
+[ext_resource type="AudioStream" uid="uid://q2wqvf6868o7" path="res://Assets/sounds/85059__zgump__bass-rvb-2.wav" id="29_jslxq"]
+[ext_resource type="AudioStream" uid="uid://dn5eflq6bwtc8" path="res://Assets/sounds/ssvid.net--ORCHESTRA-HIT.mp3" id="30_pwcgf"]
 
 [sub_resource type="Animation" id="Animation_hn1fj"]
 resource_name = "Idle"
@@ -398,6 +399,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOverPlayer/GameOver:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rq7jw"]
 resource_name = "END"
@@ -424,6 +437,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, -1.5, 1),
 "update": 0,
 "values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOverPlayer/GameEnd:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_pwcgf"]
@@ -464,6 +489,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOverPlayer/GameOver:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wg5ij"]
 resource_name = "RED"
@@ -502,6 +539,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOverPlayer/GameOver:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_2ydcg"]
@@ -637,6 +686,30 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(468.87848, -5.0461197)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GameOverPlayer/GameOver:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("GameOverPlayer/GameEnd:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rq7jw"]
@@ -1027,7 +1100,7 @@ layout_mode = 0
 offset_left = -30.999996
 offset_top = 122.0
 offset_right = 667.74146
-offset_bottom = 233.63058
+offset_bottom = 233.63055
 rotation = 0.05235988
 scale = Vector2(2, 2)
 texture = ExtResource("24_xgppn")
@@ -1159,6 +1232,9 @@ libraries = {
 }
 
 [node name="GameOver" type="AudioStreamPlayer" parent="GameOverPlayer"]
-stream = ExtResource("29_2ydcg")
+stream = ExtResource("29_jslxq")
+
+[node name="GameEnd" type="AudioStreamPlayer" parent="GameOverPlayer"]
+stream = ExtResource("30_pwcgf")
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurn/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
