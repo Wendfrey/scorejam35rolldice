@@ -50,14 +50,17 @@ func _ready() -> void:
 func _process(_delta):
 	backgroundPan()
 	
-func check_end_game():
+func check_end_game() -> bool:
 	if red_bar.value <= 0:
 		do_end_game("RED")
+		return true
 	elif blue_bar.value <= 0:
 		do_end_game("BLUE")
+		return true
 	elif green_bar.value <= 0:
 		do_end_game("GREEN")
-		
+		return true
+	return false
 		
 func do_end_game(scenario:String):
 	pass_turn_button.disabled = true
@@ -166,12 +169,13 @@ func _dice_rolled(face:DiceFaceDataResource, dice_spectator:int):
 	totalSpectators += dice_spectator
 	total_spectators_label.text = "{sp}k".format({sp = totalSpectators})
 	dicehandler.recalculate_dice_spectators()
-	if target_comment != "dice":
-		comment = build_comment(target_comment,target_effect)
-	else:
-		comment = "There is an uncomfortable silence in the room"
-	show_comment(comment,0.9)
-	check_end_game()
+	if !check_end_game():
+		if target_comment != "dice":
+			comment = build_comment(target_comment,target_effect)
+		else:
+			comment = "There is an uncomfortable silence in the room"
+		show_comment(comment,0.9)
+	
 	
 func update_spritemood(target_man : String, value : float) -> void:
 	var man : AnimatedSprite2D = get_node(str("MarginContainer/CanvasLayer/Background/", target_man))

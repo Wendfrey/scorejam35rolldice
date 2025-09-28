@@ -359,6 +359,111 @@ size = Vector2(210, 73)
 [sub_resource type="LabelSettings" id="LabelSettings_iuj4m"]
 font_size = 25
 
+[sub_resource type="Animation" id="Animation_jslxq"]
+resource_name = "BLUE"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver/BlueFinal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5333333, 0.8666667),
+"transitions": PackedFloat32Array(0.5, -1.5, 1),
+"update": 0,
+"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOver/BlueFinal:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOver/BlueFinal/ChatBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
+}
+
+[sub_resource type="Animation" id="Animation_rq7jw"]
+resource_name = "END"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver/NormalFinal:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOver/NormalFinal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5333333, 0.86666673),
+"transitions": PackedFloat32Array(0.5, -1.5, 1),
+"update": 0,
+"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
+}
+
+[sub_resource type="Animation" id="Animation_pwcgf"]
+resource_name = "GREEN"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver/GreenFinal:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOver/GreenFinal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5333333, 0.8666666),
+"transitions": PackedFloat32Array(0.5, -1.5, 1),
+"update": 0,
+"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOver/GreenFinal/ChatBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
+}
+
 [sub_resource type="Animation" id="Animation_wg5ij"]
 resource_name = "RED"
 tracks/0/type = "value"
@@ -533,111 +638,6 @@ tracks/10/keys = {
 "values": [Vector2(468.87848, -5.0461197)]
 }
 
-[sub_resource type="Animation" id="Animation_jslxq"]
-resource_name = "BLUE"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOver/BlueFinal:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5333333, 0.8666667),
-"transitions": PackedFloat32Array(0.5, -1.5, 1),
-"update": 0,
-"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GameOver/BlueFinal:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GameOver/BlueFinal/ChatBox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
-}
-
-[sub_resource type="Animation" id="Animation_pwcgf"]
-resource_name = "GREEN"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOver/GreenFinal:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GameOver/GreenFinal:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5333333, 0.8666666),
-"transitions": PackedFloat32Array(0.5, -1.5, 1),
-"update": 0,
-"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GameOver/GreenFinal/ChatBox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(220.82794, -9.06967), Vector2(468.87848, -5.0461197)]
-}
-
-[sub_resource type="Animation" id="Animation_rq7jw"]
-resource_name = "END"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOver/NormalFinal:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GameOver/NormalFinal:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5333333, 0.86666673),
-"transitions": PackedFloat32Array(0.5, -1.5, 1),
-"update": 0,
-"values": [Vector2(-1415.9999, 84.99999), Vector2(29.999996, 132), Vector2(-30.999996, 122)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rq7jw"]
 _data = {
 &"BLUE": SubResource("Animation_jslxq"),
@@ -647,8 +647,9 @@ _data = {
 &"RESET": SubResource("Animation_2ydcg")
 }
 
-[node name="StageMain" type="Node2D"]
+[node name="StageMain" type="Node2D" node_paths=PackedStringArray("mousePan")]
 script = ExtResource("1_b0byo")
+mousePan = [NodePath("MarginContainer/CanvasLayer/Background"), NodePath("HostCharacter"), NodePath("MarginContainer/CanvasLayer/FondoPlano2"), NodePath("MarginContainer/CanvasLayer/MoodBars/Red"), NodePath("MarginContainer/CanvasLayer/MoodBars/Green"), NodePath("MarginContainer/CanvasLayer/MoodBars/Blue"), NodePath("ChatBox")]
 mousePanSpeedX = Array[float]([7.0, -3.0, 0.0, 8.0, 11.0, 9.5, -14.0])
 mousePanSpeedY = Array[float]([3.0, -1.0, 9.0, 5.0, 8.0, 6.5, -6.0])
 metadata/_edit_horizontal_guides_ = [472.0]
