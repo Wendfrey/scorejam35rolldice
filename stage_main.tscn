@@ -970,10 +970,11 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="PlayZone/HBoxContainer/Control2"]
 layout_mode = 0
-offset_top = 30.0
+offset_top = 11.0
 offset_right = 230.0
-offset_bottom = 65.0
-text = "ROLL DICE"
+offset_bottom = 84.0
+text = "DRAG HERE TO
+ROLL DICE"
 label_settings = SubResource("LabelSettings_4r2iv")
 horizontal_alignment = 1
 
@@ -992,10 +993,11 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="PlayZone/HBoxContainer/RefreshPanel"]
 layout_mode = 0
-offset_top = 30.0
+offset_top = 11.0
 offset_right = 230.0
-offset_bottom = 65.0
-text = "REFRESH DICE"
+offset_bottom = 84.0
+text = "DRAG HERE 
+TO REROLL"
 label_settings = SubResource("LabelSettings_iuj4m")
 horizontal_alignment = 1
 
