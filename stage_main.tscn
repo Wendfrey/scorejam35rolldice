@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://v30r43fb1vp"]
+[gd_scene load_steps=47 format=3 uid="uid://v30r43fb1vp"]
 
 [ext_resource type="Script" uid="uid://lwwchv4f8gy1" path="res://Script/stage_main.gd" id="1_b0byo"]
 [ext_resource type="Texture2D" uid="uid://c5h7ap3x5o2am" path="res://Assets/Texture/fondoPastel.png" id="2_ibjt6"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://ik40ehagt6jb" path="res://Assets/sounds/Sketchbook 2024-05-22.ogg" id="22_gentr"]
 [ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="24_xgppn"]
 [ext_resource type="Texture2D" uid="uid://y0oase15vke7" path="res://Assets/Texture/UI/embellecedor.png" id="26_h52rb"]
+[ext_resource type="AudioStream" uid="uid://q2wqvf6868o7" path="res://Assets/sounds/85059__zgump__bass-rvb-2.wav" id="29_2ydcg"]
 
 [sub_resource type="Animation" id="Animation_hn1fj"]
 resource_name = "Idle"
@@ -982,7 +983,7 @@ layout_mode = 0
 offset_left = -30.999996
 offset_top = 122.0
 offset_right = 667.74146
-offset_bottom = 233.63058
+offset_bottom = 233.63065
 rotation = 0.05235988
 scale = Vector2(2, 2)
 texture = ExtResource("24_xgppn")
@@ -1026,7 +1027,7 @@ layout_mode = 0
 offset_left = -30.999996
 offset_top = 122.0
 offset_right = 667.74146
-offset_bottom = 233.63046
+offset_bottom = 233.63058
 rotation = 0.05235988
 scale = Vector2(2, 2)
 texture = ExtResource("24_xgppn")
@@ -1070,7 +1071,7 @@ layout_mode = 0
 offset_left = -30.999996
 offset_top = 122.0
 offset_right = 667.7411
-offset_bottom = 233.6301
+offset_bottom = 233.63
 rotation = 0.05235988
 scale = Vector2(2, 2)
 texture = ExtResource("24_xgppn")
@@ -1113,7 +1114,7 @@ layout_mode = 0
 offset_left = -30.999996
 offset_top = 122.0
 offset_right = 667.74146
-offset_bottom = 233.63042
+offset_bottom = 233.6304
 rotation = 0.05235988
 scale = Vector2(2, 2)
 texture = ExtResource("24_xgppn")
@@ -1156,5 +1157,8 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_rq7jw")
 }
+
+[node name="GameOver" type="AudioStreamPlayer" parent="GameOverPlayer"]
+stream = ExtResource("29_2ydcg")
 
 [connection signal="pressed" from="PlayZone/HBoxContainer/PassTurn/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]

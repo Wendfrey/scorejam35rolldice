@@ -172,12 +172,13 @@ theme_override_fonts/font = ExtResource("4_8u835")
 theme_override_font_sizes/font_size = 20
 text = "Whats your name?"
 
-[node name="TextEdit" type="TextEdit" parent="SubmitScore"]
+[node name="TextEdit" type="LineEdit" parent="SubmitScore"]
 layout_mode = 0
 offset_left = 179.0
 offset_top = 52.0
 offset_right = 442.0
 offset_bottom = 86.0
+max_length = 20
 
 [node name="Button" type="Button" parent="SubmitScore"]
 layout_mode = 0

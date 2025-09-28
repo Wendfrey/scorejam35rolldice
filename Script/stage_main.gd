@@ -24,6 +24,8 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var refresh_zone_shape: CollisionShape2D = $PlayZone/HBoxContainer/RefreshPanel/RefreshZone/CollisionShape2D
 @onready var refresh_zone_panel: Panel = $PlayZone/HBoxContainer/RefreshPanel
 @onready var gameOverPlayer:AnimationPlayer = $GameOverPlayer
+@onready var musicplayer: AudioStreamPlayer = $musicplayer
+@onready var game_over: AudioStreamPlayer = $GameOverPlayer/GameOver
 
 const maxTurns:int = 15;
 
@@ -69,6 +71,8 @@ func do_end_game(scenario:String):
 	Globals.final_score = totalSpectators
 	Globals.submit_score = true
 	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+	musicplayer.stop()
+	game_over.play()
 		
 func update_aproval():
 	aproval = (red_bar.value + blue_bar.value + green_bar.value)/3

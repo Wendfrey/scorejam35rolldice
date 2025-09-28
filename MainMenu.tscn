@@ -454,6 +454,8 @@ libraries = {
 }
 autoplay = "panningBG"
 
+[node name="Gameoversound" type="AudioStreamPlayer" parent="AnimationPlayer"]
+
 [connection signal="button_up" from="Control/ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="Control/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
 [connection signal="button_up" from="Control/ButtonSetting" to="." method="_on_button_setting_button_up"]

@@ -1,6 +1,6 @@
 extends Control
 @onready var button: Button = $SubmitScore/Button
-@onready var text_edit: TextEdit = $SubmitScore/TextEdit
+@onready var text_edit: LineEdit = $SubmitScore/TextEdit
 @onready var square_box: NinePatchRect = $SubmitScore
 @onready var scoreboardbg: NinePatchRect = $NinePatchRect
 @onready var timerScore : Timer = $TimerScore
@@ -14,7 +14,7 @@ var csv : Array
 var pos : int
 var min_score : int
 
-#http://www.mabl.icu/gamejam/submitScore.php?name=toni&score=55577
+
 
 func _ready() -> void:
 	total_spectators_label.text = str(Globals.final_score)+"K"
