@@ -58,14 +58,18 @@ func _on_summit_score_completed(result, response_code, headers, body):
 	get_leadeboard_data()
 	
 func _on_button_pressed() -> void:
-	
-	if text_edit.text != "":
+	var regex = RegEx.new()
+	regex.compile("[^A-Za-z0-9]")
+	var typedText = regex.search(text_edit.text).get_string(0)
+	if text_edit.text != typedText:
+		text_edit.text = typedText
+	elif typedText != "":
 		square_box.hide()
 		var scoretag = get_tree().get_nodes_in_group("Scorelabel")
 		for i in scoretag:
 			i.queue_free()
 			
-		summit_score(text_edit.text,str(Globals.final_score))
+		summit_score(typedText,str(Globals.final_score))
 
 
 func _on_timer_score_timeout() -> void:

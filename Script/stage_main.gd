@@ -25,7 +25,7 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var refresh_zone_panel: Panel = $PlayZone/HBoxContainer/RefreshPanel
 @onready var gameOverPlayer:AnimationPlayer = $GameOverPlayer
 
-const maxTurns:int = 15;
+const maxTurns:int = 3;
 
 var totalSpectators:int
 var aproval:float
