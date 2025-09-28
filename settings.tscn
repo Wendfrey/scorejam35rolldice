@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://kwa2xtrp7onn"]
+[gd_scene load_steps=5 format=3 uid="uid://kwa2xtrp7onn"]
 
 [ext_resource type="Script" uid="uid://dw7tke3i7ipg0" path="res://settings.gd" id="1_nkug2"]
 [ext_resource type="Script" uid="uid://jh81l1oppp35" path="res://mainvolume.gd" id="2_3ykye"]
 [ext_resource type="Texture2D" uid="uid://b038odkibeojx" path="res://Assets/Texture/UI/squareBox.png" id="2_gc0em"]
+[ext_resource type="FontFile" uid="uid://2flahwjxpli" path="res://Assets/font/Modak-Regular.ttf" id="4_gc0em"]
 
 [node name="settings" type="Panel"]
 offset_left = 117.0
@@ -52,12 +53,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 12.0
-offset_bottom = 19.0
+offset_top = 11.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.16078432)
+theme_override_fonts/font = ExtResource("4_gc0em")
+theme_override_font_sizes/font_size = 23
 text = "Music"
 
 [node name="effectvolume" type="HSlider" parent="MarginContainer/VBoxContainer"]
@@ -75,11 +78,26 @@ offset_right = 319.0
 offset_bottom = 62.0
 theme_override_colors/font_color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.16078432)
+theme_override_fonts/font = ExtResource("4_gc0em")
+theme_override_font_sizes/font_size = 23
 text = "Sound Effects
 "
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_gc0em")
+theme_override_font_sizes/font_size = 24
 text = "Quit to menu"
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_gc0em")
+theme_override_font_sizes/font_size = 23
+text = "RESUME"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_button_up"]
