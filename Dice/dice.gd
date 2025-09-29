@@ -182,12 +182,14 @@ func animate_move_to(new_position:Vector2):
 	var anim = get_tree().create_tween()
 	anim.bind_node(self)
 	current_pos = new_position
-	anim.tween_callback(func(): z_index += 1)
-	anim.tween_property(self, "is_anim_move_playing", true, 0)
+	anim.tween_callback(func(): 
+		z_index += 1
+		is_anim_move_playing = true
+	)
 	anim.tween_property(self, "position", new_position, 0.5).set_trans(Tween.TRANS_CUBIC)
-	anim.tween_property(self, "is_anim_move_playing", false, 0)
-	anim.tween_callback(func(): z_index -= 1)
 	anim.tween_callback(func():
+		z_index -= 1
+		is_anim_move_playing = false
 		if get_rect().has_point(get_local_mouse_position()):
 			show_menu(true)
 	)
@@ -236,9 +238,7 @@ func _on_zone_detector_area_2d_area_entered(area: Area2D) -> void:
 func _on_mouse_exited() -> void:
 	if not is_roll_happening and not grabbed and not get_rect().has_point(get_local_mouse_position()):
 		show_menu(false)
-		z_index -= 1
 
 func _on_mouse_entered() -> void:
 	if not is_roll_happening and not grabbed:
 		show_menu(true)
-		z_index += 1
