@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 func get_leadeboard_data():
 	$HTTPRequest.request_completed.connect(_on_request_completed)
-	$HTTPRequest.request(url)
+	$HTTPRequest.request(url + "?v=" + str(randi() % 10000))
 
 
 func _on_request_completed(result, response_code, headers, body):
@@ -69,10 +69,7 @@ func _on_button_pressed() -> void:
 		var scoretag = get_tree().get_nodes_in_group("Scorelabel")
 		for i in scoretag:
 			i.queue_free()
-			
-		Globals.final_score = Globals.final_score*100
-			
-		print(typedText,scoreEncrypt())
+		
 		summit_score(typedText,scoreEncrypt())
 
 func scoreEncrypt() -> String:
