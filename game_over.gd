@@ -70,11 +70,14 @@ func _on_button_pressed() -> void:
 		for i in scoretag:
 			i.queue_free()
 			
+		Globals.final_score = Globals.final_score*100
+			
+		print(typedText,scoreEncrypt())
 		summit_score(typedText,scoreEncrypt())
 
 func scoreEncrypt() -> String:
 	var minus = randi_range(1,Globals.final_score/2);
-	return to_base(Globals.final_score-(minus*2),33)+"x"+to_base(minus,33)+"-"+to_base(Globals.final_score-minus,33);
+	return to_base(Globals.final_score-(minus*2),33)+"x"+to_base(minus,30)+"-"+to_base(Globals.final_score-minus,36);
 	
 	
 func to_base(n: int, base: int) -> String:
