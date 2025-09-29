@@ -70,8 +70,22 @@ func _on_button_pressed() -> void:
 		for i in scoretag:
 			i.queue_free()
 			
-		summit_score(typedText,str(Globals.final_score))
+		summit_score(typedText,scoreEncrypt())
 
+func scoreEncrypt() -> String:
+	var minus = randi_range(1,Globals.final_score/2);
+	return to_base(Globals.final_score-(minus*2),33)+"x"+to_base(minus,33)+"-"+to_base(Globals.final_score-minus,33);
+	
+	
+func to_base(n: int, base: int) -> String:
+	var chars := "0123456789abcdefghijklmnopqrstuvwxyz"
+	var result := ""
+	if n == 0:
+		return "0"
+	while n > 0:
+		result = chars[n % base] + result
+		n = n / base
+	return result
 
 func _on_timer_score_timeout() -> void:
 	if pos < csv.size():

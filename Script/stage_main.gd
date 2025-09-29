@@ -28,7 +28,7 @@ const GAME_OVER_SCENE = preload("uid://bcklhse4ojfjd")
 @onready var roll_panel: Panel = $PlayZone/HBoxContainer/RollPanel
 
 
-const maxTurns:int = 15;
+const maxTurns:int = 3;
 
 var totalSpectators:int
 var aproval:float
